@@ -83,6 +83,51 @@ aclocal -I m4 \
   && autoheader \
   && automake --add-missing --foreign --copy \
   && autoconf 
-if test -z "$NOCONFIGURE"; then
-exec ./configure --enable-maintainer-mode $@
-fi   
+
+if test -z "$LOCAL"; then
+    echo No LOCAL dir set using /usr/local
+    LOCAL="/usr/local"
+fi
+
+export PATH=/${LOCAL}/libetpan/bin:${PATH}
+exec ./configure --enable-static \
+--disable-shared \
+--prefix=/${LOCAL}/sylpheedish \
+--disable-ipv6 \
+--disable-manual \
+--disable-libsm \
+--enable-libetpan \
+--disable-generic-umpc \
+--enable-pthread \
+--disable-enchant  \
+--disable-compface \
+--disable-startup-notification \
+--disable-dbus \
+--disable-ldap \
+--disable-jpilot \
+--disable-networkmanager \
+--disable-valgrind \
+--disable-att_remover-plugin \
+--disable-attachwarner-plugin \
+--disable-bogofilter-plugin  \
+--disable-bsfilter-plugin     \
+--disable-clamd-plugin       \
+--disable-fancy-plugin       \
+--disable-fetchinfo-plugin   \
+--disable-gdata-plugin       \
+--disable-geolocation-plugin  \
+--disable-libravatar-plugin   \
+--disable-mailmbox-plugin     \
+--disable-newmail-plugin      \
+--disable-notification-plugin \
+--disable-pdf_viewer-plugin   \
+--disable-perl-plugin         \
+--disable-python-plugin       \
+--disable-smime-plugin        \
+--disable-spamassassin-plugin \
+--disable-spam_report-plugin  \
+--disable-rssyl-plugin \
+--disable-archive-plugin \
+--disable-python-plugin \
+--enable-new-addrbook
+
