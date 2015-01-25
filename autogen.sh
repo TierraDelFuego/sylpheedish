@@ -91,8 +91,9 @@ fi
 
 export PATH=/${LOCAL}/libetpan/bin:${PATH}
 exec ./configure --enable-static \
+--enable-gnutls \
 --disable-shared \
---prefix=/${LOCAL}/sylpheedish \
+--prefix=${LOCAL}/sylpheedish \
 --disable-ipv6 \
 --disable-manual \
 --disable-libsm \

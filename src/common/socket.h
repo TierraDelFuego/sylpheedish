@@ -21,7 +21,7 @@
 #define __SOCKET_H__
 
 #ifdef HAVE_CONFIG_H
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #if (defined (_XOPEN_SOURCE) && !defined (_BSD_SOURCE))

@@ -4,10 +4,10 @@
 # See COPYING file for license details.
 
 EXTRA_TOOLS = \
-	OOo2claws-mail.pl \
-	acroread2claws-mail.pl \
+	OOo2sylpheedish.pl \
+	acroread2sylpheedish.pl \
 	calypso_convert.pl \
-	claws-mail-compose-insert-files.pl \
+	sylpheedish-compose-insert-files.pl \
 	convert_mbox.pl \
 	csv2addressbook.pl \
 	eud2gc.py \
@@ -18,17 +18,17 @@ EXTRA_TOOLS = \
 	gif2xface.pl \
 	google_msgid.pl \
 	google_search.pl \
-	kmail2claws-mail.pl \
-	kmail2claws-mail_v2.pl \
-	kmail-mailbox2claws-mail.pl \
+	kmail2sylpheedish.pl \
+	kmail2sylpheedish_v2.pl \
+	kmail-mailbox2sylpheedish.pl \
 	mairix.sh \
-	mew2claws-mail.pl \
+	mew2sylpheedish.pl \
 	multiwebsearch.pl \
-	nautilus2claws-mail.sh \
-	outlook2claws-mail.pl \
+	nautilus2sylpheedish.sh \
+	outlook2sylpheedish.pl \
 	popfile-link.sh \
-	tb2claws-mail \
-	tbird2claws.py \
+	tb2sylpheedish \
+	tbird2sylpheedish.py \
 	textviewer.pl \
 	textviewer.sh \
 	thunderbird-filters-convertor.pl \
@@ -37,15 +37,15 @@ EXTRA_TOOLS = \
 	uuooffice \
 	vcard2xml.py \
 	kdeservicemenu/install.sh \
-	kdeservicemenu/claws-mail-kdeservicemenu.pl
+	kdeservicemenu/sylpheedish-kdeservicemenu.pl
 
 EXTRA_DIST = \
 	README \
 	ca-certificates.crt \
 	multiwebsearch.conf \
 	kdeservicemenu/README \
-	kdeservicemenu/claws-mail-attach-files.desktop.template \
-	kdeservicemenu/claws-mail-attach-files.desktop.kde4template \
+	kdeservicemenu/sylpheedish-attach-files.desktop.template \
+	kdeservicemenu/sylpheedish-attach-files.desktop.kde4template \
 	$(EXTRA_TOOLS)
 
 MAKE_EXE = chmod u+x $(EXTRA_TOOLS)

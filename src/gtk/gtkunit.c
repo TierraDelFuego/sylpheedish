@@ -20,7 +20,7 @@
  */
 
 #include "config.h"
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 
 #include "gtkunit.h"
 

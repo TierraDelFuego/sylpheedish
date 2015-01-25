@@ -22,7 +22,7 @@
 #define __PGP_UTILS_H__
 
 #ifdef HAVE_CONFIG_H
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #include "procmime.h"

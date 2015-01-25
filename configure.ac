@@ -4,7 +4,7 @@ AC_INIT(src/main.c)
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
 
-PACKAGE=claws-mail
+PACKAGE=sylpheedish
 
 dnl version number
 INTERFACE_AGE=0
@@ -17,7 +17,7 @@ if test \( -d .git \); then
     if test \( "$GIT" = "no" \); then
 	AC_MSG_ERROR([*** git not found. See http://git-scm.com/])
     else
-	GIT_VERSION=`git describe --abbrev=6 --dirty --always`
+	GIT_VERSION="4.0"
 	echo "echo ${GIT_VERSION}" > ./version
     fi
 else
@@ -81,7 +81,7 @@ AC_SUBST(LT_AGE)
 
 dnl Specify a header configuration file
 AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_HEADERS(claws-features.h)
+AC_CONFIG_HEADERS(sylpheedish-features.h)
 
 AM_MAINTAINER_MODE
 
@@ -207,7 +207,7 @@ LIBS=$syl_save_LIBS
 
 dnl for gettext
 ALL_LINGUAS="bg ca cs de en_GB eo es fi fr he hu id_ID it ja lt nb nl pl pt_BR pt_PT ru sk sv uk zh_CN zh_TW"
-GETTEXT_PACKAGE=claws-mail
+GETTEXT_PACKAGE=sylpheedish
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define text domain.])
 
@@ -511,10 +511,10 @@ AC_ARG_WITH(passcrypt-key, [  --with-passcrypt-key=KEY     Key used to encode pa
 AC_SUBST(PASSCRYPT_KEY, $with_passcrypt_key)
 
 dnl RC dir (will be default at a certain point in time)
-AC_ARG_WITH(config-dir,    [  --with-config-dir=RCDIR      Local configuration dir (default: .claws-mail)],
-	      ac_cv_with_config_dir="$withval", ac_cv_with_config_dir=".claws-mail")
+AC_ARG_WITH(config-dir,    [  --with-config-dir=RCDIR      Local configuration dir (default: .sylpheedish)],
+	      ac_cv_with_config_dir="$withval", ac_cv_with_config_dir=".sylpheedish")
 if test x"$ac_cv_with_config_dir" = x""; then
-	ac_cv_with_config_dir=".claws-mail"
+	ac_cv_with_config_dir=".sylpheedish"
 fi
 AC_DEFINE_UNQUOTED(CFG_RC_DIR, "$ac_cv_with_config_dir", Configuration directory)
 
@@ -1976,7 +1976,7 @@ manual/de/dist/pdf/Makefile
 manual/de/dist/ps/Makefile
 manual/de/dist/html/Makefile
 manual/de/dist/txt/Makefile
-claws-mail.pc
+sylpheedish.pc
 ])
 
 dnl Output the configuration summary

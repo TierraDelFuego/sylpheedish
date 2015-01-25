@@ -21,7 +21,7 @@
 #define __MESSAGEVIEW_H__
 
 #ifdef HAVE_CONFIG_H
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #include <glib.h>

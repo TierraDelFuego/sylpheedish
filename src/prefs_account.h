@@ -21,7 +21,7 @@
 #define PREFS_ACCOUNT_H
 
 #ifdef HAVE_CONFIG_H
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 #include "ssl.h"
 typedef struct _PrefsAccount	PrefsAccount;

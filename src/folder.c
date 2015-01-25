@@ -19,7 +19,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #include "defs.h"
@@ -1382,37 +1382,6 @@ gchar *folder_item_get_identifier(FolderItem *item)
 	g_free(folder_id);
 
 	return id;
-}
-
-Folder *folder_find_from_identifier(const gchar *identifier)
-{
-	gchar *str;
-	gchar *p;
-	gchar *name;
-	FolderClass *class;
-
-	cm_return_val_if_fail(identifier != NULL, NULL);
-
-	if (*identifier != '#')
-		return NULL;
-
-	Xstrdup_a(str, identifier, return NULL);
-
-	p = strchr(str, '/');
-	if (!p)
-		return NULL;
-	*p = '\0';
-	p++;
-	class = folder_get_class_from_string(&str[1]);
-	if (class == NULL)
-		return NULL;
-
-	name = p;
-	p = strchr(p, '/');
-	if (p)
-		return NULL;
-
-	return folder_find_from_name(name, class);
 }
 
 FolderItem *folder_find_item_from_identifier(const gchar *identifier)

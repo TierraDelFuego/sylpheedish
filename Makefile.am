@@ -10,18 +10,14 @@ SUBDIRS = m4 po src tools config doc manual
 
 EXTRA_DIST = \
 	ChangeLog \
-	ChangeLog.gtk1 \
-	ChangeLog.pre2.0.0 \
-	ChangeLog.2.0.0-3.0.0 \
-	ChangeLog.3.0.0-3.9.0 \
 	RELEASE_NOTES \
 	claws-mail-128x128.png \
 	claws-mail-64x64.png \
-	claws-mail.pc.in \
-	claws-mail.desktop \
+	sylpheedish.pc.in \
+	sylpheedish.desktop \
 	claws-mail.png \
 	autogen.sh \
-	claws-features.h.in \
+	sylpheedish-features.h.in \
 	version
 
 # hicolor icon theme, base class of all icon themes
@@ -37,7 +33,7 @@ pixmap128_DATA=claws-mail-128x128.png
 # when changing the name or location of the .desktop file,
 # also update src/common/Makefile.am
 gnomapdir = $(datadir)/applications
-gnomap_DATA=claws-mail.desktop
+gnomap_DATA=sylpheedish.desktop
 
 rename-icons:
 	@cd $(DESTDIR)$(datadir)/icons/hicolor/64x64/apps && \
@@ -73,20 +69,12 @@ uninstall-hook: remove-icons
 endif
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = claws-mail.pc
+pkgconfig_DATA = sylpheedish.pc
 
 clawsincludedir = $(pkgincludedir)
 clawsinclude_HEADERS = \
-	claws-features.h
+	sylpheedish-features.h
 
 relnotesdir = $(docdir)
 relnotes_DATA = RELEASE_NOTES
 
-dist-local: ChangeLog
-
-maintainer-clean-local:
-	@rm -f ChangeLog
-	@rm -f version
-
-ChangeLog: version
-	@./tools/gitlog2changelog.py 3.9.0 > ChangeLog

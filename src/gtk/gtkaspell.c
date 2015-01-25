@@ -26,7 +26,7 @@
  
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #ifdef USE_ENCHANT

@@ -21,7 +21,7 @@
 #define PLUGINWINDOW_H 1
 
 #ifdef HAVE_CONFIG_H
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 void pluginwindow_create();

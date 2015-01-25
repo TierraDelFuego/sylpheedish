@@ -19,7 +19,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#include "claws-features.h"
+#include "sylpheedish-features.h"
 #endif
 
 #ifdef HAVE_LIBETPAN
@@ -451,16 +451,6 @@ void nntp_threaded_disconnect(Folder * folder)
 	
 	debug_print("disconnect ok\n");
 }
-
-void nntp_threaded_cancel(Folder * folder)
-{
-	newsnntp * nntp;
-	
-	nntp = get_nntp(folder);
-	if (nntp->nntp_stream != NULL)
-		mailstream_cancel(nntp->nntp_stream);
-}
-
 
 struct login_param {
 	newsnntp * nntp;
@@ -914,10 +904,6 @@ void nntp_main_done(gboolean have_connectivity)
 {
 }
 void nntp_main_set_timeout(int sec)
-{
-}
-
-void nntp_threaded_cancel(Folder * folder);
 {
 }
 
