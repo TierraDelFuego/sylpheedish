@@ -1,6 +1,7 @@
 
 AC_PREREQ(2.59)
-AC_INIT(src/main.c)
+AC_INIT([sylpheedish],[4.0])
+AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -46,9 +47,24 @@ dnl set $target
 AC_CANONICAL_SYSTEM
 
 dnl
-AM_INIT_AUTOMAKE($PACKAGE, $VERSION, no-define)
+dnl If your configure.ac has:
+
+dnl AC_INIT([src/foo.c])
+dnl AM_INIT_AUTOMAKE([mumble], [1.5])
+
+dnl you should modernize it as follows:
+
+dnl AC_INIT([mumble], [1.5])
+dnl AC_CONFIG_SRCDIR([src/foo.c])
+dnl AM_INIT_AUTOMAKE
+
+AM_INIT_AUTOMAKE
+AM_SILENT_RULES([yes])
+
+dnl AM_INIT_AUTOMAKE($PACKAGE, $VERSION, no-define)
 dnl AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
 dnl AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
+
 AC_SUBST(PACKAGE)
 AC_SUBST(VERSION)
 AC_SUBST(MAJOR_VERSION)
@@ -368,7 +384,30 @@ if test $ac_cv_dirent_d_type = yes; then
 		  Define if `struct dirent' has `d_type' member.)
 fi
 
-# Check whether mkdir does not take the permission argument.
+dnl Check whether mkdir does not take the permission argument.
+dnl Stolen from gcc
+dnl Define MKDIR_TAKES_ONE_ARG if mkdir accepts only one argument instead
+dnl of the usual 2.
+AC_DEFUN([GNUPG_FUNC_MKDIR_TAKES_ONE_ARG],
+[AC_CHECK_HEADERS(sys/stat.h unistd.h direct.h)
+AC_CACHE_CHECK([if mkdir takes one argument], gnupg_cv_mkdir_takes_one_arg,
+[AC_TRY_COMPILE([
+#include <sys/types.h>
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+#ifdef HAVE_UNISTD_H
+# include <unistd.h>
+#endif
+#ifdef HAVE_DIRECT_H
+# include <direct.h>
+#endif], [mkdir ("foo", 0);],
+    gnupg_cv_mkdir_takes_one_arg=no, gnupg_cv_mkdir_takes_one_arg=yes)])
+if test $gnupg_cv_mkdir_takes_one_arg = yes ; then
+    AC_DEFINE(MKDIR_TAKES_ONE_ARG,1,
+    [Defined if mkdir() does not take permission flags])
+fi
+])
 GNUPG_FUNC_MKDIR_TAKES_ONE_ARG
 
 dnl Checks for header files.
@@ -403,14 +442,13 @@ AC_STRUCT_TM
 dnl AC_CHECK_TYPE(wint_t, unsigned int) does not work because wint_t
 dnl may be defined only in wchar.h (this happens with gcc-2.96).
 dnl So we need to use this extended macro.
-CLAWS_CHECK_TYPE(wint_t, unsigned int,
-[
-#if HAVE_WCHAR_H
-#include <wchar.h>
-#endif
-], Define to `unsigned int' if <stddef.h> or <wchar.h> doesn't define.)
+dnl CLAWS_CHECK_TYPE(wint_t, unsigned int,
+dnl [
+dnl #if HAVE_WCHAR_H
+dnl #include <wchar.h>
+dnl #endif
+dnl ], Define to `unsigned int' if <stddef.h> or <wchar.h> doesn't define.)
 
-GNUPG_CHECK_TYPEDEF(u32, HAVE_U32_TYPEDEF, Used to test for a u32 typedef)
 AC_CHECK_SIZEOF(unsigned short, 2)
 AC_CHECK_SIZEOF(unsigned int, 4)
 AC_CHECK_SIZEOF(unsigned long, 4)
@@ -496,10 +534,12 @@ OLDLIBS=$LIBS
 LIBS=
 case $host_os in
 	*dragonfly*)
-		AC_SEARCH_LIBS(encrypt, cipher, [], AC_MSG_ERROR(['encrypt'-function not found.]))
+		AC_SEARCH_LIBS([encrypt], [], AC_MSG_ERROR(['encrypt'-function not found.]))
+		AC_SEARCH_LIBS([cipher], [], AC_MSG_ERROR(['encrypt'-function not found.]))
 	;;
 	*)
-		AC_SEARCH_LIBS(encrypt, crypt, [], AC_MSG_ERROR(['encrypt'-function not found.]))
+		AC_SEARCH_LIBS([encrypt], [crypt], LIBS=-lcrypt, AC_MSG_ERROR(['encrypt'-function not found.]))
+        AC_SEARCH_LIBS([crypt], [crypt], LIBS=-lcrypt, AC_MSG_ERROR(['crypt'-function not found.]))
 	;;
 esac
 CRYPT_LIBS=$LIBS
@@ -507,7 +547,7 @@ AC_SUBST(CRYPT_LIBS)
 LIBS=$OLDLIBS
 
 AC_ARG_WITH(passcrypt-key, [  --with-passcrypt-key=KEY     Key used to encode passwords (8 byte string)],
-	    with_passcrypt_key="$withval", with_passcrypt_key="passkey0")
+	    with_passcrypt_key="$withval", with_passcrypt_key="909606passkey0")
 AC_SUBST(PASSCRYPT_KEY, $with_passcrypt_key)
 
 dnl RC dir (will be default at a certain point in time)
@@ -1756,7 +1796,6 @@ AC_MSG_CHECKING([whether to build spamassassin plugin])
 if test x"$enable_spamassassin_plugin" != xno; then
 	PLUGINS="$PLUGINS spamassassin"
 	AC_MSG_RESULT(yes)
-	AC_SPAMASSASSIN
 else
 	DISABLED_PLUGINS="$DISABLED_PLUGINS spamassassin"
 	AC_MSG_RESULT(no)

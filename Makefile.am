@@ -1,15 +1,15 @@
-# Copyright 1999-2014 the Claws Mail team.
+# Copyright 1999-2015 TierraDelFuego, the Claws Mail team.
 # This file is part of Claws Mail package, and distributed under the
 # terms of the General Public License version 3 (or later).
 # See COPYING file for license details.
 
-ACLOCAL_AMFLAGS = -I m4
-AUTOMAKE_OPTIONS = dist-bzip2 dist-xz
+#ACLOCAL_AMFLAGS = -I m4
+AUTOMAKE_OPTIONS = dist-xz
 
 SUBDIRS = m4 po src tools config doc manual
 
 EXTRA_DIST = \
-	ChangeLog \
+	Changelog \
 	RELEASE_NOTES \
 	claws-mail-128x128.png \
 	claws-mail-64x64.png \
@@ -30,10 +30,6 @@ pixmap64_DATA=claws-mail-64x64.png
 pixmap128dir=$(datadir)/icons/hicolor/128x128/apps
 pixmap128_DATA=claws-mail-128x128.png
 
-# when changing the name or location of the .desktop file,
-# also update src/common/Makefile.am
-gnomapdir = $(datadir)/applications
-gnomap_DATA=sylpheedish.desktop
 
 rename-icons:
 	@cd $(DESTDIR)$(datadir)/icons/hicolor/64x64/apps && \
@@ -71,10 +67,15 @@ endif
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = sylpheedish.pc
 
-clawsincludedir = $(pkgincludedir)
-clawsinclude_HEADERS = \
+sylpheedishincludedir = $(pkgincludedir)
+sylpheedishinclude_HEADERS = \
 	sylpheedish-features.h
 
 relnotesdir = $(docdir)
 relnotes_DATA = RELEASE_NOTES
 
+# when changing the name or location of the .desktop file,
+# also update src/common/Makefile.am
+
+desktopdir = $(datadir)/applications
+desktop_DATA = sylpheedish.desktop
