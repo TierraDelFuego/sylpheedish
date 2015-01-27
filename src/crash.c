@@ -47,7 +47,7 @@
 #endif
 
 #include "main.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "crash.h"
 #include "utils.h"
 #include "filesel.h"

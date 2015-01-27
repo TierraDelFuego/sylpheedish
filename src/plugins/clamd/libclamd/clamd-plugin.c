@@ -44,7 +44,7 @@
 #include <netdb.h>
 #include <errno.h>
 
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "plugin.h"
 #include "utils.h"

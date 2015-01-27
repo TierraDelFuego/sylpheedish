@@ -26,7 +26,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "filesel.h"
 #include "manage_window.h"
 #include "gtkutils.h"

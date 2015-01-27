@@ -57,7 +57,7 @@
 #  include <wctype.h>
 #endif
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "main.h"
 #include "mainwindow.h"
 #include "compose.h"

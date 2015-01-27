@@ -2017,14 +2017,14 @@ const gchar *get_cert_file(void)
 	const gchar *cert_file = NULL;
 	if (!cert_file)
 		cert_file = g_strconcat(w32_get_module_dir(),
-				 "\\share\\claws-mail\\",
+				 "\\share\\sylpheedish\\",
 				"ca-certificates.crt",
 				NULL);	
 	return cert_file;
 }
 #endif
 
-/* Return the filepath of the claws-mail.desktop file */
+/* Return the filepath of the sylpheedish.desktop file */
 const gchar *get_desktop_file(void)
 {
 #ifdef DESKTOPFILEPATH

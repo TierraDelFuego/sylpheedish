@@ -372,12 +372,12 @@ dist2: stamp-po $(DISTFILES)
 	if test -f $(srcdir)/$(DOMAIN).pot; then \
 	  dists="$$dists $(DOMAIN).pot stamp-po"; \
 	fi; \
-	if test -f $(srcdir)/ChangeLog; then \
-	  dists="$$dists ChangeLog"; \
+	if test -f $(srcdir)/Changelog; then \
+	  dists="$$dists Changelog"; \
 	fi; \
 	for i in 0 1 2 3 4 5 6 7 8 9; do \
-	  if test -f $(srcdir)/ChangeLog.$$i; then \
-	    dists="$$dists ChangeLog.$$i"; \
+	  if test -f $(srcdir)/Changelog.$$i; then \
+	    dists="$$dists Changelog.$$i"; \
 	  fi; \
 	done; \
 	if test -f $(srcdir)/LINGUAS; then dists="$$dists LINGUAS"; fi; \

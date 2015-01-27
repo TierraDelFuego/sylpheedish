@@ -24,7 +24,7 @@
 
 #include "defs.h"
 #include "version.h"
-#include "claws.h"
+#include "sylpheedish.h"
 
 #include <glib.h>
 #include <glib/gi18n.h>

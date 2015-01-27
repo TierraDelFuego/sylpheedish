@@ -4,9 +4,9 @@
 # See COPYING file for license details.
 
 PLUGINDIR = $(pkglibdir)/plugins/
-DESKTOPFILEPATH=$(datadir)/applications/claws-mail.desktop
+DESKTOPFILEPATH=$(datadir)/applications/sylpheedish.desktop
 
-noinst_LTLIBRARIES = libclawscommon.la
+noinst_LTLIBRARIES = libsylpheedishcommon.la
 
 if OS_WIN32
 arch_sources = fnmatch.c \
@@ -19,7 +19,7 @@ arch_files =
 arch_header = 
 endif
 
-libclawscommon_la_SOURCES = $(arch_sources) \
+libsylpheedishcommon_la_SOURCES = $(arch_sources) \
 	hooks.c \
 	log.c \
 	md5.c \
@@ -36,7 +36,7 @@ libclawscommon_la_SOURCES = $(arch_sources) \
 	ssl_certificate.c \
 	string_match.c \
 	stringtable.c \
-	claws.c \
+	sylpheedish.c \
 	tags.c \
 	template.c \
 	utils.c \
@@ -44,8 +44,8 @@ libclawscommon_la_SOURCES = $(arch_sources) \
 	xml.c \
 	xmlprops.c
 
-clawscommonincludedir = $(pkgincludedir)/common
-clawscommoninclude_HEADERS = $(arch_headers) \
+sylpheedishcommonincludedir = $(pkgincludedir)/common
+sylpheedishcommoninclude_HEADERS = $(arch_headers) \
 	defs.h \
 	hooks.h \
 	log.h \
@@ -63,7 +63,7 @@ clawscommoninclude_HEADERS = $(arch_headers) \
 	ssl.h \
 	string_match.h \
 	stringtable.h \
-	claws.h \
+	sylpheedish.h \
 	tags.h \
 	template.h \
 	timing.h \
@@ -83,7 +83,7 @@ AM_CPPFLAGS = \
 	-DDESKTOPFILEPATH=\"$(DESKTOPFILEPATH)\" \
 	-DGTK_DISABLE_DEPRECATED
 
-libclawscommon_la_LIBADD = \
+libsylpheedishcommon_la_LIBADD = \
 	$(GLIB_LIBS) \
 	$(CRYPT_LIBS) \
 	$(PTHREAD_LIBS)

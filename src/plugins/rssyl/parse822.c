@@ -28,7 +28,7 @@
 #include <pthread.h>
 
 /* Claws Mail includes */
-#include <common/claws.h>
+#include <common/sylpheedish.h>
 #include <procheader.h>
 #include <common/utils.h>
 #include <main.h>

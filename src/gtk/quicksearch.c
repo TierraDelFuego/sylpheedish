@@ -44,7 +44,7 @@
 #include "folderview.h"
 #include "folder.h"
 #include "prefs_matcher.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "statusbar.h"
 #include "advsearch.h"
 #include "alertpanel.h"

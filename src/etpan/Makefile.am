@@ -5,16 +5,16 @@
 
 PLUGINDIR = $(pkglibdir)/plugins/
 
-noinst_LTLIBRARIES = libclawsetpan.la
+noinst_LTLIBRARIES = libsylpheedishetpan.la
 
-libclawsetpan_la_SOURCES = \
+libsylpheedishetpan_la_SOURCES = \
 	etpan-thread-manager.c \
 	imap-thread.c \
 	nntp-thread.c \
 	etpan-ssl.c
 
-clawsetpanincludedir = $(pkgincludedir)/etpan
-clawsetpaninclude_HEADERS = \
+sylpheedishetpanincludedir = $(pkgincludedir)/etpan
+sylpheedishetpaninclude_HEADERS = \
 	etpan-thread-manager-types.h \
 	etpan-thread-manager.h \
 	etpan-errors.h \
@@ -30,8 +30,8 @@ AM_CPPFLAGS = \
 	$(LIBETPAN_CFLAGS) \
 	$(ENCHANT_CFLAGS)
 
-libclawsetpan_la_LIBADD = \
-	../common/libclawscommon.la \
+libsylpheedishetpan_la_LIBADD = \
+	../common/libsylpheedishcommon.la \
 	$(GTK_LIBS) \
 	$(LIBETPAN_LIBS) \
 	$(ENCHANT_LIBS)

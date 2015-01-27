@@ -5,7 +5,7 @@
 
 if CLAWS_LIBETPAN
 etpan_dir = etpan
-etpan_library = etpan/libclawsetpan.la
+etpan_library = etpan/libsylpheedishetpan.la
 else
 etpan_dir =
 etpan_library = 
@@ -13,24 +13,24 @@ endif
 
 SUBDIRS = common gtk $(etpan_dir) . plugins 
 
-bin_PROGRAMS = claws-mail
+bin_PROGRAMS = sylpheedish
 install-exec-hook:
-	@rm -f $(DESTDIR)$(bindir)/sylpheed-claws
-	@ln -s claws-mail $(DESTDIR)$(bindir)/sylpheed-claws
+	@rm -f $(DESTDIR)$(bindir)/sylpheedish
+	@ln -s sylpheedish $(DESTDIR)$(bindir)/sylpheed
 
 if PLATFORM_WIN32
 LTRCCOMPILE = $(LIBTOOL) --mode=compile --tag=RC $(RC) \
      `echo $(DEFS) $(DEFAULT_INCLUDES) $(IFLAGS) | \
      sed -e 's/-I/--include-dir /g;s/-D/--define /g'`
 
-%.o : %.rc
++.rc.o:
 	$(LTRCCOMPILE) -i $< -o $@
 
-claws_mail_res_ldflag = -Wl,w32-resource.o
-claws_mail_deps = w32-resource.o
+sylpheedish_res_ldflag = -Wl,w32-resource.o
+sylpheedish_deps = w32-resource.o
 else
-claws_mail_res_ldflag =
-claws_mail_deps =
+sylpheedish_res_ldflag =
+sylpheedish_deps =
 endif
 
 new_abook_source = \
@@ -122,7 +122,7 @@ abook_headers = \
 	pine.h \
 	vcard.h
 
-claws_mail_SOURCES = \
+sylpheedish_SOURCES = \
 	account.c \
 	action.c \
 	addrcache.c \
@@ -234,8 +234,8 @@ claws_mail_SOURCES = \
 	wizard.c \
 	$(abook_source)
 
-claws_mailincludedir = $(pkgincludedir)
-claws_mailinclude_HEADERS = \
+sylpheedishincludedir = $(pkgincludedir)
+sylpheedishinclude_HEADERS = \
 	account.h \
 	action.h \
 	addrcache.h \
@@ -356,9 +356,9 @@ BUILT_SOURCES = \
 	quote_fmt_parse.h \
 	client-bindings.h
 
-client-bindings.h: claws-contacts.xml
+client-bindings.h: sylpheedish-contacts.xml
 if BUILD_NEWADDRBOOK
-	dbus-binding-tool --prefix=abook --mode=glib-client --output=$@ claws-contacts.xml
+	dbus-binding-tool --prefix=abook --mode=glib-client --output=$@ sylpheedish-contacts.xml
 
 CLEANFILES = \
 	     client-bindings.h
@@ -529,7 +529,7 @@ EXTRA_DIST = \
 	pixmaps/tray_unreadmarkedmail.xpm \
 	pixmaps/empty.xpm \
 	pixmaps/replied_and_forwarded.xpm \
-	claws-contacts.xml \
+	sylpheedish-contacts.xml \
 	$(abook_extra)
 
 
@@ -540,21 +540,21 @@ IFLAGS = \
 	-I$(srcdir)/etpan
 
 if PLATFORM_WIN32
-arch_ldflags := -export-all-symbols
+arch_ldflags = -export-all-symbols
 else
-arch_ldflags :=
+arch_ldflags =
 endif
 
-claws_mail_LDFLAGS = \
-	$(arch_ldflags) -export-dynamic $(claws_mail_res_ldflag)
+sylpheedish_LDFLAGS = \
+	$(arch_ldflags) -export-dynamic $(sylpheedish_res_ldflag)
 
-claws_mail_DEPENDENCIES = $(claws_mail_deps) \
+sylpheedish_DEPENDENCIES = $(sylpheedish_deps) \
 	$(etpan_library) \
-	gtk/libclawsgtk.la
+	gtk/libsylpheedishgtk.la
 
-claws_mail_LDADD = \
+sylpheedish_LDADD = \
 	$(etpan_library) \
-	gtk/libclawsgtk.la \
+	gtk/libsylpheedishgtk.la \
 	$(ENCHANT_LIBS) \
 	$(INTLLIBS) \
 	$(GTK_LIBS) \
@@ -574,7 +574,7 @@ claws_mail_LDADD = \
 pixmapdir=$(datadir)/icons/hicolor/48x48/apps
 
 AM_CPPFLAGS = \
-	-DG_LOG_DOMAIN=\"Claws-Mail\" \
+	-DG_LOG_DOMAIN=\"sylpheedish\" \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	-DPIXMAP_DIR=\""$(pixmapdir)"\" \
 	-DMANUALDIR=\""$(manualdir)"\" \
@@ -599,7 +599,7 @@ AM_CPPFLAGS = \
 AM_YFLAGS = -d
 
 if CYGWIN
-claws-mail$(EXEEXT): $(claws_mail_OBJECTS) $(claws_mail_DEPENDENCIES) 
+sylpheedish$(EXEEXT): $(sylpheedish_OBJECTS) $(sylpheedish_DEPENDENCIES) 
 	@rm -f claws-mail$(EXEEXT)
 	@rm -f claws-mail.def claws-mail.base claws-mail.exp libclaws-mail.a .libs/libclaws-mail.a
 	$(LINK) -shared $(claws_mailLDFLAGS) -Wl,--out-implib=libclaws-mail.a -Wl,--export-all-symbols,--exclude-symbols,main $(claws_mail_OBJECTS) -Wl,--no-whole-archive $(claws_mail_LDADD) $(LIBS)

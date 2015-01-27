@@ -22,7 +22,7 @@
 
 
 #include "version.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "plugin.h"
 #include "utils.h"
 #include "hooks.h"

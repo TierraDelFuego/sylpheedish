@@ -32,7 +32,7 @@
 
 #include "version.h"
 #include "vcalendar.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "plugin.h"
 
 #include "vcal_dbus.h"

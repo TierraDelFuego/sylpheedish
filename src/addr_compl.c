@@ -40,7 +40,7 @@
 #include "addritem.h"
 #include "utils.h"
 #include "prefs_common.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "hooks.h"
 #include "gtkutils.h"
 #include "stock_pixmap.h"

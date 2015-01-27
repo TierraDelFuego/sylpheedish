@@ -29,7 +29,7 @@
 
 #include "plugin.h"
 #include "version.h"
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "smime.h"
 
 gint plugin_init(gchar **error)

@@ -67,7 +67,7 @@
 #include <valgrind.h>
 #endif
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "main.h"
 #include "mainwindow.h"
 #include "folderview.h"

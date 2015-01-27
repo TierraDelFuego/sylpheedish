@@ -23,7 +23,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "common/utils.h"
 #include "common/defs.h"

@@ -33,7 +33,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "main.h"
 #include "plugin.h"

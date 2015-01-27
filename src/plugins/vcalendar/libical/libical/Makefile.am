@@ -30,8 +30,8 @@ if BUILD_VCALENDAR_PLUGIN
 noinst_LTLIBRARIES = libical.la
 endif
 
-YFLAGS = -d -v -t -pical_yy
-LFLAGS = -Pical_yy
+AM_YFLAGS = -d -v -t -pical_yy
+AM_LFLAGS = -Pical_yy
 LEX_OUTPUT_ROOT = lex.ical_yy
 
 libical_la_LDFLAGS = -version-info 0:0:0

@@ -29,7 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "main.h"
 #include "inc.h"
 #include "mbox.h"

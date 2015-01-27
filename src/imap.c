@@ -64,7 +64,7 @@
 #include "inputdialog.h"
 #include "log.h"
 #include "remotefolder.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "statusbar.h"
 #include "msgcache.h"
 #include "imap-thread.h"

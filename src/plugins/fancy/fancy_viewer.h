@@ -37,7 +37,7 @@
 #include <webkit/webkitglobals.h>
 #endif
 #include <prefs_common.h>
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "common/utils.h"
 #include "mimeview.h"

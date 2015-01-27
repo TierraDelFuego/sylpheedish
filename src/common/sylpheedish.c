@@ -36,7 +36,7 @@
 #  include <locale.h>
 #endif
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "utils.h"
 #include "ssl.h"
 #include "version.h"

@@ -32,7 +32,7 @@
 #include <gtk/gtk.h>
 #include "gtk/gtkutils.h"
 
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "plugin.h"
 #include "common/utils.h"

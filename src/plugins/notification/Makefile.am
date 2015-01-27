@@ -13,7 +13,7 @@ endif
 
 SUBDIRS=gtkhotkey
 EXTRA_DIST = claws.def plugin.def version.rc
-CFLAGS += "-Wall"
+AM_CFLAGS = "-Wall"
 
 IFLAGS = \
 	-I$(top_srcdir)/src/plugins/notification/gtkhotkey \
@@ -28,7 +28,8 @@ LTRCCOMPILE = $(LIBTOOL) --mode=compile --tag=RC $(RC) \
      `echo $(DEFS) $(DEFAULT_INCLUDES) $(IFLAGS) | \
      sed -e 's/-I/--include-dir /g;s/-D/--define /g'`
 
-%.lo : %.rc
+#%.lo : %.rc
++.rc.lo:
 	$(LTRCCOMPILE) -i $< -o $@
 
 plugin_res = version.lo

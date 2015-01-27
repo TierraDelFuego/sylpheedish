@@ -35,7 +35,7 @@
 #include <gtk/gtk.h>
 
 #include "defs.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "version.h"
 #include "prefs.h"
 #include "prefs_gtk.h"

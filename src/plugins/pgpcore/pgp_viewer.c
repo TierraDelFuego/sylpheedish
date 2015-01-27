@@ -35,7 +35,7 @@
 #endif
 
 #include "version.h"
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "mainwindow.h"
 #include "mimeview.h"
 #include "textview.h"

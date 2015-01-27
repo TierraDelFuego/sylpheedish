@@ -51,7 +51,7 @@
 #include "vcal_interface.h"
 #include "prefs_account.h"
 #include "prefs_common.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "menu.h"
 #include "inputdialog.h"
 #include "inc.h"

@@ -36,7 +36,7 @@
 #include <errno.h>
 
 #include "gtk/gtkutils.h"
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/version.h"
 #include "common/md5.h"
 #include "plugin.h"

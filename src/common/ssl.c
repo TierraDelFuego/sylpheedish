@@ -31,7 +31,7 @@
 #include <errno.h>
 #include <pthread.h>
 
-#include "claws.h"
+#include "sylpheedish.h"
 #include "utils.h"
 #include "ssl.h"
 #include "ssl_certificate.h"

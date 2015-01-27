@@ -41,7 +41,7 @@
 #include "utils.h"
 #include "plugin.h"
 #include "prefs.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "timing.h"
 
 struct _Plugin

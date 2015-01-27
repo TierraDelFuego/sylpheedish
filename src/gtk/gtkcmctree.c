@@ -34,7 +34,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "gtkcmctree.h"
-#include "claws-marshal.h"
+#include "sylpheedish-marshal.h"
 #include "utils.h"
 #include "gtkutils.c"
 
@@ -1065,7 +1065,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_FIRST,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, tree_select_row),
 			      NULL, NULL,
-			      claws_marshal_VOID__POINTER_INT,
+			      sylpheedish_marshal_VOID__POINTER_INT,
 			      G_TYPE_NONE, 2,
 			      GTK_TYPE_CMCTREE_NODE,
 			      G_TYPE_INT);
@@ -1075,7 +1075,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_FIRST,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, tree_unselect_row),
 			      NULL, NULL,
-			      claws_marshal_VOID__POINTER_INT,
+			      sylpheedish_marshal_VOID__POINTER_INT,
 			      G_TYPE_NONE, 2,
 			      GTK_TYPE_CMCTREE_NODE,
 			      G_TYPE_INT);
@@ -1085,7 +1085,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, tree_expand),
 			      NULL, NULL,
-			      claws_marshal_VOID__POINTER,
+			      sylpheedish_marshal_VOID__POINTER,
 			      G_TYPE_NONE, 1,
 			      GTK_TYPE_CMCTREE_NODE);
   ctree_signals[TREE_COLLAPSE] =
@@ -1094,7 +1094,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, tree_collapse),
 			      NULL, NULL,
-			      claws_marshal_VOID__POINTER,
+			      sylpheedish_marshal_VOID__POINTER,
 			      G_TYPE_NONE, 1,
 			      GTK_TYPE_CMCTREE_NODE);
   ctree_signals[TREE_MOVE] =
@@ -1103,7 +1103,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, tree_move),
 			      NULL, NULL,
-			      claws_marshal_VOID__POINTER_POINTER_POINTER,
+			      sylpheedish_marshal_VOID__POINTER_POINTER_POINTER,
 			      G_TYPE_NONE, 3,
 			      GTK_TYPE_CMCTREE_NODE,GTK_TYPE_CMCTREE_NODE,GTK_TYPE_CMCTREE_NODE);
   ctree_signals[CHANGE_FOCUS_ROW_EXPANSION] =
@@ -1112,7 +1112,7 @@ gtk_cmctree_class_init (GtkCMCTreeClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCTreeClass, change_focus_row_expansion),
 			      NULL, NULL,
-			      claws_marshal_VOID__ENUM,
+			      sylpheedish_marshal_VOID__ENUM,
 			      G_TYPE_NONE, 1, GTK_TYPE_CMCTREE_EXPANSION_TYPE);
 
   binding_set = gtk_binding_set_by_class (klass);

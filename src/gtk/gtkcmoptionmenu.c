@@ -29,7 +29,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
-#include "claws-marshal.h"
+#include "sylpheedish-marshal.h"
 #include "gtkcmoptionmenu.h"
 #include "utils.h"
 #include "gtkutils.h"
@@ -133,7 +133,7 @@ gtk_cmoption_menu_class_init (GtkCMOptionMenuClass *class)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkCMOptionMenuClass, changed),
                   NULL, NULL,
-                  claws_marshal_VOID__VOID,
+                  sylpheedish_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   gobject_class->set_property = gtk_cmoption_menu_set_property;

@@ -6,17 +6,17 @@
 PLUGINDIR = $(pkglibdir)/plugins/
 DOCDIR = $(docdir)
 
-noinst_LTLIBRARIES = libclawsgtk.la
+noinst_LTLIBRARIES = libsylpheedishgtk.la
 
 EXTRA_DIST = \
-	claws-marshal.list
+	sylpheedish-marshal.list
 
 if GTK2
 gtk2_sources = \
 	gtkcmoptionmenu.c
 endif
 
-libclawsgtk_la_SOURCES = \
+libsylpheedishgtk_la_SOURCES = \
 	about.c \
 	colorlabel.c \
 	colorsel.c \
@@ -44,10 +44,10 @@ libclawsgtk_la_SOURCES = \
 	quicksearch.c \
 	spell_entry.c \
 	sslcertwindow.c \
-	claws-marshal.c
+	sylpheedish-marshal.c
 
-clawsgtkincludedir = $(pkgincludedir)/gtk
-clawsgtkinclude_HEADERS = \
+sylpheedishgtkincludedir = $(pkgincludedir)/gtk
+sylpheedishgtkinclude_HEADERS = \
 	about.h \
 	authors.h \
 	colorlabel.h \
@@ -72,7 +72,7 @@ clawsgtkinclude_HEADERS = \
 	quicksearch.h \
 	spell_entry.h \
 	sslcertwindow.h \
-	claws-marshal.h \
+	sylpheedish-marshal.h \
 	gtkcmctree.h \
 	gtkcmclist.h \
 	gtkcmoptionmenu.h \
@@ -90,15 +90,15 @@ AM_CPPFLAGS = \
 	-DPLUGINDIR=\"$(PLUGINDIR)\" \
 	-DDOCDIR=\"$(DOCDIR)\" 
 
-libclawsgtk_la_LIBADD = \
-	../common/libclawscommon.la \
+libsylpheedishgtk_la_LIBADD = \
+	../common/libsylpheedishcommon.la \
 	$(GTK_LIBS) \
 	$(ENCHANT_LIBS)
 
-BUILT_SOURCES=claws-marshal.c claws-marshal.h 
+BUILT_SOURCES=sylpheedish-marshal.c sylpheedish-marshal.h 
 
-claws-marshal.h: claws-marshal.list
-	$(GLIB_GENMARSHAL) $< --header --prefix=claws_marshal > $@
+sylpheedish-marshal.h: sylpheedish-marshal.list
+	$(GLIB_GENMARSHAL) $< --header --prefix=sylpheedish_marshal > $@
 
-claws-marshal.c: claws-marshal.list
-	$(GLIB_GENMARSHAL) $< --body --prefix=claws_marshal > $@
+sylpheedish-marshal.c: sylpheedish-marshal.list
+	$(GLIB_GENMARSHAL) $< --body --prefix=sylpheedish_marshal > $@

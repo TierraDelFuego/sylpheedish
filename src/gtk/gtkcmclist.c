@@ -31,7 +31,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
-#include "claws-marshal.h"
+#include "sylpheedish-marshal.h"
 #include "gtkcmclist.h"
 #include <gdk/gdkkeysyms.h>
 #include "utils.h"
@@ -684,7 +684,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, set_scroll_adjustments),
 			      NULL, NULL,
-			      claws_marshal_VOID__OBJECT_OBJECT,
+			      sylpheedish_marshal_VOID__OBJECT_OBJECT,
 			      G_TYPE_NONE, 2,
 			      GTK_TYPE_ADJUSTMENT, GTK_TYPE_ADJUSTMENT);
 #else
@@ -701,7 +701,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_FIRST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, select_row),
 			      NULL, NULL,
-			      claws_marshal_VOID__INT_INT_BOXED,
+			      sylpheedish_marshal_VOID__INT_INT_BOXED,
 			      G_TYPE_NONE, 3,
 			      G_TYPE_INT,
 			      G_TYPE_INT,
@@ -712,7 +712,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_FIRST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, unselect_row),
 			      NULL, NULL,
-			      claws_marshal_VOID__INT_INT_BOXED,
+			      sylpheedish_marshal_VOID__INT_INT_BOXED,
 			      G_TYPE_NONE, 3,
 			      G_TYPE_INT,
 			      G_TYPE_INT,
@@ -723,7 +723,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, row_move),
 			      NULL, NULL,
-			      claws_marshal_VOID__INT_INT,
+			      sylpheedish_marshal_VOID__INT_INT,
 			      G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
   clist_signals[CLICK_COLUMN] =
  		g_signal_new ("click_column",
@@ -731,7 +731,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_FIRST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, click_column),
 			      NULL, NULL,
-			      claws_marshal_VOID__INT,
+			      sylpheedish_marshal_VOID__INT,
 		    	      G_TYPE_NONE, 1, G_TYPE_INT);
   clist_signals[RESIZE_COLUMN] =
  		g_signal_new ("resize_column",
@@ -739,7 +739,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkCMCListClass, resize_column),
 			      NULL, NULL,
-			      claws_marshal_VOID__INT_INT,
+			      sylpheedish_marshal_VOID__INT_INT,
 		    	      G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
   clist_signals[TOGGLE_FOCUS_ROW] =
@@ -748,7 +748,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, toggle_focus_row),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[SELECT_ALL] =
  		g_signal_new ("select_all",
@@ -756,7 +756,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, select_all),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[UNSELECT_ALL] =
  		g_signal_new ("unselect_all",
@@ -764,7 +764,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, unselect_all),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[UNDO_SELECTION] =
  		g_signal_new ("undo_selection",
@@ -772,7 +772,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, undo_selection),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[START_SELECTION] =
  		g_signal_new ("start_selection",
@@ -780,7 +780,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, start_selection),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[END_SELECTION] =
  		g_signal_new ("end_selection",
@@ -788,7 +788,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, end_selection),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[TOGGLE_ADD_MODE] =
  		g_signal_new ("toggle_add_mode",
@@ -796,7 +796,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, toggle_add_mode),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
   clist_signals[EXTEND_SELECTION] =
  		g_signal_new ("extend_selection",
@@ -804,7 +804,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, extend_selection),
 			      NULL, NULL,
-			      claws_marshal_VOID__ENUM_FLOAT_BOOLEAN,
+			      sylpheedish_marshal_VOID__ENUM_FLOAT_BOOLEAN,
 		    	      G_TYPE_NONE, 3, GTK_TYPE_SCROLL_TYPE, G_TYPE_FLOAT, G_TYPE_BOOLEAN);
   clist_signals[SCROLL_VERTICAL] =
  		g_signal_new ("scroll_vertical",
@@ -812,7 +812,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, scroll_vertical),
 			      NULL, NULL,
-			      claws_marshal_VOID__ENUM_FLOAT,
+			      sylpheedish_marshal_VOID__ENUM_FLOAT,
 		    	      G_TYPE_NONE, 2, GTK_TYPE_SCROLL_TYPE, G_TYPE_FLOAT);
   clist_signals[SCROLL_HORIZONTAL] =
  		g_signal_new ("scroll_horizontal",
@@ -820,7 +820,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, scroll_horizontal),
 			      NULL, NULL,
-			      claws_marshal_VOID__ENUM_FLOAT,
+			      sylpheedish_marshal_VOID__ENUM_FLOAT,
 		    	      G_TYPE_NONE, 2, GTK_TYPE_SCROLL_TYPE, G_TYPE_FLOAT);
   clist_signals[ABORT_COLUMN_RESIZE] =
  		g_signal_new ("abort_column_resize",
@@ -828,7 +828,7 @@ gtk_cmclist_class_init (GtkCMCListClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkCMCListClass, abort_column_resize),
 			      NULL, NULL,
-			      claws_marshal_VOID__VOID,
+			      sylpheedish_marshal_VOID__VOID,
 		    	      G_TYPE_NONE, 0);
 
   binding_set = gtk_binding_set_by_class (klass);

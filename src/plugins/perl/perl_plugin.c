@@ -27,7 +27,7 @@
 #include "common/version.h"
 #include "common/defs.h"
 #include "common/utils.h"
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "common/prefs.h"
 #include "procmsg.h"
 #include "procheader.h"

@@ -43,7 +43,7 @@
 #include "alertpanel.h"
 #include "inc.h"
 #include "menu.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include "plugin.h"
 #include "prefs_common.h"
 #include "defs.h"

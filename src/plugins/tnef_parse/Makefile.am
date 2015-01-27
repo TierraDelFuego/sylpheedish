@@ -11,7 +11,7 @@ LTRCCOMPILE = $(LIBTOOL) --mode=compile --tag=RC $(RC) \
      `echo $(DEFS) $(DEFAULT_INCLUDES) $(IFLAGS) | \
      sed -e 's/-I/--include-dir /g;s/-D/--define /g'`
 
-%.lo : %.rc
++.rc.lo:
 	$(LTRCCOMPILE) -i $< -o $@
 
 plugin_res = version.lo

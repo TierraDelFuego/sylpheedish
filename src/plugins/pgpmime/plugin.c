@@ -27,7 +27,7 @@
 #include <glib/gi18n.h>
 
 #include "version.h"
-#include "common/claws.h"
+#include "common/sylpheedish.h"
 #include "pgpmime.h"
 #include "plugin.h"
 

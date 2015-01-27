@@ -42,7 +42,7 @@
 #include "addr_compl.h"
 #include "codeconv.h"
 #include "quoted-printable.h"
-#include "claws.h"
+#include "sylpheedish.h"
 #include <ctype.h>
 #include "prefs_common.h"
 #include "log.h"
