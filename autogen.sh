@@ -89,7 +89,7 @@ if test -z "$LOCAL"; then
     LOCAL="/usr/local"
 fi
 
-export PATH=/${LOCAL}/libetpan/bin:${PATH}
+export PATH=${LOCAL}/libetpan/bin:${PATH}
 exec ./configure --enable-static \
 --enable-gnutls \
 --disable-shared \

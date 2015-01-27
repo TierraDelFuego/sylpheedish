@@ -734,7 +734,7 @@ if test x"$enable_dbus_glib" = xyes; then
 	AC_MSG_CHECKING([whether to enable new address book])
 	if test x"$enable_new_addrbook" = xyes; then
 		AC_MSG_RESULT([yes])
-		PKG_CHECK_MODULES(CONTACTS, [claws-contacts],
+		PKG_CHECK_MODULES(CONTACTS, [sylpheedish-contacts],
 		[
 			AC_DEFINE(USE_NEW_ADDRBOOK, 1, [Define if new address book is to be activated.])
 			enable_new_addrbook=yes

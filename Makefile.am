@@ -3,7 +3,7 @@
 # terms of the General Public License version 3 (or later).
 # See COPYING file for license details.
 
-#ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = dist-xz
 
 SUBDIRS = m4 po src tools config doc manual
