@@ -48,12 +48,9 @@ AC_CANONICAL_SYSTEM
 
 dnl
 dnl If your configure.ac has:
-
 dnl AC_INIT([src/foo.c])
 dnl AM_INIT_AUTOMAKE([mumble], [1.5])
-
 dnl you should modernize it as follows:
-
 dnl AC_INIT([mumble], [1.5])
 dnl AC_CONFIG_SRCDIR([src/foo.c])
 dnl AM_INIT_AUTOMAKE
@@ -83,7 +80,7 @@ fi
 
 dnl GNOME 2.x installed?
 PKG_CHECK_MODULES(GNOME2, libgnome-2.0 >= 2.0, ac_enable_gnome2=yes, ac_enable_gnome2=no)
-AM_CONDITIONAL(CLAWS_GNOME2, test x"$ac_enable_gnome2" = x"yes")
+AM_CONDITIONAL(SYLPHEEDISH_GNOME2, test x"$ac_enable_gnome2" = x"yes")
 
 dnl libtool versioning
 LT_RELEASE=$MAJOR_VERSION.$MINOR_VERSION
@@ -120,13 +117,6 @@ AC_LIBTOOL_RC
 AC_PROG_LIBTOOL
 
 AC_SYS_LARGEFILE
-
-dnl ******************************
-dnl Checks for host
-dnl Not needed anymore because we
-dnl do AC_CANONICAL_SYSTEM above
-dnl ******************************
-dnl AC_CANONICAL_HOST
 
 dnl Copied from the official gtk+-2 configure.in
 AC_MSG_CHECKING([for some Win32 platform])
@@ -926,7 +916,7 @@ if test x"$enable_libetpan" = xyes; then
 else
 	AC_MSG_RESULT(no)
 fi
-AM_CONDITIONAL(CLAWS_LIBETPAN, test "x$libetpan_result" = "xyes")
+AM_CONDITIONAL(SYLPHEEDISH_LIBETPAN, test "x$libetpan_result" = "xyes")
 
 AC_MSG_CHECKING([whether to use valgrind])
 if test x$enable_valgrind = xyes; then
@@ -941,7 +931,7 @@ if test x$enable_valgrind = xyes; then
 else
 	AC_MSG_RESULT(no)
 fi
-AM_CONDITIONAL(CLAWS_VALGRIND, test x"$enable_valgrind" = x"yes")
+AM_CONDITIONAL(SYLPHEEDISH_VALGRIND, test x"$enable_valgrind" = x"yes")
 
 dnl *************************
 dnl ** section for plugins **

@@ -79,3 +79,6 @@ relnotes_DATA = RELEASE_NOTES
 
 desktopdir = $(datadir)/applications
 desktop_DATA = sylpheedish.desktop
+
+install-data-local:
+    @$(NORMAL_INSTALL)

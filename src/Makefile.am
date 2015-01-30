@@ -3,7 +3,7 @@
 # terms of the General Public License version 3 (or later).
 # See COPYING file for license details.
 
-if CLAWS_LIBETPAN
+if SYLPHEEDISH_LIBETPAN
 etpan_dir = etpan
 etpan_library = etpan/libsylpheedishetpan.la
 else
@@ -15,8 +15,12 @@ SUBDIRS = common gtk $(etpan_dir) . plugins
 
 bin_PROGRAMS = sylpheedish
 install-exec-hook:
-	@rm -f $(DESTDIR)$(bindir)/sylpheedish
-	@ln -s sylpheedish $(DESTDIR)$(bindir)/sylpheed
+	cd $(DESTDIR)$(bindir) && \
+	mv -f sylpheedish$(EXEEXT) sylpheedish-$(VERSION)$(EXEEXT) && \
+	$(LN_S) sylpheedish-$(VERSION)$(EXEEXT) sylpheedish$(EXEEXT)
+
+#	@rm -f $(DESTDIR)$(bindir)/sylpheedish
+#	@ln -s sylpheedish $(DESTDIR)$(bindir)/sylpheed
 
 if PLATFORM_WIN32
 LTRCCOMPILE = $(LIBTOOL) --mode=compile --tag=RC $(RC) \
@@ -35,7 +39,7 @@ endif
 
 new_abook_source = \
 	addressbook-dbus.c
-old_abook_source = \
+    old_abook_source = \
 	addrbook.c \
 	addrclip.c \
 	addrcustomattr.c \
@@ -143,7 +147,7 @@ sylpheedish_SOURCES = \
 	edittags.c \
 	enriched.c \
 	export.c \
-        file_checker.c \
+    file_checker.c \
 	filtering.c \
 	folder.c \
 	folder_item_prefs.c \

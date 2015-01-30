@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Claws Mail
+Name=sylpheedish
 GenericName=E-mail client
 GenericName[ca]=Client de correu electrònic
 GenericName[cs]=E-mailový klient
@@ -16,8 +16,8 @@ GenericName[pl]=Program poczty elektronicznej
 GenericName[pt-br]=Cliente de e-mail
 GenericName[sk]=Poštový klient
 GenericName[sv]=E-postklient
-Exec=claws-mail %u
-Icon=claws-mail
+Exec=sylpheedish %u
+Icon=sylpheedish
 Categories=Network;Email;
 Keywords=lightweight;fast;gui;extensible;plugin;pop;pop3;imap;imap4;nntp;news;
 Comment=Lightweight and Fast GTK+ based Mail Client
@@ -39,18 +39,18 @@ Terminal=false
 Type=Application
 StartupNotify=true
 MimeType=x-scheme-handler/mailto;
-X-Info=Claws Mail
+X-Info=sylpheedish
 
 Actions=GetMail;ComposeMail;SendFile;
 
 [Desktop Action GetMail]
-Exec=claws-mail --receive-all
+Exec=sylpheedish --receive-all
 Name=Get Mail
 
 [Desktop Action ComposeMail]
-Exec=claws-mail --compose
+Exec=sylpheedish --compose
 Name=Email...
 
 [Desktop Action SendFile]
-Exec=claws-mail --compose --attach %f
+Exec=sylpheedish --compose --attach %f
 Name=Send file...

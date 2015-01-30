@@ -49,7 +49,7 @@
 #define MBOX_CACHE_DIR		"mboxcache"
 #define HEADER_CACHE_DIR        "headercache" 
 #define MIME_TMP_DIR		"mimetmp"
-#define COMMON_RC		"clawsrc"
+#define COMMON_RC		"sylpheedishrc"
 #define OLD_COMMON_RC		"sylpheedrc"
 #define ACCOUNT_RC		"accountrc"
 #define CUSTOM_HEADER_RC	"customheaderrc"
@@ -91,13 +91,13 @@
 #define GPL_URI			"http://www.gnu.org/licenses/gpl.html"
 #define DONATE_URI		"http://www.claws-mail.org/sponsors.php"
 #define RELEASE_NOTES_FILE	"RELEASE_NOTES"
-#define THEMEINFO_FILE		".claws_themeinfo"
+#define THEMEINFO_FILE		".sylpheedish_themeinfo"
 #define FOLDER_LIST		"folderlist.xml"
 #define OLD_CACHE_FILE		".sylpheed_claws_cache"
-#define CACHE_FILE		".claws_cache"
+#define CACHE_FILE		".sylpheedish_cache"
 #define OLD_MARK_FILE		".sylpheed_mark"
-#define MARK_FILE		".claws_mark"
-#define TAGS_FILE		".claws_tags"
+#define MARK_FILE		".sylpheedish_mark"
+#define TAGS_FILE		".sylpheedish_tags"
 #define PRINTING_PAGE_SETUP_STORAGE_FILE "print_page_setup"
 #define CACHE_VERSION		24
 #define MARK_VERSION		2
@@ -144,7 +144,7 @@
 #define DEFAULT_HEADERVIEW_HEIGHT	40
 #define DEFAULT_COMPOSE_HEIGHT		560
 #define BORDER_WIDTH			2
-#define CTREE_INDENT			18
+#define CTREE_INDENT			13
 #define FOLDER_SPACING			4
 #define MAX_ENTRY_LENGTH		8191
 #define COLOR_DIM			35000
