@@ -1,7 +1,10 @@
 TODO
 ====
 
-* Better error reporting from low-level folder ops to GUI
-* Add a Developer manual (describing APIs, and howtos, for
-  plugins writers)
-o full-text search using Namazu (?)
+Make the program secure:
+o    improve password storage
+o    fix ssl problems
+o    run more code analysis tools
+o    fuzz it
+
+
