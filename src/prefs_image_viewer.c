@@ -74,7 +74,7 @@ static void imageviewer_create_widget_func(PrefsPage * _page,
 
 	resize_img = gtk_check_button_new_with_label(_("Resize attached images by default"));
 	gtk_widget_show(resize_img);
-	CLAWS_SET_TIP(resize_img,
+	SYLPHEEDISH_SET_TIP(resize_img,
 			     _("Clicking image toggles scaling"));
 	gtk_table_attach(GTK_TABLE(table), resize_img, 0, 1, 1, 2,
 			 (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),

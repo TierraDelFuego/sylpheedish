@@ -395,7 +395,7 @@ static void addrgather_page_fields(gint pageNum, gchar *pageLbl)
 	label = gtk_label_new(_("Address book folder size:"));
 	gtk_table_attach( GTK_TABLE(table), label, 0, 1, top, (top + 1), GTK_FILL, 0, 0, 0 );
 	gtk_misc_set_alignment( GTK_MISC(label), 1.0, 0.5 );
-	CLAWS_SET_TIP(label,
+	SYLPHEEDISH_SET_TIP(label,
 			_("Maximum amount of entries per folder within the newly created address book"));
 
 	hboxs = gtk_hbox_new(FALSE, 8);
@@ -405,7 +405,7 @@ static void addrgather_page_fields(gint pageNum, gchar *pageLbl)
 	gtk_widget_set_size_request(spinbtnFolder, 100, -1);
 	gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(spinbtnFolder), TRUE);
 	gtk_table_attach(GTK_TABLE(table), hboxs, 1, 2, top, (top + 1), GTK_FILL, 0, 0, 0);
-	CLAWS_SET_TIP(spinbtnFolder,
+	SYLPHEEDISH_SET_TIP(spinbtnFolder,
 			_("Maximum amount of entries per folder within the newly created address book"));
 #endif
 	/* Fourth row */

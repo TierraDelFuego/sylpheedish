@@ -1323,7 +1323,7 @@ static void prefs_common_save_history_to_dir(const gchar *dirname, const gchar *
 	}
 	fp = NULL;
 #ifdef G_OS_WIN32
-	claws_unlink(path);
+	sylpheedish_unlink(path);
 #endif
 	if (g_rename(tmp_path, path) < 0) {
 		FILE_OP_ERROR(path, "rename");

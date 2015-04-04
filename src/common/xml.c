@@ -153,7 +153,8 @@ GNode *xml_parse_file(const gchar *path)
 	GNode *node;
 
 	file = xml_open_file(path);
-	cm_return_val_if_fail(file != NULL, NULL);
+	/* cm_return_val_if_fail(file != NULL, NULL); */
+    cm_return_if_fail(file != NULL);
 
 	xml_get_dtd(file);
 

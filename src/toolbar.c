@@ -226,13 +226,13 @@ struct {
 #ifdef USE_ENCHANT
 	{ "A_CHECK_SPELLING",	N_("Check spelling")                       },
 #endif
-	{ "A_CLAWS_ACTIONS",   	N_("Claws Mail Actions Feature")           }, 
+	{ "A_SYLPHEEDISH_ACTIONS",   	N_("Claws Mail Actions Feature")           }, 
 	{ "A_CANCEL_INC",       N_("Cancel receiving")                     },
 	{ "A_CANCEL_SEND",      N_("Cancel sending")                       },
 	{ "A_CANCEL_ALL",       N_("Cancel receiving/sending")             },
 	{ "A_CLOSE",            N_("Close window")                         },
 	{ "A_SEPARATOR",     	N_("Separator")                            },
-	{ "A_CLAWS_PLUGINS",    N_("Claws Mail Plugins")                   },
+	{ "A_SYLPHEEDISH_PLUGINS",    N_("Claws Mail Plugins")                   },
 };
 
 /* struct holds configuration files and a list of
@@ -291,7 +291,7 @@ static gboolean toolbar_is_duplicate(gint action, ToolbarType source)
 {
 	GSList *cur;
 
-	if ((action == A_SEPARATOR) || (action == A_CLAWS_ACTIONS) || (action == A_CLAWS_PLUGINS))
+	if ((action == A_SEPARATOR) || (action == A_SYLPHEEDISH_ACTIONS) || (action == A_SYLPHEEDISH_PLUGINS))
 		return FALSE;
 
 	for (cur = toolbar_config[source].item_list; cur != NULL; cur = cur->next) {
@@ -381,7 +381,7 @@ static void toolbar_parse_item(XMLFile *file, ToolbarType source)
 		}
 		if (item->index == -1 && !strcmp(value, "A_SYL_ACTIONS")) {
 			/* switch button */
-			item->index = A_CLAWS_ACTIONS;
+			item->index = A_SYLPHEEDISH_ACTIONS;
 			rewrite = TRUE;
 		}
 		attr = g_list_next(attr);
@@ -859,7 +859,7 @@ gboolean toolbar_check_action_btns(ToolbarType type)
 		temp = curr;
 		curr = curr->next;
 		
-		if (toolbar_item->index != A_CLAWS_ACTIONS)
+		if (toolbar_item->index != A_SYLPHEEDISH_ACTIONS)
 			continue;
 
 		if (prefs_actions_find_by_name(toolbar_item->text) == -1) {
@@ -874,11 +874,11 @@ gboolean toolbar_check_action_btns(ToolbarType type)
 	return modified;
 }
 
-#define CLAWS_SET_TOOL_ITEM_TIP(widget,tip) { \
+#define SYLPHEEDISH_SET_TOOL_ITEM_TIP(widget,tip) { \
 	gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(widget), tip);				\
 }
 
-#define CLAWS_SET_ARROW_TIP(widget,tip) { \
+#define SYLPHEEDISH_SET_ARROW_TIP(widget,tip) { \
 	gtk_menu_tool_button_set_arrow_tooltip_text(GTK_MENU_TOOL_BUTTON(widget), tip);				\
 }
 
@@ -894,7 +894,7 @@ static void activate_compose_button (Toolbar           *toolbar,
 			GTK_TOOL_BUTTON(toolbar->compose_mail_btn),
 			toolbar->compose_news_icon);
 #ifndef GENERIC_UMPC
-		CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->compose_mail_btn), _("Compose News message"));
+		SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->compose_mail_btn), _("Compose News message"));
 #endif	
 		gtk_widget_show(toolbar->compose_news_icon);
 	} else {
@@ -902,7 +902,7 @@ static void activate_compose_button (Toolbar           *toolbar,
 			GTK_TOOL_BUTTON(toolbar->compose_mail_btn),
 			toolbar->compose_mail_icon);
 #ifndef GENERIC_UMPC
-		CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->compose_mail_btn), _("Compose Email"));
+		SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->compose_mail_btn), _("Compose Email"));
 #endif	
 		gtk_widget_show(toolbar->compose_mail_icon);
 	}
@@ -933,7 +933,7 @@ static void activate_learn_button (Toolbar           *toolbar,
 			GTK_TOOL_BUTTON(toolbar->learn_spam_btn),
 			_("Spam"));
 #ifndef GENERIC_UMPC
-		CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->learn_spam_btn), _("Learn spam"));	
+		SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->learn_spam_btn), _("Learn spam"));	
 #endif
 		gtk_widget_show(toolbar->learn_spam_icon);
 	} else {
@@ -944,7 +944,7 @@ static void activate_learn_button (Toolbar           *toolbar,
 			GTK_TOOL_BUTTON(toolbar->learn_spam_btn),
 			_("Ham"));
 #ifndef GENERIC_UMPC
-		CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->learn_spam_btn), _("Learn ham"));
+		SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(toolbar->learn_spam_btn), _("Learn ham"));
 #endif	
 		gtk_widget_show(toolbar->learn_ham_icon);
 	}
@@ -1757,11 +1757,11 @@ static void toolbar_buttons_cb(GtkWidget   *widget,
 #ifdef USE_ENCHANT
 		{ A_CHECK_SPELLING,     toolbar_check_spelling_cb       },
 #endif
-		{ A_CLAWS_ACTIONS,	toolbar_actions_execute_cb	},
+		{ A_SYLPHEEDISH_ACTIONS,	toolbar_actions_execute_cb	},
 		{ A_CANCEL_INC,		toolbar_cancel_inc_cb		},
 		{ A_CANCEL_SEND,	toolbar_cancel_send_cb		},
 		{ A_CANCEL_ALL,		toolbar_cancel_all_cb		},
-		{ A_CLAWS_PLUGINS,  toolbar_plugins_execute_cb  },
+		{ A_SYLPHEEDISH_PLUGINS,  toolbar_plugins_execute_cb  },
 	};
 
 	num_items = sizeof(callbacks)/sizeof(callbacks[0]);
@@ -1781,7 +1781,7 @@ static void toolbar_buttons_cb(GtkWidget   *widget,
 	gtk_tool_item_set_is_important(GTK_TOOL_ITEM(item), TRUE);					\
 	g_signal_connect (G_OBJECT(item), "clicked", G_CALLBACK(toolbar_buttons_cb), toolbar_item);	\
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(item), -1);				\
-	CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item), 							\
+	SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item), 							\
 			tooltip);									\
 }
 
@@ -1793,9 +1793,9 @@ static void toolbar_buttons_cb(GtkWidget   *widget,
 	gtk_tool_item_set_is_important(GTK_TOOL_ITEM(item), TRUE);					\
 	g_signal_connect (G_OBJECT(item), "clicked", G_CALLBACK(toolbar_buttons_cb), toolbar_item);	\
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(item), -1);				\
-	CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item), 							\
+	SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item), 							\
 			tooltip);									\
-	CLAWS_SET_ARROW_TIP(GTK_MENU_TOOL_BUTTON(item), menutip);					\
+	SYLPHEEDISH_SET_ARROW_TIP(GTK_MENU_TOOL_BUTTON(item), menutip);					\
 	child = gtk_bin_get_child(GTK_BIN(item)); 							\
 	gchild = gtk_container_get_children(								\
 			GTK_CONTAINER(child)); 								\
@@ -2149,7 +2149,7 @@ Toolbar *toolbar_create(ToolbarType 	 type,
 			break;
 #endif
 
-		case A_CLAWS_ACTIONS:
+		case A_SYLPHEEDISH_ACTIONS:
 			TOOLBAR_ITEM(item,icon_wid,toolbar_item->text,toolbar_item->text);
 			action_item = g_new0(ToolbarClawsActions, 1);
 			action_item->widget = item;
@@ -2171,7 +2171,7 @@ Toolbar *toolbar_create(ToolbarType 	 type,
 			TOOLBAR_ITEM(item,icon_wid,toolbar_item->text,_("Cancel receiving/sending"));
 			toolbar_data->cancel_all_btn = item;
 			break;
-		case A_CLAWS_PLUGINS:
+		case A_SYLPHEEDISH_PLUGINS:
 			TOOLBAR_ITEM(item,icon_wid,toolbar_item->text, toolbar_item->text);
 			break;
 		default:
@@ -2665,13 +2665,13 @@ void compose_mail_cb(gpointer data, guint action, GtkWidget *widget)
 	if (item) {
 		ac = account_find_from_item(item);
 		if (ac && ac->protocol != A_NNTP) {
-			compose_new_with_folderitem(ac, item, NULL);		/* CLAWS */
+			compose_new_with_folderitem(ac, item, NULL);		/* SYLPHEEDISH */
 			return;
 		}
 	}
 
 	/*
-	 * CLAWS - use current account
+	 * SYLPHEEDISH - use current account
 	 */
 	if (cur_account && (cur_account->protocol != A_NNTP)) {
 		compose_new_with_folderitem(cur_account, item, NULL);
@@ -2679,7 +2679,7 @@ void compose_mail_cb(gpointer data, guint action, GtkWidget *widget)
 	}
 
 	/*
-	 * CLAWS - just get the first one
+	 * SYLPHEEDISH - just get the first one
 	 */
 	list = account_get_list();
 	for (cur = list ; cur != NULL ; cur = g_list_next(cur)) {

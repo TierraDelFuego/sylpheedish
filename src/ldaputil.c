@@ -198,7 +198,7 @@ static GList *ldaputil_test_v2( LDAP *ld, gint tov ) {
 	return baseDN;
 }
 
-int claws_ldap_simple_bind_s( LDAP *ld, LDAP_CONST char *dn, LDAP_CONST char *passwd )
+int sylpheedish_ldap_simple_bind_s( LDAP *ld, LDAP_CONST char *dn, LDAP_CONST char *passwd )
 {
 	struct berval cred;
 

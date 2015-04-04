@@ -597,7 +597,7 @@ static void write_welcome_email(WizardWindow *wizard)
 	g_free(head);
 	g_free(body);
 	g_free(msg);
-	claws_unlink(file);
+	sylpheedish_unlink(file);
 }
 #undef XFACE
 
@@ -842,7 +842,7 @@ static GtkWidget* create_page (WizardWindow *wizard, const char * title)
 	/* create the titlebar */
 	hbox = gtk_hbox_new (FALSE, 12);
 	image = stock_pixmap_widget(wizard->window, 
-			  	STOCK_PIXMAP_CLAWS_MAIL_ICON);
+	                            STOCK_PIXMAP_SYLPHEEDISH_ICON);
 	gtk_box_pack_start (GTK_BOX(hbox), image, FALSE, FALSE, 0);
      	title_string = g_strconcat ("<span size=\"xx-large\" weight=\"ultrabold\">", title ? title : "", "</span>", NULL);
 	w = gtk_label_new (title_string);
@@ -1027,7 +1027,7 @@ static GtkWidget* mailbox_page (WizardWindow * wizard)
 
 	gtk_entry_set_text(GTK_ENTRY(wizard->mailbox_name), tmpl.mailbox?tmpl.mailbox:"");
 
-	CLAWS_SET_TIP(wizard->mailbox_name, _("You can also specify an absolute path, for example: "
+	SYLPHEEDISH_SET_TIP(wizard->mailbox_name, _("You can also specify an absolute path, for example: "
 			       "\"/home/john/Documents/Mail\""));
 
 	gtk_box_pack_start(GTK_BOX(hbox), wizard->mailbox_label, FALSE, FALSE, 0);
@@ -1097,7 +1097,7 @@ static GtkWidget* smtp_page (WizardWindow * wizard)
 	gtk_entry_set_text(GTK_ENTRY(wizard->smtp_server), text);
 	g_free(text);
 
-	CLAWS_SET_TIP(wizard->smtp_server,
+	SYLPHEEDISH_SET_TIP(wizard->smtp_server,
 			     _("You can specify the port number by appending it at the end: "
 			       "\"mail.example.com:25\""));
 
@@ -1537,7 +1537,7 @@ static GtkWidget* recv_page (WizardWindow * wizard)
 	gtk_entry_set_text(GTK_ENTRY(wizard->recv_server), text);
 	g_free(text);
 	
-	CLAWS_SET_TIP(wizard->recv_server,
+	SYLPHEEDISH_SET_TIP(wizard->recv_server,
 			     _("You can specify the port number by appending it at the end: "
 			       "\"mail.example.com:110\""));
 	gtk_table_attach(GTK_TABLE(recv_table), wizard->recv_server, 1,2,1,2, 
@@ -1807,8 +1807,8 @@ gboolean run_wizard(MainWindow *mainwin, gboolean create_mailbox) {
 	page = create_page(wizard, _("Welcome to Claws Mail"));
 	
 	wizard->pages = g_slist_append(wizard->pages, page);
-	widget = stock_pixmap_widget(wizard->window, 
-			  	STOCK_PIXMAP_CLAWS_MAIL_LOGO);
+	widget = stock_pixmap_widget(wizard->window,
+	                            STOCK_PIXMAP_SYLPHEEDISH_LOGO);
 
 	gtk_box_pack_start (GTK_BOX(page), widget, FALSE, FALSE, 0);
 	
@@ -1890,8 +1890,8 @@ gboolean run_wizard(MainWindow *mainwin, gboolean create_mailbox) {
 	page = create_page(wizard, _("Configuration finished"));
 	
 	wizard->pages = g_slist_append(wizard->pages, page);
-	widget = stock_pixmap_widget(wizard->window, 
-			  	STOCK_PIXMAP_CLAWS_MAIL_LOGO);
+	widget = stock_pixmap_widget(wizard->window,
+	                            STOCK_PIXMAP_SYLPHEEDISH_LOGO);
 
 	gtk_box_pack_start (GTK_BOX(page), widget, FALSE, FALSE, 0);
 	

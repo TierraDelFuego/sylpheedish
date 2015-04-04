@@ -1083,7 +1083,7 @@ static gboolean addrcompl_idle( gpointer data ) {
 		_displayQueue_ = NULL;
 	}
 	pthread_mutex_unlock( & _completionMutex_ );
-	claws_do_idle();
+	sylpheedish_do_idle();
 
 	return TRUE;
 }

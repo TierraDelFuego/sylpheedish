@@ -429,7 +429,7 @@ static void prefs_folder_item_general_create_widget_func(PrefsPage * page_,
 	folder_color_btn = gtk_button_new_with_label("");
 	gtk_widget_set_size_request(folder_color_btn, 36, 26);
   	gtk_box_pack_start (GTK_BOX(hbox), folder_color_btn, FALSE, FALSE, 0);
-	CLAWS_SET_TIP(folder_color_btn,
+	SYLPHEEDISH_SET_TIP(folder_color_btn,
 			     _("Pick color for folder"));
 
 	page->folder_color = item->prefs->color;
@@ -478,7 +478,7 @@ static void prefs_folder_item_general_create_widget_func(PrefsPage * page_,
 
 	/* Check folder for new mail */
 	checkbtn_newmailcheck = gtk_check_button_new_with_label(_("Scan for new mail"));
-	CLAWS_SET_TIP(checkbtn_newmailcheck,
+	SYLPHEEDISH_SET_TIP(checkbtn_newmailcheck,
 			     _("Turn this option on if mail is delivered directly "
 			       "to this folder by server side filtering on IMAP or "
 			       "by an external application"));
@@ -516,7 +516,7 @@ static void prefs_folder_item_general_create_widget_func(PrefsPage * page_,
 	combobox_select_by_data(GTK_COMBO_BOX(promote_html_part),
 			item->prefs->promote_html_part);
 
-	CLAWS_SET_TIP(hbox, _("\"Default\" will follow global preference (found in /Preferences/"
+	SYLPHEEDISH_SET_TIP(hbox, _("\"Default\" will follow global preference (found in /Preferences/"
 			      "Message View/Text Options)"));
 
 	promote_html_part_rec_checkbtn = gtk_check_button_new();
@@ -554,7 +554,7 @@ static void prefs_folder_item_general_create_widget_func(PrefsPage * page_,
 	entry_offlinesync = gtk_entry_new();
 	gtk_widget_set_size_request (entry_offlinesync, 64, -1);
 	gtk_widget_show (entry_offlinesync);
-	CLAWS_SET_TIP(entry_offlinesync, _("0: all bodies"));
+	SYLPHEEDISH_SET_TIP(entry_offlinesync, _("0: all bodies"));
 	gtk_box_pack_start (GTK_BOX (hbox), entry_offlinesync, FALSE, FALSE, 0);
 
 	label_end_offlinesync = gtk_label_new(_("days"));

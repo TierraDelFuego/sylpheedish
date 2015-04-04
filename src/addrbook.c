@@ -2232,7 +2232,7 @@ void addrbook_delete_book_file(AddressBookFile *book)
 	
 	book_path = g_strconcat(book->path, G_DIR_SEPARATOR_S,
 				book->fileName, NULL);
-	claws_unlink(book_path);
+	sylpheedish_unlink(book_path);
 	g_free(book_path);
 }
 

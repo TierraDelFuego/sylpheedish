@@ -499,7 +499,7 @@ static void prefs_other_create_widget(PrefsPage *_page, GtkWindow *window,
 	PACK_CHECK_BUTTON(vbox_keys, checkbtn_gtk_can_change_accels,
 			_("Enable customisable keyboard shortcuts"));
 
-	CLAWS_SET_TIP(checkbtn_gtk_can_change_accels,
+	SYLPHEEDISH_SET_TIP(checkbtn_gtk_can_change_accels,
 			_("If checked, you can change the keyboard shortcuts of "
 				"most of the menu items by focusing on the menu "
 				"item and pressing a key combination.\n"
@@ -579,7 +579,7 @@ static void prefs_other_create_widget(PrefsPage *_page, GtkWindow *window,
 				     "(the 'shred' program is not available)"));
 		gtk_widget_set_sensitive(checkbtn_use_shred, FALSE);
 	}
-	CLAWS_SET_TIP(checkbtn_use_shred,
+	SYLPHEEDISH_SET_TIP(checkbtn_use_shred,
 			_("Use the 'shred' program to overwrite files with random data before "
 			  "deleting them. This slows down deletion. Be sure to "
 			  "read shred's man page for caveats."));

@@ -54,7 +54,7 @@
 #include "procmsg.h"
 #include "msgcache.h"
 #include "textview.h"
-#include "matcher_parser.h" /* CLAWS */
+#include "matcher_parser.h" /* SYLPHEEDISH */
 #include "filtering.h"
 #include "procheader.h"
 
@@ -225,7 +225,7 @@ ActionType action_get_type(const gchar *action_str)
 			if (p[0] == '%' && p[1]) {
 				switch (p[1]) {
 				case 'a':
-					/* CLAWS: filtering action is a mutually exclusive
+					/* SYLPHEEDISH: filtering action is a mutually exclusive
 					* action. we can enable others if needed later. we
 					* add ACTION_SINGLE | ACTION_MULTIPLE so it will
 					* only be executed from the main window toolbar */
@@ -684,7 +684,7 @@ static void message_actions_execute(MessageView *msgview, guint action_nb,
 		msgview->filtered = TRUE;
 
 	if (action_type & ACTION_FILTERING_ACTION) 
-		/* CLAWS: most of the above code is not necessary for applying
+		/* SYLPHEEDISH: most of the above code is not necessary for applying
 		 * filtering */
 		execute_filtering_actions(action, msg_list);
 	else
@@ -1020,9 +1020,9 @@ static ChildInfo *fork_child(gchar *cmd, const gchar *msg_str,
 	child_info->chld_err    = chld_err;
 	child_info->tag_status  = -1;
 	child_info->tag_in      = -1;
-	child_info->tag_out     = claws_input_add(chld_out, G_IO_IN | G_IO_HUP | G_IO_ERR,
+	child_info->tag_out     = sylpheedish_input_add(chld_out, G_IO_IN | G_IO_HUP | G_IO_ERR,
 						catch_output, child_info, FALSE);
-	child_info->tag_err     = claws_input_add(chld_err, G_IO_IN | G_IO_HUP | G_IO_ERR,
+	child_info->tag_err     = sylpheedish_input_add(chld_err, G_IO_IN | G_IO_HUP | G_IO_ERR,
 						catch_output, child_info, FALSE);
 
 	if (!(children->action_type &
@@ -1104,7 +1104,7 @@ static void send_input(GtkWidget *w, gpointer data)
 	Children *children = (Children *) data;
 	ChildInfo *child_info = (ChildInfo *) children->list->data;
 
-	child_info->tag_in = claws_input_add(child_info->chld_in,
+	child_info->tag_in = sylpheedish_input_add(child_info->chld_in,
 					   G_IO_OUT | G_IO_ERR,
 					   catch_input, children, FALSE);
 }

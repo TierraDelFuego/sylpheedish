@@ -852,7 +852,7 @@ LDAP *ldapsvr_connect(LdapControl *ctl) {
 	if (ctl->bindDN) {
 		if (* ctl->bindDN != '\0') {
 			pwd = ldapctl_get_bind_password(ctl);
-			rc = claws_ldap_simple_bind_s(ld, ctl->bindDN, pwd);
+			rc = sylpheedish_ldap_simple_bind_s(ld, ctl->bindDN, pwd);
 			if (rc != LDAP_SUCCESS) {
 				g_printerr("bindDN: %s, bindPass xxx\n", ctl->bindDN);
 				g_printerr("LDAP Error(bind): ldap_simple_bind_s: %s\n",

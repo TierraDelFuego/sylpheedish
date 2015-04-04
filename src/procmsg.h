@@ -82,7 +82,7 @@
 #define MSG_RETRCPT_GOT		(1U << 17)   /* got return receipt */
  	
 /* RESERVED */
-#define	MSG_RESERVED_CLAWS	(1U << 30)   /* for claws-mail */
+#define	MSG_RESERVED_SYLPHEEDISH	(1U << 30)   /* for claws-mail */
 #define	MSG_RESERVED		(1U << 31)
 
 #define MSG_MOVE		(1U << 0)

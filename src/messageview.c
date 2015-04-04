@@ -1073,7 +1073,7 @@ static gint disposition_notification_send(MsgInfo *msginfo)
 
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(tmp, "fclose");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		return -1;
 	}
 
@@ -1082,13 +1082,13 @@ static gint disposition_notification_send(MsgInfo *msginfo)
 	if (!queue) queue = folder_get_default_queue();
 	if (!queue) {
 		g_warning("can't find queue folder\n");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		return -1;
 	}
 	folder_item_scan(queue);
 	if ((num = folder_item_add_msg(queue, tmp, NULL, TRUE)) < 0) {
 		g_warning("can't queue the message\n");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		return -1;
 	}
 		
@@ -1110,7 +1110,7 @@ static gint disposition_notification_send(MsgInfo *msginfo)
 
 FILE_ERROR:
 	fclose(fp);
-	claws_unlink(tmp);
+	sylpheedish_unlink(tmp);
 	return -1;
 }
 

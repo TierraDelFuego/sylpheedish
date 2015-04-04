@@ -578,7 +578,7 @@ gboolean file_is_email(const gchar *filename);
 gboolean sc_g_list_bigger(GList *list, gint max);
 gboolean sc_g_slist_bigger(GSList *list, gint max);
 
-int claws_unlink(const gchar *filename);
+int sylpheedish_unlink(const gchar *filename);
 
 GMutex *cm_mutex_new(void);
 void cm_mutex_free(GMutex *mutex);

@@ -472,7 +472,7 @@ static void prefs_summaries_create_widget(PrefsPage *_page, GtkWindow *window,
 	PACK_CHECK_BUTTON
 		(vbox2, checkbtn_immedexec,
 		 _("Execute immediately when moving or deleting messages"));
-	CLAWS_SET_TIP(checkbtn_immedexec,
+	SYLPHEEDISH_SET_TIP(checkbtn_immedexec,
 			     _("Defers moving, copying and deleting of messages"
 		   	       " until you choose 'Tools/Execute'"));
 
@@ -535,7 +535,7 @@ static void prefs_summaries_create_widget(PrefsPage *_page, GtkWindow *window,
 	label_fill = gtk_label_new(" ");
 	gtk_box_pack_start(GTK_BOX(hbox2), label_fill, TRUE, FALSE, 0);
 	
-	CLAWS_SET_TIP(button_datefmt,
+	SYLPHEEDISH_SET_TIP(button_datefmt,
 			     _("Date format help"));
 			     
 	hbox_dispitem = gtk_hbox_new (FALSE, 8);
@@ -558,7 +558,7 @@ static void prefs_summaries_create_widget(PrefsPage *_page, GtkWindow *window,
 	PACK_CHECK_BUTTON
 		(vbox1, checkbtn_transhdr,
 		 _("Translate header names"));
-	CLAWS_SET_TIP(checkbtn_transhdr,
+	SYLPHEEDISH_SET_TIP(checkbtn_transhdr,
 			     _("The display of standard headers (such as 'From:', 'Subject:') "
 			     "will be translated into your language."));
 	

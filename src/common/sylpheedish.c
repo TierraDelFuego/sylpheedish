@@ -41,9 +41,9 @@
 #include "ssl.h"
 #include "version.h"
 
-static gboolean claws_initialized = FALSE;
+static gboolean sylpheedish_initialized = FALSE;
 static gchar *startup_dir;
-static void (*claws_idle_function)(void) = NULL;
+static void (*sylpheedish_idle_function)(void) = NULL;
 
 /**
  * Parse program parameters and remove all parameters
@@ -87,9 +87,9 @@ static void parse_parameter(int *argc, char ***argv)
 	}
 }
 
-gboolean claws_init(int *argc, char ***argv)
+gboolean sylpheedish_init(int *argc, char ***argv)
 {
-	if (claws_initialized)
+	if (sylpheedish_initialized)
 		return TRUE;
 
 #ifdef USE_GNUTLS
@@ -120,12 +120,12 @@ gboolean claws_init(int *argc, char ***argv)
 
 	srand((gint) time(NULL));
 
-	claws_initialized = TRUE;
+	sylpheedish_initialized = TRUE;
 
 	return TRUE;
 }
 
-void claws_done(void)
+void sylpheedish_done(void)
 {
 
 #ifdef USE_GNUTLS
@@ -133,23 +133,23 @@ void claws_done(void)
 #endif
 }
 
-const gchar *claws_get_startup_dir(void)
+const gchar *sylpheedish_get_startup_dir(void)
 {
 	return startup_dir;
 }
 
-guint claws_get_version(void)
+guint sylpheedish_get_version(void)
 {
 	return VERSION_NUMERIC;
 }
 
-void claws_register_idle_function	(void (*idle_func)(void))
+void sylpheedish_register_idle_function	(void (*idle_func)(void))
 {
-	claws_idle_function = idle_func;
+	sylpheedish_idle_function = idle_func;
 }
 
-void claws_do_idle(void)
+void sylpheedish_do_idle(void)
 {
-	if (claws_idle_function != NULL)
-		claws_idle_function();
+	if (sylpheedish_idle_function != NULL)
+		sylpheedish_idle_function();
 }

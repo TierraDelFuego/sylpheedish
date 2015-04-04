@@ -112,7 +112,7 @@ static gboolean free_func(GNode *node, gpointer data)
 	switch (mimeinfo->content) {
 	case MIMECONTENT_FILE:
 		if (mimeinfo->tmp)
-			claws_unlink(mimeinfo->data.filename);
+			sylpheedish_unlink(mimeinfo->data.filename);
 		g_free(mimeinfo->data.filename);
 		break;
 
@@ -508,7 +508,7 @@ gboolean procmime_decode_content(MimeInfo *mimeinfo)
 	}
 
 	if (mimeinfo->tmp)
-		claws_unlink(mimeinfo->data.filename);
+		sylpheedish_unlink(mimeinfo->data.filename);
 	g_free(mimeinfo->data.filename);
 	mimeinfo->data.filename = tmpfilename;
 	mimeinfo->tmp = TRUE;
@@ -587,7 +587,7 @@ gboolean procmime_encode_content(MimeInfo *mimeinfo, EncodingType encoding)
 				}
 				if ((tmp_fp = procmime_fopen(tmp_file, "rb")) == NULL) {
 					FILE_OP_ERROR(tmp_file, "fopen");
-					claws_unlink(tmp_file);
+					sylpheedish_unlink(tmp_file);
 					g_free(tmp_file);
 					procmime_fclose(infp);
 					procmime_fclose(outfp);
@@ -630,7 +630,7 @@ gboolean procmime_encode_content(MimeInfo *mimeinfo, EncodingType encoding)
 
 		if (tmp_file) {
 			procmime_fclose(tmp_fp);
-			claws_unlink(tmp_file);
+			sylpheedish_unlink(tmp_file);
 			g_free(tmp_file);
 		}
 	} else if (encoding == ENC_QUOTED_PRINTABLE) {
@@ -671,7 +671,7 @@ gboolean procmime_encode_content(MimeInfo *mimeinfo, EncodingType encoding)
 
 	if (mimeinfo->content == MIMECONTENT_FILE) {
 		if (mimeinfo->tmp && (mimeinfo->data.filename != NULL))
-			claws_unlink(mimeinfo->data.filename);
+			sylpheedish_unlink(mimeinfo->data.filename);
 		g_free(mimeinfo->data.filename);
 	} else if (mimeinfo->content == MIMECONTENT_MEM) {
 		if (mimeinfo->tmp && (mimeinfo->data.mem != NULL))
@@ -739,7 +739,7 @@ gint procmime_get_part(const gchar *outfile, MimeInfo *mimeinfo)
 	if (procmime_fclose(outfp) == EOF) {
 		saved_errno = errno;
 		FILE_OP_ERROR(outfile, "fclose");
-		claws_unlink(outfile);
+		sylpheedish_unlink(outfile);
 		return -(saved_errno);
 	}
 
@@ -840,7 +840,7 @@ gboolean procmime_scan_text_content(MimeInfo *mimeinfo,
 		g_warning("procmime_get_text_content(): Code conversion failed.\n");
 
 	procmime_fclose(tmpfp);
-	claws_unlink(tmpfile);
+	sylpheedish_unlink(tmpfile);
 	g_free(tmpfile);
 
 	return scan_ret;

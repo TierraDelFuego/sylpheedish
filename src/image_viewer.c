@@ -88,12 +88,12 @@ static void image_viewer_load_file(ImageViewer *imageviewer, const gchar *imgfil
 		if (imageviewer->resize_img) {
 			gtk_widget_get_allocation(
 				gtk_widget_get_parent(imageviewer->notebook), &allocation);
-			pixbuf = claws_load_pixbuf_fitting(pixbuf,
+			pixbuf = sylpheedish_load_pixbuf_fitting(pixbuf,
 				allocation.width,
 				allocation.height);
 		}
 		else
-			pixbuf = claws_load_pixbuf_fitting(pixbuf, -1, -1);
+			pixbuf = sylpheedish_load_pixbuf_fitting(pixbuf, -1, -1);
 	}
 
 	if (error && !pixbuf && !animation) {
@@ -152,7 +152,7 @@ static void image_viewer_load_image(ImageViewer *imageviewer)
 		return;
 	}
 	image_viewer_load_file(imageviewer, imgfile);
-	claws_unlink(imgfile);
+	sylpheedish_unlink(imgfile);
 	g_free(imgfile);
 }
 

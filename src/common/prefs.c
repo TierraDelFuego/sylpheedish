@@ -170,7 +170,7 @@ gint prefs_file_close(PrefFile *pfile)
 	if (prefs_common_get_flush_metadata() && fsync(fileno(fp)) < 0) {
 		FILE_OP_ERROR(tmppath, "fsync");
 		fclose(fp);
-		claws_unlink(tmppath);
+		sylpheedish_unlink(tmppath);
 		g_free(path);
 		g_free(tmppath);
 		return -1;
@@ -178,7 +178,7 @@ gint prefs_file_close(PrefFile *pfile)
 
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(tmppath, "fclose");
-		claws_unlink(tmppath);
+		sylpheedish_unlink(tmppath);
 		g_free(path);
 		g_free(tmppath);
 		return -1;
@@ -187,11 +187,11 @@ gint prefs_file_close(PrefFile *pfile)
 	if (is_file_exist(path)) {
 		bakpath = g_strconcat(path, ".bak", NULL);
 #ifdef G_OS_WIN32
-                claws_unlink(bakpath);
+                sylpheedish_unlink(bakpath);
 #endif
 		if (g_rename(path, bakpath) < 0) {
 			FILE_OP_ERROR(path, "rename");
-			claws_unlink(tmppath);
+			sylpheedish_unlink(tmppath);
 			g_free(path);
 			g_free(tmppath);
 			g_free(bakpath);
@@ -200,11 +200,11 @@ gint prefs_file_close(PrefFile *pfile)
 	}
 
 #ifdef G_OS_WIN32
-        claws_unlink(path);
+        sylpheedish_unlink(path);
 #endif
 	if (g_rename(tmppath, path) < 0) {
 		FILE_OP_ERROR(tmppath, "rename");
-		claws_unlink(tmppath);
+		sylpheedish_unlink(tmppath);
 		g_free(path);
 		g_free(tmppath);
 		g_free(bakpath);
@@ -236,7 +236,7 @@ gint prefs_file_close_revert(PrefFile *pfile)
 		tmppath = g_strconcat(pfile->path, ".tmp", NULL);
 	fclose(pfile->fp);
 	if (pfile->writing) {
-		if (claws_unlink(tmppath) < 0) FILE_OP_ERROR(tmppath, "unlink");
+		if (sylpheedish_unlink(tmppath) < 0) FILE_OP_ERROR(tmppath, "unlink");
 		g_free(tmppath);
 	}
 	g_free(pfile->path);

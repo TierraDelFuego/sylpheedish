@@ -195,7 +195,7 @@ enum {
 #endif
 
 	/* common items */
-	A_CLAWS_ACTIONS,
+	A_SYLPHEEDISH_ACTIONS,
 	A_CANCEL_INC,
 	A_CANCEL_SEND,
 	A_CANCEL_ALL,
@@ -203,7 +203,7 @@ enum {
 
 	A_SEPARATOR,
 
-	A_CLAWS_PLUGINS,
+	A_SYLPHEEDISH_PLUGINS,
 
 	N_ACTION_VAL
 };

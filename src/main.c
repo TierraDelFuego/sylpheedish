@@ -227,7 +227,7 @@ static void install_basic_sighandlers   (void);
 #if (defined linux && defined SIGIO)
 static void install_memory_sighandler   (void);
 #endif
-static void exit_claws			(MainWindow *mainwin);
+static void exit_sylpheedish			(MainWindow *mainwin);
 
 #ifdef HAVE_NETWORKMANAGER_SUPPORT
 static void networkmanager_state_change_cb(DBusGProxy *proxy, gchar *dev,
@@ -297,7 +297,7 @@ static void startup_notification_complete(gboolean with_window)
 }
 #endif /* HAVE_STARTUP_NOTIFICATION */
 
-static void claws_gtk_idle(void) 
+static void sylpheedish_gtk_idle(void) 
 {
 	while(gtk_events_pending()) {
 		gtk_main_iteration();
@@ -376,7 +376,7 @@ static gboolean migrate_old_config(const gchar *old_cfg_dir, const gchar *new_cf
 
 	keep_backup_chk = gtk_check_button_new_with_label (_("Keep old configuration"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(keep_backup_chk), TRUE);
-	CLAWS_SET_TIP(keep_backup_chk,
+	SYLPHEEDISH_SET_TIP(keep_backup_chk,
 			     _("Keeping a backup will allow you to go back to an "
 			       "older version, but may take a while if you have "
 			       "cached IMAP or News data, and will take some extra "
@@ -448,9 +448,9 @@ static int migrate_common_rc(const gchar *old_rc, const gchar *new_rc)
 	plugin_path = g_strdup(get_plugin_dir());
 	new_plugin_path = g_strdup(plugin_path);
 	
-	if (strstr(plugin_path, "/claws-mail/")) {
-		gchar *end = g_strdup(strstr(plugin_path, "/claws-mail/")+strlen("/claws-mail/"));
-		*(strstr(plugin_path, "/claws-mail/")) = '\0';
+	if (strstr(plugin_path, "/sylpheedish/")) {
+		gchar *end = g_strdup(strstr(plugin_path, "/sylpheedish/")+strlen("/sylpheedish/"));
+		*(strstr(plugin_path, "/sylpheedish/")) = '\0';
 		old_plugin_path = g_strconcat(plugin_path, "/sylpheed-claws/", end, NULL);
 		g_free(end);
 	} else {
@@ -652,10 +652,10 @@ static void sc_session_manager_connect(MainWindow *mainwin)
 
 static gboolean sc_exiting = FALSE;
 static gboolean show_at_startup = TRUE;
-static gboolean claws_crashed_bool = FALSE;
+static gboolean sylpheedish_crashed_bool = FALSE;
 
-gboolean claws_crashed(void) {
-	return claws_crashed_bool;
+gboolean sylpheedish_crashed(void) {
+	return sylpheedish_crashed_bool;
 }
 
 void main_set_show_at_startup(gboolean show)
@@ -723,8 +723,8 @@ static void win32_log(const gchar *log_domain, GLogLevelFlags log_level, const g
 
 static void win32_open_log(void)
 {
-	gchar *logfile = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, "claws-win32.log", NULL);
-	gchar *oldlogfile = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, "claws-win32.log.bak", NULL);
+	gchar *logfile = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, "sylpheedish-win32.log", NULL);
+	gchar *oldlogfile = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, "sylpheedish-win32.log.bak", NULL);
 
 	if (is_file_exist(logfile)) {
 		if (rename_force(logfile, oldlogfile) < 0)
@@ -882,14 +882,14 @@ static void dbus_update(FolderItem *removed_item)
 	if (new > 0) {
 		buf = g_strdup_printf("%d", new);
 		dbus_g_proxy_call(awn_proxy, "SetInfoByName", &error,
-			G_TYPE_STRING, "claws-mail",
+			G_TYPE_STRING, "sylpheedish",
 			G_TYPE_STRING, buf,
 			G_TYPE_INVALID, G_TYPE_INVALID);
 		g_free(buf);
 		
 	} else {
 		dbus_g_proxy_call(awn_proxy, "UnsetInfoByName", &error, G_TYPE_STRING,
-			"claws-mail", G_TYPE_INVALID, G_TYPE_INVALID);
+			"sylpheedish", G_TYPE_INVALID, G_TYPE_INVALID);
 	}
 	if (error) {
 		debug_print("%s\n", error->message);
@@ -986,7 +986,7 @@ int main(int argc, char *argv[])
 #ifdef G_OS_WIN32
 	win32_open_log();
 #endif
-	if (!claws_init(&argc, &argv)) {
+	if (!sylpheedish_init(&argc, &argv)) {
 #ifdef G_OS_WIN32
 		win32_close_log();
 #endif
@@ -1151,7 +1151,7 @@ int main(int argc, char *argv[])
 		 */
 		if (r == FALSE && !is_dir_exist(RC_DIR)) {
 #ifdef G_OS_UNIX
-			if (copy_dir(SYSCONFDIR "/skel/.claws-mail", RC_DIR) < 0) {
+			if (copy_dir(SYSCONFDIR "/skel/.sylpheedish", RC_DIR) < 0) {
 #endif
 				if (!is_dir_exist(RC_DIR) && make_dir(RC_DIR) < 0) {
 #ifdef G_OS_WIN32
@@ -1203,13 +1203,13 @@ int main(int argc, char *argv[])
 	remove_all_files(get_mime_tmp_dir());
 
 	if (!cmd.crash && crash_file_present)
-		claws_crashed_bool = TRUE;
+		sylpheedish_crashed_bool = TRUE;
 
-	if (is_file_exist("claws.log")) {
-		if (rename_force("claws.log", "claws.log.bak") < 0)
-			FILE_OP_ERROR("claws.log", "rename");
+	if (is_file_exist("sylpheedish.log")) {
+		if (rename_force("sylpheedish.log", "sylpheedish.log.bak") < 0)
+			FILE_OP_ERROR("sylpheedish.log", "rename");
 	}
-	set_log_file(LOG_PROTOCOL, "claws.log");
+	set_log_file(LOG_PROTOCOL, "sylpheedish.log");
 
 	if (is_file_exist("filtering.log")) {
 		if (rename_force("filtering.log", "filtering.log.bak") < 0)
@@ -1274,7 +1274,7 @@ int main(int argc, char *argv[])
 	}
 #endif
 	gtkut_widget_init();
-	stock_pixbuf_gdk(NULL, STOCK_PIXMAP_CLAWS_MAIL_ICON, &icon);
+	stock_pixbuf_gdk(NULL, STOCK_PIXMAP_SYLPHEEDISH_ICON, &icon);
 	gtk_window_set_default_icon(icon);
 
 	folderview_initialize();
@@ -1343,7 +1343,7 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 		if(!account_get_list()) {
-			exit_claws(mainwin);
+			exit_sylpheedish(mainwin);
 #ifdef G_OS_WIN32
 			win32_close_log();
 #endif
@@ -1358,7 +1358,7 @@ int main(int argc, char *argv[])
 
 	/* if crashed, show window early so that the user
 	 * sees what's happening */
-	if (claws_crashed()) {
+	if (sylpheedish_crashed()) {
 		main_window_popup(mainwin);
 		mainwin_shown = TRUE;
 	}
@@ -1370,14 +1370,14 @@ int main(int argc, char *argv[])
 	prefs_matcher_read_config();
 	quicksearch_set_search_strings(mainwin->summaryview->quicksearch);
 
-	/* make one all-folder processing before using claws */
+	/* make one all-folder processing before using sylpheedish */
 	main_window_cursor_wait(mainwin);
 	folder_func_to_all_folders(initial_processing, (gpointer *)mainwin);
 
-	/* if claws crashed, rebuild caches */
-	if (claws_crashed()) {
+	/* if sylpheedish crashed, rebuild caches */
+	if (sylpheedish_crashed()) {
 		GTK_EVENTS_FLUSH();
-		debug_print("Claws Mail crashed, checking for new messages in local folders\n");
+		debug_print("Sylpheedish crashed, checking for new messages in local folders\n");
 		folder_item_update_thaw();
 		folderview_check_new(NULL);
 		folder_clean_cache_memory_force();
@@ -1408,7 +1408,7 @@ int main(int argc, char *argv[])
 		cmd.status_full_folders = NULL;
 	}
 
-	claws_register_idle_function(claws_gtk_idle);
+	sylpheedish_register_idle_function(sylpheedish_gtk_idle);
 
 	avatars_init();
 	prefs_toolbar_init();
@@ -1478,7 +1478,7 @@ int main(int argc, char *argv[])
 				   "probably provided by an out-of-date "
 				   "external plugin. Please reinstall the "
 				   "plugin and try again."));
-			exit_claws(mainwin);
+			exit_sylpheedish(mainwin);
 #ifdef G_OS_WIN32
 			win32_close_log();
 #endif
@@ -1501,7 +1501,7 @@ int main(int argc, char *argv[])
 
 	if (!cmd.target && prefs_common.goto_last_folder_on_startup &&
 	    folder_find_item_from_identifier(prefs_common.last_opened_folder) != NULL &&
-	    !claws_crashed()) {
+	    !sylpheedish_crashed()) {
 		cmd.target = prefs_common.last_opened_folder;
 	}
 
@@ -1549,7 +1549,7 @@ int main(int argc, char *argv[])
 	}
 
 	/* register the callback of unix domain socket input */
-	lock_socket_tag = claws_input_add(lock_socket,
+	lock_socket_tag = sylpheedish_input_add(lock_socket,
 					G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_PRI,
 					lock_socket_input_cb,
 					mainwin, TRUE);
@@ -1571,7 +1571,7 @@ int main(int argc, char *argv[])
 	win32_close_log();
 #endif
 	utils_free_regex();
-	exit_claws(mainwin);
+	exit_sylpheedish(mainwin);
 
 	return 0;
 }
@@ -1589,7 +1589,7 @@ static void save_all_caches(FolderItem *item, gpointer data)
 	folder_item_free_cache(item, TRUE);
 }
 
-static void exit_claws(MainWindow *mainwin)
+static void exit_sylpheedish(MainWindow *mainwin)
 {
 	gchar *filename;
 	gboolean have_connectivity;
@@ -1653,7 +1653,7 @@ static void exit_claws(MainWindow *mainwin)
 #endif
 	/* delete crashfile */
 	if (!cmd.crash)
-		claws_unlink(get_crashfile_name());
+		sylpheedish_unlink(get_crashfile_name());
 
 	lock_socket_remove();
 
@@ -1695,7 +1695,7 @@ static void exit_claws(MainWindow *mainwin)
 	gtkaspell_checkers_quit();
 #endif
 	plugin_unload_all("Common");
-	claws_done();
+	sylpheedish_done();
 }
 
 #define G_STRING_APPEND_ENCODED_URI(gstring,source)	\
@@ -1830,7 +1830,7 @@ static void parse_cmd_opt(int argc, char *argv[])
 					}
 				}
 				if (file == NULL && *p != G_DIR_SEPARATOR) {
-					file = g_strconcat(claws_get_startup_dir(),
+					file = g_strconcat(sylpheedish_get_startup_dir(),
 							   G_DIR_SEPARATOR_S,
 							   p, NULL);
 				} else if (file == NULL) {
@@ -2067,7 +2067,7 @@ gboolean clean_quit(gpointer data)
 		
 	draft_all_messages();
 	emergency_exit = TRUE;
-	exit_claws(static_mainwindow);
+	exit_sylpheedish(static_mainwindow);
 	exit(0);
 
 	return FALSE;
@@ -2118,22 +2118,22 @@ void app_will_exit(GtkWidget *widget, gpointer data)
 	gtk_main_quit();
 }
 
-gboolean claws_is_exiting(void)
+gboolean sylpheedish_is_exiting(void)
 {
 	return sc_exiting;
 }
 
-gboolean claws_is_starting(void)
+gboolean sylpheedish_is_starting(void)
 {
 	return sc_starting;
 }
 
 #ifdef G_OS_UNIX
 /*
- * CLAWS: want this public so crash dialog can delete the
+ * SYLPHEEDISH: want this public so crash dialog can delete the
  * lock file too
  */
-gchar *claws_get_socket_name(void)
+gchar *sylpheedish_get_socket_name(void)
 {
 	static gchar *filename = NULL;
 	gchar *socket_dir = NULL;
@@ -2143,7 +2143,7 @@ gchar *claws_get_socket_name(void)
 		struct stat st;
 		gint stat_ok;
 
-		socket_dir = g_strdup_printf("%s%cclaws-mail-%d",
+		socket_dir = g_strdup_printf("%s%csylpheedish-%d",
 					   g_get_tmp_dir(), G_DIR_SEPARATOR,
 #if HAVE_GETUID
 					   getuid());
@@ -2155,7 +2155,7 @@ gchar *claws_get_socket_name(void)
 			g_print("Error stat'ing socket_dir %s: %s\n",
 				socket_dir, strerror(errno));
 		} else if (stat_ok == 0 && S_ISSOCK(st.st_mode)) {
-			/* old versions used a sock in $TMPDIR/claws-mail-$UID */
+			/* old versions used a sock in $TMPDIR/sylpheedish-$UID */
 			debug_print("Using legacy socket %s\n", socket_dir);
 			filename = g_strdup(socket_dir);
 			return filename;
@@ -2183,7 +2183,7 @@ static gchar *get_crashfile_name(void)
 	static gchar *filename = NULL;
 
 	if (filename == NULL) {
-		filename = g_strdup_printf("%s%cclaws-crashed",
+		filename = g_strdup_printf("%s%csylpheedish-crashed",
 					   get_tmp_dir(), G_DIR_SEPARATOR);
 	}
 
@@ -2197,7 +2197,7 @@ static gint prohibit_duplicate_launch(void)
 #ifdef G_OS_UNIX
 	gchar *path;
 
-	path = claws_get_socket_name();
+	path = sylpheedish_get_socket_name();
 	/* Try to connect to the control socket */
 	uxsock = fd_connect_unix(path);
 	
@@ -2234,13 +2234,13 @@ static gint prohibit_duplicate_launch(void)
 		}
 #endif
 
-		claws_unlink(path);
+		sylpheedish_unlink(path);
 		debug_print("Opening socket %s\n", path);
 		ret = fd_open_unix(path);
 #if HAVE_FLOCK
 		flock(lock_fd, LOCK_UN);
 		close(lock_fd);
-		claws_unlink(socket_lock);
+		sylpheedish_unlink(socket_lock);
 		g_free(socket_lock);
 #endif
 		return ret;
@@ -2414,9 +2414,9 @@ static gint lock_socket_remove(void)
 	fd_close(lock_socket);
 
 #ifdef G_OS_UNIX
-	filename = claws_get_socket_name();
+	filename = sylpheedish_get_socket_name();
 	dirname = g_path_get_dirname(filename);
-	claws_unlink(filename);
+	sylpheedish_unlink(filename);
 	g_rmdir(dirname);
 	g_free(dirname);
 #endif

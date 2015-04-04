@@ -537,9 +537,9 @@ static void prefs_toolbar_register(GtkButton *button, ToolbarPage *prefs_toolbar
 				return;
 			}
 		} else if(item_type == ITEM_PLUGIN)
-		  event = toolbar_ret_descr_from_val(A_CLAWS_PLUGINS);
+		  event = toolbar_ret_descr_from_val(A_SYLPHEEDISH_PLUGINS);
 		else
-			event = toolbar_ret_descr_from_val(A_CLAWS_ACTIONS);
+			event = toolbar_ret_descr_from_val(A_SYLPHEEDISH_ACTIONS);
 		
 		text = gtk_editable_get_chars(
 			GTK_EDITABLE(prefs_toolbar->item_text_entry), 0 , -1);
@@ -629,9 +629,9 @@ static void prefs_toolbar_substitute(GtkButton *button, ToolbarPage *prefs_toolb
 				return;
 			}
 		} else if(item_type == ITEM_PLUGIN)
-			icon_event = toolbar_ret_descr_from_val(A_CLAWS_PLUGINS);
+			icon_event = toolbar_ret_descr_from_val(A_SYLPHEEDISH_PLUGINS);
 		else
-			icon_event = toolbar_ret_descr_from_val(A_CLAWS_ACTIONS);
+			icon_event = toolbar_ret_descr_from_val(A_SYLPHEEDISH_ACTIONS);
 		
 		text = gtk_editable_get_chars(
 			GTK_EDITABLE(prefs_toolbar->item_text_entry), 0 , -1);
@@ -1477,7 +1477,7 @@ static gboolean set_list_selected(GtkTreeSelection *selector,
 	gtk_entry_set_text(GTK_ENTRY(prefs_toolbar->item_text_entry), 
 			   icon_text);
 
-	if (g_utf8_collate(toolbar_ret_descr_from_val(A_CLAWS_ACTIONS), descr) == 0) {
+	if (g_utf8_collate(toolbar_ret_descr_from_val(A_SYLPHEEDISH_ACTIONS), descr) == 0) {
 		gtk_combo_box_set_active(GTK_COMBO_BOX(
 			prefs_toolbar->item_type_combo), ITEM_USER_ACTION);
 
@@ -1509,7 +1509,7 @@ static gboolean set_list_selected(GtkTreeSelection *selector,
 		return TRUE;
 	}
 
-	if (g_utf8_collate(toolbar_ret_descr_from_val(A_CLAWS_PLUGINS), descr) == 0) {
+	if (g_utf8_collate(toolbar_ret_descr_from_val(A_SYLPHEEDISH_PLUGINS), descr) == 0) {
 		gtk_combo_box_set_active(GTK_COMBO_BOX(prefs_toolbar->item_type_combo), ITEM_PLUGIN);
 
 		gtk_combo_box_set_active(GTK_COMBO_BOX(prefs_toolbar->item_plugin_combo), 0);

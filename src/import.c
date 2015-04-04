@@ -74,7 +74,7 @@ gint import_mbox(FolderItem *default_dest)
 	}
 
 	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
-	change_dir(claws_get_startup_dir());
+	change_dir(sylpheedish_get_startup_dir());
 
 	if (default_dest && default_dest->path) {
 		dest_id = folder_item_get_identifier(default_dest);

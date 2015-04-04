@@ -131,7 +131,7 @@ void gtkut_stock_button_add_help(GtkWidget *bbox, GtkWidget **help_btn)
 	gtk_button_box_set_child_secondary(GTK_BUTTON_BOX (bbox),
 			*help_btn, TRUE);
 	gtk_widget_set_sensitive(*help_btn,
-			manual_available(MANUAL_MANUAL_CLAWS));
+			manual_available(MANUAL_MANUAL_SYLPHEEDISH));
 	gtk_widget_show(*help_btn);
 }
 
@@ -710,8 +710,8 @@ void gtkut_widget_set_app_icon(GtkWidget *widget)
 	cm_return_if_fail(gtk_widget_get_window(widget) != NULL);
 	if (!icon_list) {
 		GdkPixbuf *icon = NULL, *big_icon = NULL;
-		stock_pixbuf_gdk(widget, STOCK_PIXMAP_CLAWS_MAIL_ICON, &icon);
-		stock_pixbuf_gdk(widget, STOCK_PIXMAP_CLAWS_MAIL_LOGO, &big_icon);
+		stock_pixbuf_gdk(widget, STOCK_PIXMAP_SYLPHEEDISH_ICON, &icon);
+		stock_pixbuf_gdk(widget, STOCK_PIXMAP_SYLPHEEDISH_LOGO, &big_icon);
 		if (icon)
 			icon_list = g_list_append(icon_list, icon);
 		if (big_icon)
@@ -1623,22 +1623,22 @@ GtkUIManager *gtkut_ui_manager(void)
 	return gui_manager;
 }
 
-typedef struct _ClawsIOClosure ClawsIOClosure;
+typedef struct _SylpheedishIOClosure SylpheedishIOClosure;
 
-struct _ClawsIOClosure
+struct _SylpheedishIOClosure
 {
-  ClawsIOFunc function;
+  SylpheedishIOFunc function;
   GIOCondition condition;
   GDestroyNotify notify;
   gpointer data;
 };
 
 static gboolean  
-claws_io_invoke (GIOChannel   *source,
+sylpheedish_io_invoke (GIOChannel   *source,
 	         GIOCondition  condition,
 	         gpointer      data)
 {
-  ClawsIOClosure *closure = data;
+  SylpheedishIOClosure *closure = data;
   int fd;
 #ifndef G_OS_WIN32
   fd = g_io_channel_unix_get_fd (source);
@@ -1652,9 +1652,9 @@ claws_io_invoke (GIOChannel   *source,
 }
 
 static void
-claws_io_destroy (gpointer data)
+sylpheedish_io_destroy (gpointer data)
 {
-  ClawsIOClosure *closure = data;
+  SylpheedishIOClosure *closure = data;
 
   if (closure->notify)
     closure->notify (closure->data);
@@ -1663,14 +1663,14 @@ claws_io_destroy (gpointer data)
 }
 
 gint
-claws_input_add    (gint	      source,
+sylpheedish_input_add    (gint	      source,
 		    GIOCondition      condition,
-		    ClawsIOFunc       function,
+		    SylpheedishIOFunc       function,
 		    gpointer	      data,
 		    gboolean	      is_sock)
 {
   guint result;
-  ClawsIOClosure *closure = g_new (ClawsIOClosure, 1);
+  SylpheedishIOClosure *closure = g_new (SylpheedishIOClosure, 1);
   GIOChannel *channel;
 
   closure->function = function;
@@ -1687,8 +1687,8 @@ claws_input_add    (gint	      source,
     channel = g_io_channel_win32_new_fd(source);
 #endif
   result = g_io_add_watch_full (channel, G_PRIORITY_DEFAULT, condition, 
-				claws_io_invoke,
-				closure, claws_io_destroy);
+				sylpheedish_io_invoke,
+				closure, sylpheedish_io_destroy);
   g_io_channel_unref (channel);
 
   return result;
@@ -1777,7 +1777,7 @@ void gtkut_widget_set_has_window(GtkWidget *widget, gboolean has_window)
  *
  * @return a GdkPixbuf
  */
-GdkPixbuf *claws_load_pixbuf_fitting(GdkPixbuf *src_pixbuf, int box_width,
+GdkPixbuf *sylpheedish_load_pixbuf_fitting(GdkPixbuf *src_pixbuf, int box_width,
 				     int box_height)
 {
 	gint w, h, orientation, angle;

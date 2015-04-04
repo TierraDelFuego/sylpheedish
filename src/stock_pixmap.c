@@ -85,12 +85,12 @@
 #include "pixmaps/queue_close_hrm.xpm"
 #include "pixmaps/queue_open.xpm"
 #include "pixmaps/queue_open_hrm.xpm"
-#include "pixmaps/claws-mail_icon.xpm"
-#include "pixmaps/claws-mail_compose_logo.xpm"
+#include "pixmaps/sylpheedish_icon.xpm"
+#include "pixmaps/sylpheedish_compose_logo.xpm"
 #ifndef GENERIC_UMPC
-#include "pixmaps/claws-mail_logo.xpm"
+#include "pixmaps/sylpheedish_logo.xpm"
 #else
-#include "pixmaps/claws-mail_logo-small.xpm"
+#include "pixmaps/sylpheedish_logo-small.xpm"
 #endif
 #include "pixmaps/address_book.xpm"
 #include "pixmaps/unread.xpm"
@@ -366,16 +366,16 @@ static StockPixmapData pixmaps[] =
 	{privacy_emblem_failed_xpm		, NULL, NULL, "privacy_emblem_failed", NULL},	
 	{privacy_emblem_warn_xpm		, NULL, NULL, "privacy_emblem_warn", NULL},
 	{mime_message_xpm			, NULL, NULL, "mime_message", NULL},
-	{claws_mail_icon_xpm			, NULL, NULL, "claws_mail_icon", NULL},
+	{sylpheedish_icon_xpm			, NULL, NULL, "sylpheedish_icon", NULL},
 	{read_xpm				, NULL, NULL, "read", NULL},
 	{delete_btn_xpm				, NULL, NULL, "delete_btn", NULL},
 	{cancel_xpm				, NULL, NULL, "cancel", NULL},
 	{trash_btn_xpm				, NULL, NULL, "trash_btn", NULL},
-	{claws_mail_compose_logo_xpm		, NULL, NULL, "claws_mail_compose_logo", NULL},
+	{sylpheedish_compose_logo_xpm		, NULL, NULL, "sylpheedish_compose_logo", NULL},
 #ifndef GENERIC_UMPC
-	{claws_mail_logo_xpm			, NULL, NULL, "claws_mail_logo", NULL},
+	{sylpheedish_logo_xpm			, NULL, NULL, "sylpheedish_logo", NULL},
 #else
-	{claws_mail_logo_small_xpm		, NULL, NULL, "claws_mail_logo_small", NULL},
+	{sylpheedish_logo_small_xpm		, NULL, NULL, "sylpheedish_logo_small", NULL},
 #endif
         {dir_noselect_xpm                       , NULL, NULL, "dir_noselect" , NULL},
         {spam_xpm                               , NULL, NULL, "spam" , NULL},

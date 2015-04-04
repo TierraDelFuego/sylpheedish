@@ -65,8 +65,8 @@ const gchar *plugin_get_desc	(Plugin		 *plugin);
 const gchar *plugin_get_version	(Plugin		 *plugin);
 const gchar *plugin_get_error	(Plugin		 *plugin);
 Plugin      *plugin_get_loaded_by_name(const gchar *name);
-gint check_plugin_version	(guint32 minimum_claws_version,
-				 guint32 compiled_claws_version,
+gint check_plugin_version	(guint32 minimum_sylpheedish_version,
+				 guint32 compiled_sylpheedish_version,
 				 const gchar *plugin_name,
 				 gchar **error);
 #endif

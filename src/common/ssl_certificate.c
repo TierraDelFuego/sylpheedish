@@ -401,10 +401,10 @@ void ssl_certificate_delete_from_disk(SSLCertificate *cert)
 	gchar *file;
 	buf = g_strdup_printf("%d", cert->port);
 	file = get_certificate_path(cert->host, buf, cert->fingerprint);
-	claws_unlink (file);
+	sylpheedish_unlink (file);
 	g_free(file);
 	file = get_certificate_chain_path(cert->host, buf, cert->fingerprint);
-	claws_unlink (file);
+	sylpheedish_unlink (file);
 	g_free(file);
 	g_free(buf);
 }
@@ -531,8 +531,8 @@ static guint check_cert(SSLCertificate *cert)
 	gchar *chain_file = NULL, *buf = NULL;
 	FILE *fp;
 
-	if (claws_ssl_get_cert_file())
-		fp = g_fopen(claws_ssl_get_cert_file(), "r");
+	if (sylpheedish_ssl_get_cert_file())
+		fp = g_fopen(sylpheedish_ssl_get_cert_file(), "r");
 	else
 		return (guint)-1;
 
@@ -816,8 +816,8 @@ gboolean ssl_certificate_check_chain(gnutls_x509_crt_t *certs, gint chain_len,
 	int i;
 	gint status;
 
-	if (claws_ssl_get_cert_file()) {
-		FILE *fp = g_fopen(claws_ssl_get_cert_file(), "rb");
+	if (sylpheedish_ssl_get_cert_file()) {
+		FILE *fp = g_fopen(sylpheedish_ssl_get_cert_file(), "rb");
 		int r = -errno;
 
 		if (fp) {
@@ -827,7 +827,7 @@ gboolean ssl_certificate_check_chain(gnutls_x509_crt_t *certs, gint chain_len,
 
 		if (r < 0)
 			g_warning("Can't read SSL_CERT_FILE %s: %s\n",
-				claws_ssl_get_cert_file(), 
+				sylpheedish_ssl_get_cert_file(), 
 				gnutls_strerror(r));
 	} else {
 		debug_print("Can't find SSL ca-certificates file\n");

@@ -471,7 +471,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_hbox), reg_btn, FALSE, TRUE, 0);
 	g_signal_connect(G_OBJECT (reg_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_register_cb), NULL);
-	CLAWS_SET_TIP(reg_btn,
+	SYLPHEEDISH_SET_TIP(reg_btn,
 			_("Append the new rule above to the list"));
 
 	subst_btn = gtkut_get_replace_btn (_("_Replace"));
@@ -480,7 +480,7 @@ static void prefs_filtering_create(void)
 	g_signal_connect(G_OBJECT (subst_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_substitute_cb),
 			 NULL);
-	CLAWS_SET_TIP(subst_btn,
+	SYLPHEEDISH_SET_TIP(subst_btn,
 			_("Replace the selected rule in list with the rule above"));
 
 	del_btn = gtk_button_new_with_mnemonic (_("Re_move"));
@@ -489,7 +489,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_hbox), del_btn, FALSE, TRUE, 0);
 	g_signal_connect(G_OBJECT (del_btn), "clicked",
 			G_CALLBACK(prefs_filtering_delete_cb), NULL);
-	CLAWS_SET_TIP(del_btn,
+	SYLPHEEDISH_SET_TIP(del_btn,
 			_("Delete the selected rule from the list"));
 
 	clear_btn = gtk_button_new_with_mnemonic (_("C_lear"));
@@ -499,7 +499,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_hbox), clear_btn, FALSE, TRUE, 0);
 	g_signal_connect(G_OBJECT (clear_btn), "clicked",
 			G_CALLBACK(prefs_filtering_clear_cb), NULL);
-	CLAWS_SET_TIP(clear_btn,
+	SYLPHEEDISH_SET_TIP(clear_btn,
 			_("Clear all the input fields in the dialog"));
 
 	cond_hbox = gtk_hbox_new (FALSE, 8);
@@ -528,7 +528,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), top_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (top_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_top), NULL);
-	CLAWS_SET_TIP(top_btn,
+	SYLPHEEDISH_SET_TIP(top_btn,
 			_("Move the selected rule to the top"));
 
 #ifndef GENERIC_UMPC
@@ -539,7 +539,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), page_up_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (page_up_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_page_up), NULL);
-	CLAWS_SET_TIP(page_up_btn,
+	SYLPHEEDISH_SET_TIP(page_up_btn,
 			_("Move the selected rule one page up"));
 #endif
 
@@ -548,7 +548,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), up_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (up_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_up), NULL);
-	CLAWS_SET_TIP(up_btn,
+	SYLPHEEDISH_SET_TIP(up_btn,
 			_("Move the selected rule up"));
 
 	down_btn = gtk_button_new_from_stock (GTK_STOCK_GO_DOWN);
@@ -556,7 +556,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), down_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (down_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_down), NULL);
-	CLAWS_SET_TIP(down_btn,
+	SYLPHEEDISH_SET_TIP(down_btn,
 			_("Move the selected rule down"));
 
 #ifndef GENERIC_UMPC
@@ -567,7 +567,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), page_down_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (page_down_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_page_down), NULL);
-	CLAWS_SET_TIP(page_down_btn,
+	SYLPHEEDISH_SET_TIP(page_down_btn,
 			_("Move the selected rule one page down"));
 #endif
 
@@ -576,7 +576,7 @@ static void prefs_filtering_create(void)
 	gtk_box_pack_start (GTK_BOX (btn_vbox), bottom_btn, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT (bottom_btn), "clicked",
 			 G_CALLBACK(prefs_filtering_bottom), NULL);
-	CLAWS_SET_TIP(bottom_btn,
+	SYLPHEEDISH_SET_TIP(bottom_btn,
 			_("Move the selected rule to the bottom"));
 
 	if (!geometry.min_height) {

@@ -533,7 +533,7 @@ gint file_strip_crs(const gchar *file)
 	g_free(out);
 	return 0;
 unlinkout:
-	claws_unlink(out);
+	sylpheedish_unlink(out);
 freeout:
 	g_free(out);
 	return -1;
@@ -1913,23 +1913,23 @@ const gchar *get_home_dir(void)
 #endif
 }
 
-static gchar *claws_rc_dir = NULL;
+static gchar *sylpheedish_rc_dir = NULL;
 static gboolean rc_dir_alt = FALSE;
 const gchar *get_rc_dir(void)
 {
 
-	if (!claws_rc_dir) {
-		claws_rc_dir = g_strconcat(get_home_dir(), G_DIR_SEPARATOR_S,
+	if (!sylpheedish_rc_dir) {
+		sylpheedish_rc_dir = g_strconcat(get_home_dir(), G_DIR_SEPARATOR_S,
 				     RC_DIR, NULL);
-		debug_print("using default rc_dir %s\n", claws_rc_dir);
+		debug_print("using default rc_dir %s\n", sylpheedish_rc_dir);
 	}
-	return claws_rc_dir;
+	return sylpheedish_rc_dir;
 }
 
 void set_rc_dir(const gchar *dir)
 {
 	gchar *canonical_dir;
-	if (claws_rc_dir != NULL) {
+	if (sylpheedish_rc_dir != NULL) {
 		g_print("Error: rc_dir already set\n");
 	} else {
 		int err = cm_canonicalize_filename(dir, &canonical_dir);
@@ -1942,17 +1942,17 @@ void set_rc_dir(const gchar *dir)
 		}
 		rc_dir_alt = TRUE;
 
-		claws_rc_dir = canonical_dir;
+		sylpheedish_rc_dir = canonical_dir;
 		
-		len = strlen(claws_rc_dir);
-		if (claws_rc_dir[len - 1] == G_DIR_SEPARATOR)
-			claws_rc_dir[len - 1] = '\0';
+		len = strlen(sylpheedish_rc_dir);
+		if (sylpheedish_rc_dir[len - 1] == G_DIR_SEPARATOR)
+			sylpheedish_rc_dir[len - 1] = '\0';
 		
-		debug_print("set rc_dir to %s\n", claws_rc_dir);
-		if (!is_dir_exist(claws_rc_dir)) {
-			if (make_dir_hier(claws_rc_dir) != 0) {
+		debug_print("set rc_dir to %s\n", sylpheedish_rc_dir);
+		if (!is_dir_exist(sylpheedish_rc_dir)) {
+			if (make_dir_hier(sylpheedish_rc_dir) != 0) {
 				g_print("Error: can't create %s\n",
-				claws_rc_dir);
+				sylpheedish_rc_dir);
 				exit(0);
 			}
 		}
@@ -2042,7 +2042,7 @@ const gchar *get_plugin_dir(void)
 
 	if (!plugin_dir)
 		plugin_dir = g_strconcat(w32_get_module_dir(),
-					 "\\lib\\claws-mail\\plugins\\",
+					 "\\lib\\sylpheedish\\plugins\\",
 					 NULL);
 	return plugin_dir;
 #else
@@ -2068,7 +2068,7 @@ const gchar *get_themes_dir(void)
 
 	if (!themes_dir)
 		themes_dir = g_strconcat(w32_get_module_dir(),
-					 "\\share\\claws-mail\\themes",
+					 "\\share\\sylpheedish\\themes",
 					 NULL);
 	return themes_dir;
 }
@@ -2329,7 +2329,7 @@ gint remove_all_files(const gchar *dir)
 	}
 
 	while ((dir_name = g_dir_read_name(dp)) != NULL) {
-		if (claws_unlink(dir_name) < 0)
+		if (sylpheedish_unlink(dir_name) < 0)
 			FILE_OP_ERROR(dir_name, "unlink");
 	}
 
@@ -2362,7 +2362,7 @@ gint remove_numbered_files(const gchar *dir, guint first, guint last)
 			g_free(filename);
 			filename = g_strdup_printf("%s%s.%u", dir, G_DIR_SEPARATOR_S, first);
 		}
-		if (claws_unlink(filename) < 0) {
+		if (sylpheedish_unlink(filename) < 0) {
 			FILE_OP_ERROR(filename, "unlink");
 			g_free(filename);
 			return -1;
@@ -2390,13 +2390,13 @@ gint remove_numbered_files(const gchar *dir, guint first, guint last)
 		if (file_no > 0 && first <= file_no && file_no <= last) {
 			if (is_dir_exist(dir_name)) {
 				gchar *dot_file = g_strdup_printf(".%s", dir_name);
-				if (is_file_exist(dot_file) && claws_unlink(dot_file) < 0) {
+				if (is_file_exist(dot_file) && sylpheedish_unlink(dot_file) < 0) {
 					FILE_OP_ERROR(dot_file, "unlink");
 				}
 				g_free(dot_file);
 				continue;
 			}
-			if (claws_unlink(dir_name) < 0)
+			if (sylpheedish_unlink(dir_name) < 0)
 				FILE_OP_ERROR(dir_name, "unlink");
 		}
 	}
@@ -2454,13 +2454,13 @@ gint remove_numbered_files_not_in_list(const gchar *dir, GSList *numberlist)
 			debug_print("removing unwanted file %d from %s\n", file_no, dir);
 			if (is_dir_exist(dir_name)) {
 				gchar *dot_file = g_strdup_printf(".%s", dir_name);
-				if (is_file_exist(dot_file) && claws_unlink(dot_file) < 0) {
+				if (is_file_exist(dot_file) && sylpheedish_unlink(dot_file) < 0) {
 					FILE_OP_ERROR(dot_file, "unlink");
 				}
 				g_free(dot_file);
 				continue;
 			}
-			if (claws_unlink(dir_name) < 0)
+			if (sylpheedish_unlink(dir_name) < 0)
 				FILE_OP_ERROR(dir_name, "unlink");
 		}
 	}
@@ -2498,7 +2498,7 @@ gint remove_dir_recursive(const gchar *dir)
 	}
 
 	if (!S_ISDIR(s.st_mode)) {
-		if (claws_unlink(dir) < 0) {
+		if (sylpheedish_unlink(dir) < 0) {
 			FILE_OP_ERROR(dir, "unlink");
 			return -1;
 		}
@@ -2541,7 +2541,7 @@ gint remove_dir_recursive(const gchar *dir)
 				return -1;
 			}
 		} else {
-			if (claws_unlink(dir_name) < 0)
+			if (sylpheedish_unlink(dir_name) < 0)
 				FILE_OP_ERROR(dir_name, "unlink");
 		}
 	}
@@ -2572,7 +2572,7 @@ gint rename_force(const gchar *oldpath, const gchar *newpath)
 		return -1;
 	}
 	if (is_file_exist(newpath)) {
-		if (claws_unlink(newpath) < 0)
+		if (sylpheedish_unlink(newpath) < 0)
 			FILE_OP_ERROR(newpath, "unlink");
 	}
 #endif
@@ -2614,7 +2614,7 @@ gint append_file(const gchar *src, const gchar *dest, gboolean keep_backup)
 			g_warning("writing to %s failed.\n", dest);
 			fclose(dest_fp);
 			fclose(src_fp);
-			claws_unlink(dest);
+			sylpheedish_unlink(dest);
 			return -1;
 		}
 	}
@@ -2630,7 +2630,7 @@ gint append_file(const gchar *src, const gchar *dest, gboolean keep_backup)
 	}
 
 	if (err) {
-		claws_unlink(dest);
+		sylpheedish_unlink(dest);
 		return -1;
 	}
 
@@ -2682,7 +2682,7 @@ gint copy_file(const gchar *src, const gchar *dest, gboolean keep_backup)
 			g_warning("writing to %s failed.\n", dest);
 			fclose(dest_fp);
 			fclose(src_fp);
-			claws_unlink(dest);
+			sylpheedish_unlink(dest);
 			if (dest_bak) {
 				if (rename_force(dest_bak, dest) < 0)
 					FILE_OP_ERROR(dest_bak, "rename");
@@ -2703,7 +2703,7 @@ gint copy_file(const gchar *src, const gchar *dest, gboolean keep_backup)
 	}
 
 	if (err) {
-		claws_unlink(dest);
+		sylpheedish_unlink(dest);
 		if (dest_bak) {
 			if (rename_force(dest_bak, dest) < 0)
 				FILE_OP_ERROR(dest_bak, "rename");
@@ -2713,7 +2713,7 @@ gint copy_file(const gchar *src, const gchar *dest, gboolean keep_backup)
 	}
 
 	if (keep_backup == FALSE && dest_bak)
-		claws_unlink(dest_bak);
+		sylpheedish_unlink(dest_bak);
 
 	g_free(dest_bak);
 
@@ -2736,7 +2736,7 @@ gint move_file(const gchar *src, const gchar *dest, gboolean overwrite)
 
 	if (copy_file(src, dest, FALSE) < 0) return -1;
 
-	claws_unlink(src);
+	sylpheedish_unlink(src);
 
 	return 0;
 }
@@ -2800,7 +2800,7 @@ gint copy_file_part(FILE *fp, off_t offset, size_t length, const gchar *dest)
 
 	if (err) {
 		g_warning("writing to %s failed.\n", dest);
-		claws_unlink(dest);
+		sylpheedish_unlink(dest);
 		return -1;
 	}
 
@@ -2896,7 +2896,7 @@ gint canonicalize_file(const gchar *src, const gchar *dest)
 			g_warning("writing to %s failed.\n", dest);
 			fclose(dest_fp);
 			fclose(src_fp);
-			claws_unlink(dest);
+			sylpheedish_unlink(dest);
 			return -1;
 		}
 	}
@@ -2917,7 +2917,7 @@ gint canonicalize_file(const gchar *src, const gchar *dest)
 	}
 
 	if (err) {
-		claws_unlink(dest);
+		sylpheedish_unlink(dest);
 		return -1;
 	}
 
@@ -2937,7 +2937,7 @@ gint canonicalize_file_replace(const gchar *file)
 
 	if (move_file(tmp_file, file, TRUE) < 0) {
 		g_warning("can't replace %s .\n", file);
-		claws_unlink(tmp_file);
+		sylpheedish_unlink(tmp_file);
 		g_free(tmp_file);
 		return -1;
 	}
@@ -3074,7 +3074,7 @@ FILE *my_tmpfile(void)
 	tmplen = strlen(tmpdir);
 	progname = g_get_prgname();
 	if (progname == NULL)
-		progname = "claws-mail";
+		progname = "sylpheedish";
 	proglen = strlen(progname);
 	Xalloca(fname, tmplen + 1 + proglen + sizeof(suffix),
 		return tmpfile());
@@ -3089,7 +3089,7 @@ FILE *my_tmpfile(void)
 		return tmpfile();
 
 #ifndef G_OS_WIN32
-	claws_unlink(fname);
+	sylpheedish_unlink(fname);
 	
 	/* verify that we can write in the file after unlinking */
 	if (write(fd, buf, 1) < 0) {
@@ -3116,12 +3116,12 @@ FILE *get_tmpfile_in_dir(const gchar *dir, gchar **filename)
 {
 	int fd;
 #ifdef G_OS_WIN32
-	char *template = g_strdup_printf ("%s%cclaws.XXXXXX",
+	char *template = g_strdup_printf ("%s%csylpheedish.XXXXXX",
 					  dir, G_DIR_SEPARATOR);
 	fd = mkstemp_name(template, filename);
 	g_free(template);
 #else
-	*filename = g_strdup_printf("%s%cclaws.XXXXXX", dir, G_DIR_SEPARATOR);
+	*filename = g_strdup_printf("%s%csylpheedish.XXXXXX", dir, G_DIR_SEPARATOR);
 	fd = mkstemp(*filename);
 	if (fd < 0)
 		return NULL;
@@ -3177,13 +3177,13 @@ gint str_write_to_file(const gchar *str, const gchar *file)
 	if (fwrite(str, 1, len, fp) != len) {
 		FILE_OP_ERROR(file, "fwrite");
 		fclose(fp);
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(file, "fclose");
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 
@@ -5326,7 +5326,7 @@ gboolean prefs_common_get_use_shred(void);
 #define WEXITSTATUS(x) (x)
 #endif
 
-int claws_unlink(const gchar *filename) 
+int sylpheedish_unlink(const gchar *filename) 
 {
 	struct stat s;
 	static int found_shred = -1;

@@ -135,7 +135,7 @@ static void prefs_spelling_create_widget(PrefsPage *_page, GtkWindow *window, gp
 	gtk_widget_show(use_alternate_checkbtn);
 	gtk_box_pack_start(GTK_BOX(vbox2), use_alternate_checkbtn, TRUE, TRUE, 0);
 
-	CLAWS_SET_TIP(use_alternate_checkbtn, 
+	SYLPHEEDISH_SET_TIP(use_alternate_checkbtn, 
 			_("Faster switching with last used dictionary"));
 
 	vbox2 = gtkut_get_options_frame(vbox1, &automatic_frame, _("Automatic spell checking"));
@@ -216,7 +216,7 @@ static void prefs_spelling_create_widget(PrefsPage *_page, GtkWindow *window, gp
 	gtk_box_pack_start(GTK_BOX(misspelled_hbox), misspelled_colorbtn,
 		FALSE, FALSE, 0);
 	gtk_widget_set_size_request(misspelled_colorbtn, 30, 20);
-	CLAWS_SET_TIP(misspelled_colorbtn,
+	SYLPHEEDISH_SET_TIP(misspelled_colorbtn,
 			     _("Pick color for misspelled word. "
 			       "Use black to underline"));
 

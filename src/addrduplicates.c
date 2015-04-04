@@ -864,7 +864,7 @@ gboolean addrduplicates_delete_item_person(ItemPerson *item, AddressDataSource *
 	if(item) {
 		gchar *filename = addritem_person_get_picture(item);
 		if (filename && is_file_exist(filename))
-			claws_unlink(filename);
+			sylpheedish_unlink(filename);
 		g_free(filename);
 		addritem_free_item_person(item);
 	}

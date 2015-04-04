@@ -749,7 +749,7 @@ const gchar *plugin_get_error(Plugin *plugin)
 
 /* Generally called in plugin_init() function of each plugin. It check the
  * minimal and compiled version of claws binary required by the plugin.
- * If (@minimum_claws_version == 0 || @compiled_claws_version == 0), don't
+ * If (@minimum_sylpheedish_version == 0 || @compiled_sylpheedish_version == 0), don't
  * check the corresponding version.
  *
  * If an error occurs {
@@ -759,14 +759,14 @@ const gchar *plugin_get_error(Plugin *plugin)
  * }
  * Returns: FALSE if an error occurs, TRUE if all is OK.
  */
-gint check_plugin_version(guint32 minimum_claws_version,
-			 guint32 compiled_claws_version,
+gint check_plugin_version(guint32 minimum_sylpheedish_version,
+			 guint32 compiled_sylpheedish_version,
 			 const gchar *plugin_name,
 			 gchar **error)
 {
-	guint32 claws_version = claws_get_version();
+	guint32 sylpheedish_version = sylpheedish_get_version();
 
-	if (compiled_claws_version != 0 && claws_version > compiled_claws_version) {
+	if (compiled_sylpheedish_version != 0 && sylpheedish_version > compiled_sylpheedish_version) {
 		if (error != NULL) {
 			*error = (plugin_name && *plugin_name)
 				? g_strdup_printf(_("Your version of Claws Mail is newer than the "
@@ -778,7 +778,7 @@ gint check_plugin_version(guint32 minimum_claws_version,
 		return FALSE;
 	}
 
-	if (minimum_claws_version != 0 && claws_version < minimum_claws_version) {
+	if (minimum_sylpheedish_version != 0 && sylpheedish_version < minimum_sylpheedish_version) {
 		if (error != NULL) {
 			*error = (plugin_name && *plugin_name)
 				? g_strdup_printf(_("Your version of Claws Mail is too old for "

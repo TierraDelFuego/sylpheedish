@@ -111,7 +111,7 @@ static int gnutls_cert_cb(gnutls_session_t session,
 	return 0;
 }
 
-const gchar *claws_ssl_get_cert_file(void)
+const gchar *sylpheedish_ssl_get_cert_file(void)
 {
 	const char *cert_files[]={
 		"/etc/pki/tls/certs/ca-bundle.crt",
@@ -140,7 +140,7 @@ const gchar *claws_ssl_get_cert_file(void)
 #endif
 }
 
-const gchar *claws_ssl_get_cert_dir(void)
+const gchar *sylpheedish_ssl_get_cert_dir(void)
 {
 	const char *cert_dirs[]={
 		"/etc/pki/tls/certs",
@@ -229,7 +229,7 @@ static gint SSL_connect_nb(gnutls_session_t ssl)
 	debug_print("waiting for SSL_connect thread...\n");
 	while(!td->done) {
 		/* don't let the interface freeze while waiting */
-		claws_do_idle();
+		sylpheedish_do_idle();
 		if (time(NULL) - start_time > 30) {
 			pthread_cancel(pt);
 			td->done = TRUE;
@@ -329,11 +329,11 @@ gboolean ssl_init_socket(SockInfo *sockinfo)
 
 	gnutls_credentials_set(session, GNUTLS_CRD_CERTIFICATE, xcred);
 
-	if (claws_ssl_get_cert_file()) {
-		r = gnutls_certificate_set_x509_trust_file(xcred, claws_ssl_get_cert_file(),  GNUTLS_X509_FMT_PEM);
+	if (sylpheedish_ssl_get_cert_file()) {
+		r = gnutls_certificate_set_x509_trust_file(xcred, sylpheedish_ssl_get_cert_file(),  GNUTLS_X509_FMT_PEM);
 		if (r < 0)
 			g_warning("Can't read SSL_CERT_FILE %s: %s\n",
-				claws_ssl_get_cert_file(), 
+				sylpheedish_ssl_get_cert_file(), 
 				gnutls_strerror(r));
 	} else {
 		debug_print("Can't find SSL ca-certificates file\n");

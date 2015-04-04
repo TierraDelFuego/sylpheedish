@@ -240,7 +240,7 @@ static GtkActionEntry folderview_common_popup_entries[] =
 
 GtkTargetEntry folderview_drag_types[] =
 {
-	{"claws-mail/internal", GTK_TARGET_SAME_APP, TARGET_DUMMY},
+	{"sylpheedish/internal", GTK_TARGET_SAME_APP, TARGET_DUMMY},
 	{"text/uri-list", 0, TARGET_MAIL_URI_LIST}
 };
 
@@ -326,7 +326,7 @@ static void folderview_column_set_titles(FolderView *folderview)
 	gtk_widget_realize(folderview->ctree);
 	gtk_widget_show_all(folderview->scrolledwin);
 	
-	/* CLAWS: titles for "New" and "Unread" show new & unread pixmaps
+	/* SYLPHEEDISH: titles for "New" and "Unread" show new & unread pixmaps
 	 * instead text (text overflows making them unreadable and ugly) */
         stock_pixbuf_gdk(ctree, STOCK_PIXMAP_NEW,
 			 &newxpm);
@@ -2115,7 +2115,7 @@ static void folderview_selected(GtkCMCTree *ctree, GtkCMCTreeNode *row,
 	/* resets folderview->opened to NULL */
 	folderview_close_opened(folderview);
 	
-	/* CLAWS: set compose button type: news folder items 
+	/* SYLPHEEDISH: set compose button type: news folder items 
 	 * always have a news folder as parent */
 	if (item->folder) 
 		toolbar_set_compose_button

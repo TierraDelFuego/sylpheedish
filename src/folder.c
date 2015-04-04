@@ -440,7 +440,7 @@ void folder_item_remove(FolderItem *item)
 	}
 	tags_file = folder_item_get_tags_file(item);
 	if (tags_file)
-		claws_unlink(tags_file);
+		sylpheedish_unlink(tags_file);
 	tags_dir = g_path_get_dirname(tags_file);
 	if (tags_dir)
 		rmdir(tags_dir);
@@ -642,7 +642,7 @@ void folder_item_set_xml(Folder *folder, FolderItem *item, XMLTag *tag)
 		} else if (!strcmp(attr->name, "apply_sub")) {
 			item->apply_sub = *attr->value == '1' ? TRUE : FALSE;
 		} else if (!strcmp(attr->name, "last_seen")) {
-			if (!claws_crashed())
+			if (!sylpheedish_crashed())
 				item->last_seen = atoi(attr->value);
 			else
 				item->last_seen = 0;
@@ -3177,7 +3177,7 @@ gint folder_item_add_msgs(FolderItem *dest, GSList *file_list,
 				lastnum = num;
 
 			if (num >= 0 && remove_source) {
-				if (claws_unlink(fileinfo->file) < 0)
+				if (sylpheedish_unlink(fileinfo->file) < 0)
 					FILE_OP_ERROR(fileinfo->file, "unlink");
 			}
 
@@ -3911,7 +3911,7 @@ void folder_item_discard_cache(FolderItem *item)
 	
 	cache = folder_item_get_cache_file(item);
 	if (is_file_exist(cache))
-		claws_unlink(cache);
+		sylpheedish_unlink(cache);
 	g_free(cache);
 	
 }
@@ -4219,7 +4219,7 @@ static gchar * folder_item_get_tree_identifier(FolderItem * item)
 }
 */
 
-/* CLAWS: temporary local folder for filtering */
+/* SYLPHEEDISH: temporary local folder for filtering */
 #define TEMP_FOLDER "TEMP_FOLDER"
 #define PROCESSING_FOLDER_ITEM "processing"	
 
@@ -4306,7 +4306,7 @@ static void folder_item_restore_persist_prefs(FolderItem *item, GHashTable *ppta
 
 	if (!pp) return;
 
-	/* CLAWS: since not all folder properties have been migrated to 
+	/* SYLPHEEDISH: since not all folder properties have been migrated to 
 	 * folderlist.xml, we need to call the old stuff first before
 	 * setting things that apply both to Main and Claws. */
 	folder_item_prefs_read_config(item); 

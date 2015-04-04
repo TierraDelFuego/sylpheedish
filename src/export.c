@@ -74,7 +74,7 @@ gint export_mbox(FolderItem *default_src)
 	}
 
 	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
-	change_dir(claws_get_startup_dir());
+	change_dir(sylpheedish_get_startup_dir());
 
 	if (default_src && default_src->path) {
 		src_id = folder_item_get_identifier(default_src);

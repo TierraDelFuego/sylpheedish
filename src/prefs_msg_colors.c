@@ -174,7 +174,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			   _("Cycle quote colors"));
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, checkbtn_recycle_colors);
 
-	CLAWS_SET_TIP(checkbtn_recycle_colors,
+	SYLPHEEDISH_SET_TIP(checkbtn_recycle_colors,
 			     _("If there are more than 3 quote levels, the colors will be reused"));
 
 	hbox = gtk_hbox_new(FALSE, VBOX_BORDER);
@@ -200,7 +200,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, color_buttons.btn_quote_level1);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level1,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level1,
 			     C_("Tooltip", "Pick color for 1st level text"));
 
 	hbox = gtk_hbox_new(FALSE, VBOX_BORDER);
@@ -226,7 +226,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, color_buttons.btn_quote_level2);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level2,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level2,
 			     C_("Tooltip", "Pick color for 2nd level text"));
 
 	hbox = gtk_hbox_new(FALSE, VBOX_BORDER);
@@ -252,7 +252,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, color_buttons.btn_quote_level3);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level3,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level3,
 			     C_("Tooltip", "Pick color for 3rd level text"));
 
 	hbox = gtk_hbox_new(FALSE, VBOX_BORDER);
@@ -275,7 +275,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_bgcolors, color_buttons.btn_quote_level1_bg);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level1_bg,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level1_bg,
 			     C_("Tooltip", "Pick color for 1st level text background"));
 
 	label_quote_bgcolor1 = gtk_label_new (_("Background"));
@@ -296,7 +296,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_bgcolors, color_buttons.btn_quote_level2_bg);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level2_bg,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level2_bg,
 			     C_("Tooltip", "Pick color for 2nd level text background"));
 
 	label_quote_bgcolor2 = gtk_label_new (_("Background"));
@@ -317,7 +317,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_bgcolors, color_buttons.btn_quote_level3_bg);
 
-	CLAWS_SET_TIP(color_buttons.btn_quote_level3_bg,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_quote_level3_bg,
 			     C_("Tooltip", "Pick color for 3rd level text background"));
 
 	label_quote_bgcolor3 = gtk_label_new (_("Background"));
@@ -337,7 +337,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, color_buttons.btn_uri);
 
-	CLAWS_SET_TIP(color_buttons.btn_uri,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_uri,
 			     C_("Tooltip", "Pick color for links"));
 
 	lable_uri = gtk_label_new (_("URI link"));
@@ -356,7 +356,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 			    FALSE, FALSE, 0);
 	SET_TOGGLE_SENSITIVITY(checkbtn_enable_colors, color_buttons.btn_signature);
 
-	CLAWS_SET_TIP(color_buttons.btn_signature,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_signature,
 			     C_("Tooltip", "Pick color for signatures"));
 
 	label_signature = gtk_label_new (_("Signatures"));
@@ -376,7 +376,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
   	gtk_box_pack_start (GTK_BOX(hbox), color_buttons.btn_tgt_folder, 
 			    FALSE, FALSE, 0);
 
-	CLAWS_SET_TIP(color_buttons.btn_tgt_folder,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_tgt_folder,
 			     _("Pick color for Target folder. "
 			       "Target folder is used when the option 'Execute immediately "
 			       "when moving or deleting messages' is turned off"));
@@ -395,7 +395,7 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
   	gtk_box_pack_start (GTK_BOX(hbox), color_buttons.btn_color_new,
 			    FALSE, FALSE, 0);
 
-	CLAWS_SET_TIP(color_buttons.btn_color_new,
+	SYLPHEEDISH_SET_TIP(color_buttons.btn_color_new,
 			     _("Pick color for folders containing new messages"));
 
 	label_color_new = gtk_label_new (_("Folder containing new messages"));
@@ -442,14 +442,14 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
   		gtk_box_pack_start(GTK_BOX (hbox_custom_color[c]), color_buttons.custom_color[c],
 				   FALSE, FALSE, 0);
 
-		CLAWS_SET_TIP(color_buttons.custom_color[c],
+		SYLPHEEDISH_SET_TIP(color_buttons.custom_color[c],
 			     	     tooltip_btn_text);
 
 		entry_custom_colorlabel[c] = gtk_entry_new();
 		gtk_widget_show (entry_custom_colorlabel[c]);
   		gtk_box_pack_start(GTK_BOX (hbox_custom_color[c]), entry_custom_colorlabel[c],
 				   FALSE, FALSE, 0);
-		CLAWS_SET_TIP(entry_custom_colorlabel[c],
+		SYLPHEEDISH_SET_TIP(entry_custom_colorlabel[c],
 			     	     tooltip_entry_text);
 	}
 
@@ -472,14 +472,14 @@ static void prefs_msg_colors_create_widget(PrefsPage *_page, GtkWindow *window,
 		gtk_widget_set_size_request(color_buttons.custom_color[c], 30, 20);
   		gtk_box_pack_start(GTK_BOX (hbox_custom_color[c]), color_buttons.custom_color[c],
 				   FALSE, FALSE, 0);
-		CLAWS_SET_TIP(color_buttons.custom_color[c],
+		SYLPHEEDISH_SET_TIP(color_buttons.custom_color[c],
 			     	     tooltip_btn_text);
 
 		entry_custom_colorlabel[c] = gtk_entry_new();
 		gtk_widget_show (entry_custom_colorlabel[c]);
   		gtk_box_pack_start(GTK_BOX (hbox_custom_color[c]), entry_custom_colorlabel[c],
 				   FALSE, FALSE, 0);
-		CLAWS_SET_TIP(entry_custom_colorlabel[c],
+		SYLPHEEDISH_SET_TIP(entry_custom_colorlabel[c],
 			     	     tooltip_entry_text);
 	}
 

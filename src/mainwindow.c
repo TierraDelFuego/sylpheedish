@@ -1941,7 +1941,7 @@ MainWindow *main_window_create()
 
 	gtk_container_add (GTK_CONTAINER(warning_btn), warning_icon);
 
-	CLAWS_SET_TIP(warning_btn, 
+	SYLPHEEDISH_SET_TIP(warning_btn, 
 			     _("Some error(s) happened. Click here to view log."));
 	gtk_box_pack_start(GTK_BOX(hbox_stat), warning_btn, FALSE, FALSE, 0);
 
@@ -1956,10 +1956,10 @@ MainWindow *main_window_create()
 	offline_pixmap = stock_pixmap_widget(hbox_stat, STOCK_PIXMAP_OFFLINE);
 	online_switch = gtk_button_new ();
 	gtkut_widget_set_can_focus(online_switch, FALSE);
-	CLAWS_SET_TIP(online_switch, 
+	SYLPHEEDISH_SET_TIP(online_switch, 
 			     _("You are online. Click the icon to go offline"));
 	offline_switch = gtk_button_new ();
-	CLAWS_SET_TIP(offline_switch, 
+	SYLPHEEDISH_SET_TIP(offline_switch, 
 			     _("You are offline. Click the icon to go online"));
 	gtk_container_add (GTK_CONTAINER(online_switch), online_pixmap);
 	gtk_button_set_relief (GTK_BUTTON(online_switch), GTK_RELIEF_NONE);
@@ -1974,7 +1974,7 @@ MainWindow *main_window_create()
 	gtk_box_pack_start(GTK_BOX(hbox_stat), statuslabel, FALSE, FALSE, 0);
 
 	ac_button = gtk_button_new();
-	CLAWS_SET_TIP(ac_button, _("Select account"));
+	SYLPHEEDISH_SET_TIP(ac_button, _("Select account"));
 	gtkut_widget_set_can_focus(ac_button, FALSE);
 	gtk_widget_set_size_request(ac_button, -1, 0);
 	gtk_box_pack_end(GTK_BOX(hbox_stat), ac_button, FALSE, FALSE, 0);
@@ -2961,7 +2961,7 @@ SensitiveCondMask main_window_get_current_state(MainWindow *mainwin)
 		state |= main_window_get_mask(__VA_ARGS__, -1); \
 	} while (0)
 
-	if (mainwin->lock_count == 0 && !claws_is_starting())
+	if (mainwin->lock_count == 0 && !sylpheedish_is_starting())
 		UPDATE_STATE(M_UNLOCKED);
 	if (selection != SUMMARY_NONE)
 		UPDATE_STATE(M_MSG_EXIST);
@@ -3794,7 +3794,7 @@ static void main_window_set_widgets(MainWindow *mainwin, LayoutType layout_mode)
 	gtk_widget_queue_resize(vbox_body);
 	gtk_widget_queue_resize(mainwin->vbox);
 	gtk_widget_queue_resize(mainwin->window);
-	/* CLAWS: previous "gtk_widget_show_all" makes noticeview
+	/* SYLPHEEDISH: previous "gtk_widget_show_all" makes noticeview
 	 * and mimeview icon list/ctree lose track of their visibility states */
 	if (!noticeview_is_visible(mainwin->messageview->noticeview)) 
 		gtk_widget_hide(GTK_WIDGET_PTR(mainwin->messageview->noticeview));
@@ -5059,12 +5059,12 @@ static void plugins_open_cb(GtkAction *action, gpointer data)
 
 static void manual_open_cb(GtkAction *action, gpointer data)
 {
-	manual_open(MANUAL_MANUAL_CLAWS, NULL);
+	manual_open(MANUAL_MANUAL_SYLPHEEDISH, NULL);
 }
 
 static void manual_faq_open_cb(GtkAction *action, gpointer data)
 {
-	manual_open(MANUAL_FAQ_CLAWS, NULL);
+	manual_open(MANUAL_FAQ_SYLPHEEDISH, NULL);
 }
 
 static void legend_open_cb(GtkAction *action, gpointer data)
@@ -5197,14 +5197,14 @@ static gboolean mainwindow_visibility_event_cb(GtkWidget *widget, GdkEventVisibi
 static gboolean mainwindow_state_event_cb(GtkWidget *widget, GdkEventWindowState *state,
 					  gpointer data)
 {
-	if (!claws_is_starting()
+	if (!sylpheedish_is_starting()
 		&& state->changed_mask&GDK_WINDOW_STATE_ICONIFIED
 		&& state->new_window_state&GDK_WINDOW_STATE_ICONIFIED) {
 
 		if (iconified_count > 0)
 			hooks_invoke(MAIN_WINDOW_GOT_ICONIFIED, NULL);
 		iconified_count++;
-	} else if (!claws_is_starting()) {
+	} else if (!sylpheedish_is_starting()) {
 		prefs_common.mainwin_maximised = 
 			((state->new_window_state&GDK_WINDOW_STATE_MAXIMIZED) != 0);
 	}

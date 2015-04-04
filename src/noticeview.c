@@ -279,7 +279,7 @@ void noticeview_set_icon_clickable(NoticeView *noticeview, gboolean setting)
 
 void noticeview_set_tooltip (NoticeView *noticeview, const gchar *text)
 {
-	CLAWS_SET_TIP(noticeview->evtbox,
+	SYLPHEEDISH_SET_TIP(noticeview->evtbox,
 			text);
 
 }

@@ -51,7 +51,7 @@ struct _SSLClientCertHookData
 	gboolean is_smtp;
 };
 
-const gchar *claws_ssl_get_cert_file(void);
+const gchar *sylpheedish_ssl_get_cert_file(void);
 #endif /* USE_GNUTLS */
 
 #endif /* __SSL_H__ */

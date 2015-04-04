@@ -155,7 +155,7 @@ static void prefs_logging_create_widget(PrefsPage *_page, GtkWindow *window,
 	gtk_widget_set_size_request (GTK_WIDGET (spinbtn_network_log_length), 64, -1);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbtn_network_log_length), TRUE);
 
-	CLAWS_SET_TIP(spinbtn_network_log_length,
+	SYLPHEEDISH_SET_TIP(spinbtn_network_log_length,
 			     _("0 to stop logging in the log window"));
 
 	label = gtk_label_new(_("lines"));
@@ -176,7 +176,7 @@ static void prefs_logging_create_widget(PrefsPage *_page, GtkWindow *window,
 	gtk_container_add (GTK_CONTAINER (vbox1_filtering_log), hbox_filtering_log);
 	gtk_widget_show (hbox_filtering_log);
 
-	CLAWS_SET_TIP(checkbtn_filtering_log,
+	SYLPHEEDISH_SET_TIP(checkbtn_filtering_log,
 			     _("If checked, turns on logging of filtering and processing rules.\n"
 				"The log is accessible from 'Tools/Filtering log'.\n"
 				"Caution: enabling this option will slow down the filtering/processing, "
@@ -234,7 +234,7 @@ static void prefs_logging_create_widget(PrefsPage *_page, GtkWindow *window,
 
 	gtk_box_pack_start(GTK_BOX(hbox_filtering_log_level), optmenu_filtering_log_level, FALSE, FALSE, 0);
 
-	CLAWS_SET_TIP(optmenu_filtering_log_level,
+	SYLPHEEDISH_SET_TIP(optmenu_filtering_log_level,
 			     _("Select the level of detail of the logging.\n"
 				"Choose Low to see when rules are applied, which "
 				"conditions match or don't match and what actions are "
@@ -262,7 +262,7 @@ static void prefs_logging_create_widget(PrefsPage *_page, GtkWindow *window,
 	gtk_widget_set_size_request (GTK_WIDGET (spinbtn_filtering_log_length), 64, -1);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbtn_filtering_log_length), TRUE);
 
-	CLAWS_SET_TIP(spinbtn_filtering_log_length,
+	SYLPHEEDISH_SET_TIP(spinbtn_filtering_log_length,
 			     _("0 to stop logging in the log window"));
 
 	label = gtk_label_new(_("lines"));

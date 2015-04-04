@@ -461,7 +461,7 @@ static gboolean cb_preview(GtkPrintOperation        *operation,
 
 	gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 0);
 
-#define CLAWS_SET_TOOL_ITEM_TIP(widget,tip) { \
+#define SYLPHEEDISH_SET_TOOL_ITEM_TIP(widget,tip) { \
 	gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(widget), tip);				\
 }
 
@@ -471,7 +471,7 @@ static gboolean cb_preview(GtkPrintOperation        *operation,
 	gtk_tool_item_set_is_important(GTK_TOOL_ITEM(item), TRUE);					\
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(item), -1);				\
 	g_signal_connect (G_OBJECT(item), "clicked", G_CALLBACK(cb), cbdata);				\
-	CLAWS_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item),		\
+	SYLPHEEDISH_SET_TOOL_ITEM_TIP(GTK_TOOL_ITEM(item),		\
 			tooltip);									\
 }
 

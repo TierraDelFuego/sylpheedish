@@ -109,7 +109,7 @@ void set_log_file(LogInstance instance, const gchar *filename)
 		gchar *backupname;
 		
 		backupname = g_strconcat(fullname, ".bak", NULL);
-		claws_unlink(backupname);
+		sylpheedish_unlink(backupname);
 		if (g_rename(fullname, backupname) < 0)
 			FILE_OP_ERROR(fullname, "rename");
 		g_free(backupname);

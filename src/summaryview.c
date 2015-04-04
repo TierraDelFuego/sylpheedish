@@ -410,8 +410,8 @@ static void summary_thread_build(SummaryView *summaryview);
 GtkTargetEntry summary_drag_types[3] =
 {
 	{"text/uri-list", 0, TARGET_MAIL_URI_LIST},
-	{"claws-mail/internal", GTK_TARGET_SAME_APP, TARGET_DUMMY},
-	{"claws-mail/msg-path-list", 0, TARGET_MAIL_CM_PATH_LIST},
+	{"sylpheedish/internal", GTK_TARGET_SAME_APP, TARGET_DUMMY},
+	{"sylpheedish/msg-path-list", 0, TARGET_MAIL_CM_PATH_LIST},
 };
 
 #define DO_ACTION(name, act) {						\
@@ -547,7 +547,7 @@ SummaryView *summary_create(MainWindow *mainwin)
 	gtkut_widget_set_can_focus(toggle_search, FALSE);
 	gtk_widget_show(toggle_search);
 
-	CLAWS_SET_TIP(toggle_search, _("Toggle quick search bar"));
+	SYLPHEEDISH_SET_TIP(toggle_search, _("Toggle quick search bar"));
 	
 	gtk_box_pack_start(GTK_BOX(hbox), toggle_search, FALSE, FALSE, 2);	
 
@@ -583,7 +583,7 @@ SummaryView *summary_create(MainWindow *mainwin)
 	multiple_sel_togbtn = gtk_toggle_button_new();
 	gtk_widget_show(multiple_sel_togbtn);
 	gtk_box_pack_end(GTK_BOX(hbox), multiple_sel_togbtn, FALSE, FALSE, 4);
-	CLAWS_SET_TIP(multiple_sel_togbtn,
+	SYLPHEEDISH_SET_TIP(multiple_sel_togbtn,
 			     _("Toggle multiple selection"));
 	g_signal_connect(G_OBJECT(multiple_sel_togbtn), "toggled",
 			 G_CALLBACK(summary_toggle_multiple_pressed),
@@ -771,7 +771,7 @@ SummaryView *summary_create(MainWindow *mainwin)
 
 	summaryview->quicksearch = quicksearch;
 
-	/* CLAWS: need this to get the SummaryView * from
+	/* SYLPHEEDISH: need this to get the SummaryView * from
 	 * the CList */
 	g_object_set_data(G_OBJECT(ctree), "summaryview", (gpointer)summaryview); 
 
@@ -2747,7 +2747,7 @@ static void summary_set_column_titles(SummaryView *summaryview)
 	for (pos = 0; pos < N_SUMMARY_COLS; pos++) {
 		type = summaryview->col_state[pos].type;
 
-		/* CLAWS: mime and unread are single char headers */
+		/* SYLPHEEDISH: mime and unread are single char headers */
 		justify = (type == S_COL_NUMBER || type == S_COL_SIZE)
 			? GTK_JUSTIFY_RIGHT : GTK_JUSTIFY_LEFT;
 
@@ -3674,7 +3674,7 @@ void summary_open_msg(SummaryView *summaryview)
 {
 	if (!summaryview->selected) return;
 	
-	/* CLAWS: if separate message view, don't open a new window
+	/* SYLPHEEDISH: if separate message view, don't open a new window
 	 * but rather use the current separated message view */
 	summary_display_msg_full(summaryview, summaryview->selected, 
 				 TRUE, FALSE);
@@ -5690,7 +5690,7 @@ void summary_filter(SummaryView *summaryview, gboolean selected_only)
 	summary_unlock(summaryview);
 
 	/* 
-	 * CLAWS: summary_show() only valid after having a lock. ideally
+	 * SYLPHEEDISH: summary_show() only valid after having a lock. ideally
 	 * we want the lock to be context aware...  
 	 */
 	summary_show(summaryview, summaryview->folder_item);
@@ -8015,7 +8015,7 @@ void summary_update_unread(SummaryView *summaryview, FolderItem *removed_item)
 	if (prefs_common.layout_mode != SMALL_LAYOUT) {
 		if (tips_initialized) {
 			summary_set_folder_pixmap(summaryview, STOCK_PIXMAP_DIR_OPEN);
-			CLAWS_SET_TIP(summaryview->folder_pixmap_eventbox,
+			SYLPHEEDISH_SET_TIP(summaryview->folder_pixmap_eventbox,
 			     NULL);
 			tips_initialized = FALSE;
 		} 
@@ -8033,12 +8033,12 @@ void summary_update_unread(SummaryView *summaryview, FolderItem *removed_item)
 	if (new > 0 || unread > 0) {
 		tips_initialized = TRUE;
 		summary_set_folder_pixmap(summaryview, STOCK_PIXMAP_DIR_OPEN_HRM);
-		CLAWS_SET_TIP(summaryview->folder_pixmap_eventbox,
+		SYLPHEEDISH_SET_TIP(summaryview->folder_pixmap_eventbox,
 			     _("Go back to the folder list (You have unread messages)"));
 	} else {
 		tips_initialized = TRUE;
 		summary_set_folder_pixmap(summaryview, STOCK_PIXMAP_DIR_OPEN);
-		CLAWS_SET_TIP(summaryview->folder_pixmap_eventbox,
+		SYLPHEEDISH_SET_TIP(summaryview->folder_pixmap_eventbox,
 			     _("Go back to the folder list"));
 	}
 }

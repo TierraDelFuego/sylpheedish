@@ -3,7 +3,7 @@
  *
  * @Copyright (C) 2004-2006 Christian Hammond.
  * Some of this code is from gtkspell, Copyright (C) 2002 Evan Martin.
- * Adapted for Claws Mail (c) 2009-2012 Pawel Pekala and the Claws Mail team
+ * Adapted for Sylpheedish Mail (c) 2009-2012 Pawel Pekala and the Sylpheedish Mail team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,29 +43,29 @@
 #include "defs.h"
 #include "gtkutils.h"
 
-static void claws_spell_entry_init		(ClawsSpellEntry *entry);
-static void claws_spell_entry_editable_init	(GtkEditableClass *iface);
-static void claws_spell_entry_finalize		(GObject *object);
+static void sylpheedish_spell_entry_init		(SylpheedishSpellEntry *entry);
+static void sylpheedish_spell_entry_editable_init	(GtkEditableClass *iface);
+static void sylpheedish_spell_entry_finalize		(GObject *object);
 #if !GTK_CHECK_VERSION(3, 0, 0)
-static void claws_spell_entry_destroy		(GtkObject *object);
-static gint claws_spell_entry_expose		(GtkWidget *widget,
+static void sylpheedish_spell_entry_destroy		(GtkObject *object);
+static gint sylpheedish_spell_entry_expose		(GtkWidget *widget,
 						 GdkEventExpose *event);
 #else
-static void claws_spell_entry_destroy		(GtkWidget *object);
-static gint claws_spell_entry_expose		(GtkWidget *widget,
+static void sylpheedish_spell_entry_destroy		(GtkWidget *object);
+static gint sylpheedish_spell_entry_expose		(GtkWidget *widget,
 						 cairo_t *cr);
 #endif
-static gint claws_spell_entry_button_press	(GtkWidget *widget,
+static gint sylpheedish_spell_entry_button_press	(GtkWidget *widget,
 						 GdkEventButton *event);
-static gboolean claws_spell_entry_popup_menu	(GtkWidget *widget,
-						 ClawsSpellEntry *entry);
-static void claws_spell_entry_populate_popup	(ClawsSpellEntry *entry,
+static gboolean sylpheedish_spell_entry_popup_menu	(GtkWidget *widget,
+						 SylpheedishSpellEntry *entry);
+static void sylpheedish_spell_entry_populate_popup	(SylpheedishSpellEntry *entry,
 						 GtkMenu *menu,
 						 gpointer data);
-static void claws_spell_entry_changed		(GtkEditable *editable,
+static void sylpheedish_spell_entry_changed		(GtkEditable *editable,
 						 gpointer data);
 
-struct _ClawsSpellEntryPriv
+struct _SylpheedishSpellEntryPriv
 {
 	PangoAttrList        *attr_list;
 	gint                  mark_character;
@@ -77,10 +77,10 @@ struct _ClawsSpellEntryPriv
 static GtkEntryClass *parent_class = NULL;
 
 
-G_DEFINE_TYPE_EXTENDED(ClawsSpellEntry, claws_spell_entry, GTK_TYPE_ENTRY, 0, G_IMPLEMENT_INTERFACE(GTK_TYPE_EDITABLE, claws_spell_entry_editable_init)); 
+G_DEFINE_TYPE_EXTENDED(SylpheedishSpellEntry, sylpheedish_spell_entry, GTK_TYPE_ENTRY, 0, G_IMPLEMENT_INTERFACE(GTK_TYPE_EDITABLE, sylpheedish_spell_entry_editable_init)); 
 
 
-static void claws_spell_entry_class_init(ClawsSpellEntryClass *klass)
+static void sylpheedish_spell_entry_class_init(SylpheedishSpellEntryClass *klass)
 {
 	GObjectClass	*g_object_class;
 #if !GTK_CHECK_VERSION(3, 0, 0)
@@ -91,46 +91,46 @@ static void claws_spell_entry_class_init(ClawsSpellEntryClass *klass)
 	parent_class = g_type_class_peek_parent(klass);
 	
 	g_object_class = G_OBJECT_CLASS(klass);
-	g_object_class->finalize = claws_spell_entry_finalize;
+	g_object_class->finalize = sylpheedish_spell_entry_finalize;
 	
 #if !GTK_CHECK_VERSION(3, 0, 0)
 	gtk_object_class = GTK_OBJECT_CLASS(klass);
-	gtk_object_class->destroy = claws_spell_entry_destroy;
+	gtk_object_class->destroy = sylpheedish_spell_entry_destroy;
 #endif
 	
 	widget_class = GTK_WIDGET_CLASS(klass);
-	widget_class->button_press_event = claws_spell_entry_button_press;
+	widget_class->button_press_event = sylpheedish_spell_entry_button_press;
 #if !GTK_CHECK_VERSION(3, 0, 0)
-	widget_class->expose_event = claws_spell_entry_expose;
+	widget_class->expose_event = sylpheedish_spell_entry_expose;
 #else
-	widget_class->draw = claws_spell_entry_expose;
-	widget_class->destroy = claws_spell_entry_destroy;
+	widget_class->draw = sylpheedish_spell_entry_expose;
+	widget_class->destroy = sylpheedish_spell_entry_destroy;
 #endif
 	
 	g_type_class_add_private(g_object_class,
-			sizeof(struct _ClawsSpellEntryPriv));
+			sizeof(struct _SylpheedishSpellEntryPriv));
 }
 
-static void claws_spell_entry_init(ClawsSpellEntry *entry)
+static void sylpheedish_spell_entry_init(SylpheedishSpellEntry *entry)
 {
 	entry->gtkaspell = NULL;
 	
-	entry->priv = g_new0(ClawsSpellEntryPriv, 1);
+	entry->priv = g_new0(SylpheedishSpellEntryPriv, 1);
 	entry->priv->attr_list = pango_attr_list_new();
                                         
 	g_signal_connect(G_OBJECT(entry), "popup-menu",
-			G_CALLBACK(claws_spell_entry_popup_menu), entry);
+			G_CALLBACK(sylpheedish_spell_entry_popup_menu), entry);
 	g_signal_connect(G_OBJECT(entry), "populate-popup",
-			G_CALLBACK(claws_spell_entry_populate_popup), NULL);
+			G_CALLBACK(sylpheedish_spell_entry_populate_popup), NULL);
 	g_signal_connect(G_OBJECT(entry), "changed",
-			G_CALLBACK(claws_spell_entry_changed), NULL);
+			G_CALLBACK(sylpheedish_spell_entry_changed), NULL);
 }
 
-static void claws_spell_entry_editable_init (GtkEditableClass *iface) {}
+static void sylpheedish_spell_entry_editable_init (GtkEditableClass *iface) {}
 
-static void claws_spell_entry_finalize(GObject *object)
+static void sylpheedish_spell_entry_finalize(GObject *object)
 {
-	ClawsSpellEntry *entry = CLAWS_SPELL_ENTRY(object);
+	SylpheedishSpellEntry *entry = CLAWS_SPELL_ENTRY(object);
 
 	if (entry->priv->attr_list)
 		pango_attr_list_unref(entry->priv->attr_list);
@@ -146,23 +146,23 @@ static void claws_spell_entry_finalize(GObject *object)
 }
 
 #if !GTK_CHECK_VERSION(3, 0, 0)
-static void claws_spell_entry_destroy(GtkObject *object)
+static void sylpheedish_spell_entry_destroy(GtkObject *object)
 {
 	GTK_OBJECT_CLASS(parent_class)->destroy(object);
 }
 #else
-static void claws_spell_entry_destroy(GtkWidget *object)
+static void sylpheedish_spell_entry_destroy(GtkWidget *object)
 {
 	GTK_WIDGET_CLASS(parent_class)->destroy(object);
 }
 #endif
 
-GtkWidget *claws_spell_entry_new(void)
+GtkWidget *sylpheedish_spell_entry_new(void)
 {
 	return GTK_WIDGET( g_object_new(CLAWS_TYPE_SPELL_ENTRY, NULL) );
 }
 
-void claws_spell_entry_set_gtkaspell(ClawsSpellEntry *entry, GtkAspell *gtkaspell)
+void sylpheedish_spell_entry_set_gtkaspell(SylpheedishSpellEntry *entry, GtkAspell *gtkaspell)
 {
 	cm_return_if_fail(CLAWS_IS_SPELL_ENTRY(entry));
 
@@ -203,7 +203,7 @@ static gint gtk_entry_find_position (GtkEntry *entry, gint x)
 	return pos;
 }
 
-static void get_word_extents_from_position(ClawsSpellEntry *entry, gint *start,
+static void get_word_extents_from_position(SylpheedishSpellEntry *entry, gint *start,
 					   gint *end, guint position)
 {
 	const gchar *text;
@@ -228,7 +228,7 @@ static void get_word_extents_from_position(ClawsSpellEntry *entry, gint *start,
 	}
 }
 
-static gchar *get_word(ClawsSpellEntry *entry, const int start, const int end)
+static gchar *get_word(SylpheedishSpellEntry *entry, const int start, const int end)
 {
 	const gchar *text;
 	gchar *word;
@@ -243,7 +243,7 @@ static gchar *get_word(ClawsSpellEntry *entry, const int start, const int end)
 	return word;
 }
 
-static void replace_word(ClawsSpellEntry *entry, const gchar *newword)
+static void replace_word(SylpheedishSpellEntry *entry, const gchar *newword)
 {
 	gint cursor, start_pos, end_pos;
 	const gchar *text = gtk_entry_get_text(GTK_ENTRY(entry));
@@ -266,7 +266,7 @@ static void replace_word(ClawsSpellEntry *entry, const gchar *newword)
 }
 
 
-static gboolean word_misspelled(ClawsSpellEntry *entry, int start, int end)
+static gboolean word_misspelled(SylpheedishSpellEntry *entry, int start, int end)
 {
 	gchar *word;
 	gboolean ret;
@@ -352,7 +352,7 @@ static void entry_strsplit_utf8(GtkEntry *entry, gchar ***set, gint **starts, gi
 	g_free (log_attrs);
 }
 
-static void insert_misspelled_marker(ClawsSpellEntry *entry, guint start, guint end)
+static void insert_misspelled_marker(SylpheedishSpellEntry *entry, guint start, guint end)
 {
 	guint16 red   = (guint16) (((gdouble)((prefs_common.misspelled_col & 
 					0xff0000) >> 16) / 255.0) * 65535.0);
@@ -383,7 +383,7 @@ static void insert_misspelled_marker(ClawsSpellEntry *entry, guint start, guint 
 	}
 }
 
-static gboolean check_word(ClawsSpellEntry *entry, int start, int end)
+static gboolean check_word(SylpheedishSpellEntry *entry, int start, int end)
 {
 	GtkAspell *gtkaspell = entry->gtkaspell;
 	PangoAttrIterator *it;
@@ -424,7 +424,7 @@ static gboolean check_word(ClawsSpellEntry *entry, int start, int end)
 	return misspelled;
 }
 
-void claws_spell_entry_recheck_all(ClawsSpellEntry *entry)
+void sylpheedish_spell_entry_recheck_all(SylpheedishSpellEntry *entry)
 {
 	GdkRectangle rect;
 	PangoLayout *layout;
@@ -460,12 +460,12 @@ void claws_spell_entry_recheck_all(ClawsSpellEntry *entry)
 }
 
 #if !GTK_CHECK_VERSION(3, 0, 0)
-static gint claws_spell_entry_expose(GtkWidget *widget, GdkEventExpose *event)
+static gint sylpheedish_spell_entry_expose(GtkWidget *widget, GdkEventExpose *event)
 #else
-static gint claws_spell_entry_expose(GtkWidget *widget, cairo_t *cr)
+static gint sylpheedish_spell_entry_expose(GtkWidget *widget, cairo_t *cr)
 #endif
 {
-	ClawsSpellEntry *entry = CLAWS_SPELL_ENTRY(widget);
+	SylpheedishSpellEntry *entry = CLAWS_SPELL_ENTRY(widget);
 	GtkEntry *gtk_entry = GTK_ENTRY(widget);
 	PangoLayout *layout;
 
@@ -481,9 +481,9 @@ static gint claws_spell_entry_expose(GtkWidget *widget, cairo_t *cr)
 #endif
 }
 
-static gint claws_spell_entry_button_press(GtkWidget *widget, GdkEventButton *event)
+static gint sylpheedish_spell_entry_button_press(GtkWidget *widget, GdkEventButton *event)
 {
-	ClawsSpellEntry *entry = CLAWS_SPELL_ENTRY(widget);
+	SylpheedishSpellEntry *entry = CLAWS_SPELL_ENTRY(widget);
 	GtkEntry *gtk_entry = GTK_ENTRY(widget);
 	gint pos;
 
@@ -493,7 +493,7 @@ static gint claws_spell_entry_button_press(GtkWidget *widget, GdkEventButton *ev
 	return GTK_WIDGET_CLASS(parent_class)->button_press_event (widget, event);
 }
 
-static gboolean claws_spell_entry_popup_menu(GtkWidget *widget, ClawsSpellEntry *entry)
+static gboolean sylpheedish_spell_entry_popup_menu(GtkWidget *widget, SylpheedishSpellEntry *entry)
 {
 	entry->priv->mark_character = gtk_editable_get_position (GTK_EDITABLE (entry));
 	return FALSE;
@@ -506,7 +506,7 @@ static void set_position(gpointer data, gint pos)
 
 static gboolean find_misspelled_cb(gpointer data, gboolean forward)
 {
-	ClawsSpellEntry *entry = (ClawsSpellEntry *)data;
+	SylpheedishSpellEntry *entry = (SylpheedishSpellEntry *)data;
 	GtkAspell *gtkaspell = entry->gtkaspell;
 	gboolean misspelled = FALSE;
 	gint cursor, minpos, maxpos, i, words_len = 0;
@@ -553,7 +553,7 @@ static gboolean find_misspelled_cb(gpointer data, gboolean forward)
 
 static gboolean check_word_cb(gpointer data)
 {
-	ClawsSpellEntry *entry = (ClawsSpellEntry *)data;
+	SylpheedishSpellEntry *entry = (SylpheedishSpellEntry *)data;
 	gint start, end;
 	
 	get_word_extents_from_position(entry, &start, &end, entry->priv->mark_character);
@@ -562,13 +562,13 @@ static gboolean check_word_cb(gpointer data)
 
 static void replace_word_cb(gpointer data, const gchar *newword)
 {
-	replace_word((ClawsSpellEntry *) data, newword);
+	replace_word((SylpheedishSpellEntry *) data, newword);
 }
 
 static void set_menu_pos(GtkMenu *menu, gint *x, gint *y, 
 			 gboolean *push_in, gpointer data)
 {
-	ClawsSpellEntry *entry = (ClawsSpellEntry *) data;
+	SylpheedishSpellEntry *entry = (SylpheedishSpellEntry *) data;
 	GtkAspell *gtkaspell = entry->gtkaspell;
 	gint pango_offset, win_x, win_y, scr_x, scr_y, text_index, entry_x;
 	gchar *text;
@@ -598,7 +598,7 @@ static void set_menu_pos(GtkMenu *menu, gint *x, gint *y,
 	*y = scr_y + win_y + subject_rq.height;
 }
 
-void claws_spell_entry_context_set(ClawsSpellEntry *entry)
+void sylpheedish_spell_entry_context_set(SylpheedishSpellEntry *entry)
 {
 	cm_return_if_fail(CLAWS_IS_SPELL_ENTRY(entry));
 	cm_return_if_fail(entry->gtkaspell != NULL);
@@ -611,7 +611,7 @@ void claws_spell_entry_context_set(ClawsSpellEntry *entry)
         entry->gtkaspell->ctx.data		= (gpointer) entry;
 }
 
-static void claws_spell_entry_populate_popup(ClawsSpellEntry *entry, GtkMenu *menu,
+static void sylpheedish_spell_entry_populate_popup(SylpheedishSpellEntry *entry, GtkMenu *menu,
 						gpointer data)
 {
 	GtkAspell *gtkaspell = entry->gtkaspell;
@@ -635,13 +635,13 @@ static void claws_spell_entry_populate_popup(ClawsSpellEntry *entry, GtkMenu *me
 	gtkaspell->end_pos    = g_utf8_pointer_to_offset(text, (text+end));
 	g_free(text);
 
-        claws_spell_entry_context_set(entry);
+        sylpheedish_spell_entry_context_set(entry);
         gtkaspell_make_context_menu(menu, gtkaspell);
 }
 
-static void claws_spell_entry_changed(GtkEditable *editable, gpointer data)
+static void sylpheedish_spell_entry_changed(GtkEditable *editable, gpointer data)
 {
-	ClawsSpellEntry *entry = CLAWS_SPELL_ENTRY(editable);
+	SylpheedishSpellEntry *entry = CLAWS_SPELL_ENTRY(editable);
 
 	if (entry->gtkaspell == NULL)
 		return;
@@ -654,12 +654,12 @@ static void claws_spell_entry_changed(GtkEditable *editable, gpointer data)
 	entry_strsplit_utf8(GTK_ENTRY(entry), &entry->priv->words, 
 			&entry->priv->word_starts, &entry->priv->word_ends);
 	if(entry->gtkaspell->check_while_typing == TRUE)
-        	claws_spell_entry_recheck_all(entry);
+        	sylpheedish_spell_entry_recheck_all(entry);
 }
 
 static void continue_check(gpointer *data)
 {
-	ClawsSpellEntry *entry = (ClawsSpellEntry *)data;
+	SylpheedishSpellEntry *entry = (SylpheedishSpellEntry *)data;
 	GtkAspell *gtkaspell = entry->gtkaspell;
 	gint pos = gtk_editable_get_position(GTK_EDITABLE(entry));
 	
@@ -669,7 +669,7 @@ static void continue_check(gpointer *data)
 		gtkaspell->continue_check = NULL;
 }
 
-void claws_spell_entry_check_all(ClawsSpellEntry *entry)
+void sylpheedish_spell_entry_check_all(SylpheedishSpellEntry *entry)
 {
 	gint start, end;
 	gchar *text;
@@ -690,28 +690,28 @@ void claws_spell_entry_check_all(ClawsSpellEntry *entry)
 	entry->gtkaspell->continue_check = continue_check;
 	entry->gtkaspell->end_check_pos	 = end;
 
-	claws_spell_entry_context_set(entry);
+	sylpheedish_spell_entry_context_set(entry);
 	entry->gtkaspell->misspelled = 
 			gtkaspell_check_next_prev(entry->gtkaspell, TRUE);
 }
 
-void claws_spell_entry_check_backwards(ClawsSpellEntry *entry)
+void sylpheedish_spell_entry_check_backwards(SylpheedishSpellEntry *entry)
 {
 	cm_return_if_fail(CLAWS_IS_SPELL_ENTRY(entry));
 	cm_return_if_fail(entry->gtkaspell != NULL);
 	
 	entry->gtkaspell->continue_check = NULL;
-	claws_spell_entry_context_set(entry);
+	sylpheedish_spell_entry_context_set(entry);
 	gtkaspell_check_next_prev(entry->gtkaspell, FALSE);
 }
 
-void claws_spell_entry_check_forwards_go(ClawsSpellEntry *entry)
+void sylpheedish_spell_entry_check_forwards_go(SylpheedishSpellEntry *entry)
 {
 	cm_return_if_fail(CLAWS_IS_SPELL_ENTRY(entry));
 	cm_return_if_fail(entry->gtkaspell != NULL);
 
 	entry->gtkaspell->continue_check = NULL;
-	claws_spell_entry_context_set(entry);
+	sylpheedish_spell_entry_context_set(entry);
 	gtkaspell_check_next_prev(entry->gtkaspell, TRUE);
 }
 

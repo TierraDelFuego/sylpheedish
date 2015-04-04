@@ -19,7 +19,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#include "sylpheedish-features.h"
+#  include "sylpheedish-features.h"
 #endif
 
 #include "defs.h"
@@ -129,21 +129,20 @@ static GtkWidget *about_create_child_page_info(void)
 				NULL);
 
 	gtk_text_buffer_insert(buffer, &iter, _(
-				"Claws Mail is a lightweight, fast and "
-				"highly-configurable email client.\n\n"
-				"For further information visit the Claws Mail "
-				"website:\n"), -1);
+				"Sylpheedish is an email client.\n\n"
+				"For further information visit the Sylpheedish "
+				"docs\n"), -1);
 	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, HOMEPAGE_URI, -1,
 				"link", NULL);
 	gtk_text_buffer_insert(buffer, &iter, _("\n\n"
-				"For support and discussion subscribe to the Claws Mail "
-				"users' mailing list:\n"),-1);
+				"For support/discussion subscribe to the Sylpheedish "
+				"mailing list:\n"),-1);
 	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, USERS_ML_URI, -1,
 				"link", NULL);
 	gtk_text_buffer_insert(buffer, &iter, _("\n\n"
-				"Claws Mail is free software released "
+				"Sylpheedish is free software released "
 				"under the GPL. If you wish to donate "
-				"to the Claws Mail project you can do "
+				"to the Sylpheedish project you can do "
 				"so at:\n"), -1);
 	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, DONATE_URI, -1,
 				"link", NULL);
@@ -156,7 +155,8 @@ static GtkWidget *about_create_child_page_info(void)
 				NULL);
 #ifdef GENERIC_UMPC
 	gtk_text_buffer_insert(buffer, &iter, _(
-				"\n\nCopyright (C) 1999-2014\nThe Claws Mail Team\n"
+				"\n\nCopyright (C) 1999-2015\n Sylpheedish"
+				" The Claws Mail Team\n"
 				" and Hiroyuki Yamamoto"), -1);
 #endif
 	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, (_("\n\nSystem Information\n")), -1,
@@ -240,7 +240,7 @@ static GtkWidget *about_create_child_page_authors(void)
 				"underline", PANGO_UNDERLINE_SINGLE,
 				NULL);
 
-	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, (_("The Claws Mail Team")), -1,
+	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, (_("Sylpheedish")), -1,
 			"underlined-list-title", NULL);
 	gtk_text_buffer_insert(buffer, &iter, "\n", 1);
 
@@ -448,7 +448,7 @@ static GtkWidget *about_create_child_page_features(void)
 	gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, (" IPv6 "), -1,
 						 "bold", NULL);
 	gtk_text_buffer_insert(buffer, &iter, 
-		(gchar *)C_("IPv6", "adds support for IPv6 addresses, the new Internet "
+		(gchar *)C_("IPv6", "adds support for IPv6 addresses, an everything in existence "
 			    "addressing protocol\n"), -1);
 
 #if HAVE_ICONV
@@ -805,7 +805,7 @@ static void about_create(void)
 	gtk_table_set_row_spacings (GTK_TABLE (table), 8);
 	gtk_table_set_col_spacings (GTK_TABLE (table), 8);
 
-	image = stock_pixmap_widget(window, STOCK_PIXMAP_CLAWS_MAIL_LOGO);
+	image = stock_pixmap_widget(window, STOCK_PIXMAP_SYLPHEEDISH_LOGO);
 	gtk_table_attach (GTK_TABLE (table), image, 0, 1, 0, 1,
 			(GtkAttachOptions) (GTK_EXPAND),
 			(GtkAttachOptions) (0), 0, 0);
@@ -820,7 +820,7 @@ static void about_create(void)
 	gtk_label_set_justify(GTK_LABEL(label), GTK_JUSTIFY_CENTER);
 	gtk_box_pack_start(GTK_BOX(vbox2), label, FALSE, FALSE, 0);
 	markup = g_markup_printf_escaped
-		("<span weight=\"bold\" size=\"xx-large\">Claws Mail</span>\nversion %s",
+		("<span weight=\"bold\" size=\"xx-large\">Sylpheedish</span>\nversion %s",
 		 VERSION_GIT_FULL);
 	gtk_label_set_markup(GTK_LABEL(label), markup);
 	g_free(markup);

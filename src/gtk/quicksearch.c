@@ -756,7 +756,7 @@ QuickSearch *quicksearch_new()
 			   FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT(clear_search), "clicked",
 			 G_CALLBACK(clear_search_cb), quicksearch);
-	CLAWS_SET_TIP(clear_search,
+	SYLPHEEDISH_SET_TIP(clear_search,
 			     _("Clear the current search"));
 	gtk_widget_show(clear_search);
 
@@ -766,7 +766,7 @@ QuickSearch *quicksearch_new()
 	g_signal_connect(G_OBJECT (search_condition_expression), "clicked",
 			 G_CALLBACK(search_condition_expr),
 			 quicksearch);
-	CLAWS_SET_TIP(search_condition_expression,
+	SYLPHEEDISH_SET_TIP(search_condition_expression,
 			     _("Edit search criteria"));
 	gtk_widget_show(search_condition_expression);
 
@@ -775,7 +775,7 @@ QuickSearch *quicksearch_new()
 			   FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT(search_description), "clicked",
 			 G_CALLBACK(search_description_cb), NULL);
-	CLAWS_SET_TIP(search_description,
+	SYLPHEEDISH_SET_TIP(search_description,
 			     _("Information about extended symbols"));
 	gtk_widget_show(search_description);
 

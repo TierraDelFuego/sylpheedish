@@ -793,9 +793,9 @@ struct _PersistPrefs
 	guint		collapsed	: 1;
 	guint		thread_collapsed	: 1;
 	guint		threaded	: 1;
-	guint		hide_read_msgs	: 1; /* CLAWS */
-	guint		ret_rcpt	: 1; /* CLAWS */
-	guint		hide_del_msgs	: 1; /* CLAWS */
+	guint		hide_read_msgs	: 1; /* SYLPHEEDISH */
+	guint		ret_rcpt	: 1; /* SYLPHEEDISH */
+	guint		hide_del_msgs	: 1; /* SYLPHEEDISH */
 	guint		hide_read_threads	: 1;
 };
 

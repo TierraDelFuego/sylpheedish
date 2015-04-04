@@ -688,10 +688,10 @@ static gint inc_start(IncProgressDialog *inc_dialog)
 			}
 		}
 
-		/* CLAWS: perform filtering actions on dropped message */
-		/* CLAWS: get default inbox (perhaps per account) */
+		/* SYLPHEEDISH: perform filtering actions on dropped message */
+		/* SYLPHEEDISH: get default inbox (perhaps per account) */
 		if (pop3_session->ac_prefs->inbox) {
-			/* CLAWS: get destination folder / mailbox */
+			/* SYLPHEEDISH: get destination folder / mailbox */
 			inbox = folder_find_item_from_identifier(pop3_session->ac_prefs->inbox);
 			if (!inbox)
 				inbox = folder_get_default_inbox();
@@ -1127,17 +1127,17 @@ static gint inc_drop_message(Pop3Session *session, const gchar *file)
 	} else
 		inbox = folder_get_default_inbox();
 	if (!inbox) {
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 
-	/* CLAWS: claws uses a global .processing folder for the filtering. */
+	/* SYLPHEEDISH: claws uses a global .processing folder for the filtering. */
 	dropfolder = folder_get_default_processing(session->ac_prefs->account_id);
 
 	/* add msg file to drop folder */
 	if ((msgnum = folder_item_add_msg(
 			dropfolder, file, NULL, TRUE)) < 0) {
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 
@@ -1393,7 +1393,7 @@ static gint get_spool(FolderItem *dest, const gchar *mbox, PrefsAccount *account
 
 	msgs = proc_mbox(dest, tmp_mbox, account->filter_on_recv, account);
 
-	claws_unlink(tmp_mbox);
+	sylpheedish_unlink(tmp_mbox);
 	if (msgs >= 0) empty_mbox(mbox);
 	unlock_mbox(mbox, lockfd, LOCK_FLOCK);
 

@@ -1433,14 +1433,14 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	local_inbox_entry = gtk_entry_new ();
 	gtk_widget_show (local_inbox_entry);
-	CLAWS_SET_TIP(local_inbox_entry,
+	SYLPHEEDISH_SET_TIP(local_inbox_entry,
 			     _("Unfiltered messages will be stored in this folder"));
 	gtk_widget_set_size_request (local_inbox_entry, DEFAULT_ENTRY_WIDTH, -1);
 	gtk_box_pack_start (GTK_BOX (local_hbox), local_inbox_entry, TRUE, TRUE, 0);
 
 	local_inbox_btn = gtkut_get_browse_file_btn(_("Bro_wse"));
 	gtk_widget_show (local_inbox_btn);
-	CLAWS_SET_TIP(local_inbox_btn,
+	SYLPHEEDISH_SET_TIP(local_inbox_btn,
 			     _("Unfiltered messages will be stored in this folder"));
 	gtk_box_pack_start (GTK_BOX (local_hbox), local_inbox_btn, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (local_inbox_btn), "clicked",
@@ -1469,7 +1469,7 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	leave_time_spinbtn = gtk_spin_button_new_with_range(0, 365, 1);
 	gtk_widget_show (leave_time_spinbtn);
-	CLAWS_SET_TIP(leave_time_spinbtn,
+	SYLPHEEDISH_SET_TIP(leave_time_spinbtn,
 			     _("0 days and 0 hours : remove immediately"));
 	gtk_box_pack_start (GTK_BOX (hbox1), leave_time_spinbtn, FALSE, FALSE, 0);
 
@@ -1479,7 +1479,7 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	leave_hour_spinbtn = gtk_spin_button_new_with_range(0, 23, 1);
 	gtk_widget_show (leave_hour_spinbtn);
-	CLAWS_SET_TIP(leave_hour_spinbtn,
+	SYLPHEEDISH_SET_TIP(leave_hour_spinbtn,
 			     _("0 days and 0 hours : remove immediately"));
 	gtk_box_pack_start (GTK_BOX (hbox1), leave_hour_spinbtn, FALSE, FALSE, 0);
 
@@ -1495,7 +1495,7 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	PACK_CHECK_BUTTON (hbox1, size_limit_checkbtn, _("Receive size limit"));
 
-	CLAWS_SET_TIP(size_limit_checkbtn,
+	SYLPHEEDISH_SET_TIP(size_limit_checkbtn,
 			     _("Messages over this limit will be partially retrieved. "
 		   	       "When selecting them you will be able to download them fully "
 			       "or delete them."));
@@ -1522,14 +1522,14 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	inbox_entry = gtk_entry_new ();
 	gtk_widget_show (inbox_entry);
-	CLAWS_SET_TIP(inbox_entry,
+	SYLPHEEDISH_SET_TIP(inbox_entry,
 			     _("Unfiltered messages will be stored in this folder"));
 	gtk_widget_set_size_request (inbox_entry, DEFAULT_ENTRY_WIDTH, -1);
 	gtk_box_pack_start (GTK_BOX (hbox1), inbox_entry, TRUE, TRUE, 0);
 
 	inbox_btn = gtkut_get_browse_file_btn(_("Bro_wse"));
 	gtk_widget_show (inbox_btn);
-	CLAWS_SET_TIP(inbox_btn,
+	SYLPHEEDISH_SET_TIP(inbox_btn,
 			     _("Unfiltered messages will be stored in this folder"));
 	gtk_box_pack_start (GTK_BOX (hbox1), inbox_btn, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (inbox_btn), "clicked",
@@ -1552,7 +1552,7 @@ static void receive_create_widget_func(PrefsPage * _page,
 	maxarticle_spinbtn = gtk_spin_button_new
 		(GTK_ADJUSTMENT (maxarticle_spinbtn_adj), 10, 0);
 	gtk_widget_show (maxarticle_spinbtn);
-	CLAWS_SET_TIP(maxarticle_spinbtn,
+	SYLPHEEDISH_SET_TIP(maxarticle_spinbtn,
 			     _("unlimited if 0 is specified"));
 	gtk_box_pack_start (GTK_BOX (hbox2), maxarticle_spinbtn,
 			    FALSE, FALSE, 0);
@@ -1615,7 +1615,7 @@ static void receive_create_widget_func(PrefsPage * _page,
 
 	PACK_CHECK_BUTTON (hbox1, low_bandwidth_checkbtn,
 			   _("Bandwidth-efficient mode (prevents retrieving remote tags)"));
-	CLAWS_SET_TIP(low_bandwidth_checkbtn,
+	SYLPHEEDISH_SET_TIP(low_bandwidth_checkbtn,
 			     _("This mode uses less bandwidth, but can be slower with some servers."));
 
 	hbox1 = gtk_hbox_new (FALSE, 8);
@@ -2504,9 +2504,9 @@ static void ssl_create_widget_func(PrefsPage * _page,
 	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
 	entry_in_cert_file = gtk_entry_new();
 	in_ssl_cert_browse_button = gtkut_get_browse_file_btn(_("Browse"));
-	CLAWS_SET_TIP(label,
+	SYLPHEEDISH_SET_TIP(label,
 			     _("Client certificate file as a PKCS12 or PEM file"));
-	CLAWS_SET_TIP(entry_in_cert_file,
+	SYLPHEEDISH_SET_TIP(entry_in_cert_file,
 			     _("Client certificate file as a PKCS12 or PEM file"));	
 	gtk_table_attach(GTK_TABLE(cert_table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
 	gtk_table_attach(GTK_TABLE(cert_table), entry_in_cert_file, 1, 2, 0, 1,
@@ -2526,9 +2526,9 @@ static void ssl_create_widget_func(PrefsPage * _page,
 	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
 	entry_out_cert_file = gtk_entry_new();
 	out_ssl_cert_browse_button = gtkut_get_browse_file_btn(_("Browse"));
-	CLAWS_SET_TIP(label,
+	SYLPHEEDISH_SET_TIP(label,
 			     _("Client certificate file as a PKCS12 or PEM file"));
-	CLAWS_SET_TIP(entry_out_cert_file,
+	SYLPHEEDISH_SET_TIP(entry_out_cert_file,
 			     _("Client certificate file as a PKCS12 or PEM file"));
 	gtk_table_attach(GTK_TABLE(cert_table), label, 0, 1, 2, 3, GTK_FILL, 0, 0, 0);
 	gtk_table_attach(GTK_TABLE(cert_table), entry_out_cert_file, 1, 2, 2, 3,
@@ -2721,13 +2721,13 @@ static void advanced_create_widget_func(PrefsPage * _page,
 	tip_domain = _("The domain name will be used in the generated "
 			"Message-ID, and when connecting to SMTP servers.");
 
-	CLAWS_SET_TIP(checkbtn_domain, tip_domain);
+	SYLPHEEDISH_SET_TIP(checkbtn_domain, tip_domain);
 
 	entry_domain = gtk_entry_new ();
 	gtk_widget_show (entry_domain);
 	gtk_box_pack_start (GTK_BOX (hbox1), entry_domain, TRUE, TRUE, 0);
 	SET_TOGGLE_SENSITIVITY (checkbtn_domain, entry_domain);
-	CLAWS_SET_TIP(entry_domain, tip_domain);
+	SYLPHEEDISH_SET_TIP(entry_domain, tip_domain);
 
 #ifndef G_OS_WIN32	
 	PACK_HBOX (hbox1);
@@ -2741,7 +2741,7 @@ static void advanced_create_widget_func(PrefsPage * _page,
 	PACK_HBOX (hbox1);
 	PACK_CHECK_BUTTON (hbox1, imap_use_trash_checkbtn,
 			   _("Move deleted mails to trash and expunge immediately"));
-	CLAWS_SET_TIP(imap_use_trash_checkbtn,
+	SYLPHEEDISH_SET_TIP(imap_use_trash_checkbtn,
 			     _("Moves deleted mails to trash instead of using the \\Deleted flag without expunging."));
 
 #if !GTK_CHECK_VERSION(3, 0, 0)

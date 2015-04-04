@@ -430,19 +430,19 @@ static void export_ldif_relative_dn_changed(GtkWidget *widget, gpointer data)
 		gtk_label_set_text(label,
 		_("The address book Unique ID is used to create a DN that is " \
 		"formatted similar to:\n" \
-		"  uid=102376,ou=people,dc=claws-mail,dc=org"));
+		"  uid=102376,ou=people,dc=sylpheedish,dc=org"));
 		break;
 	case EXPORT_LDIF_ID_DNAME:
 		gtk_label_set_text(label,
 		_("The address book Display Name is used to create a DN that " \
 		"is formatted similar to:\n" \
-		"  cn=John Doe,ou=people,dc=claws-mail,dc=org"));	
+		"  cn=John Doe,ou=people,dc=sylpheedish,dc=org"));	
 		break;
 	case EXPORT_LDIF_ID_EMAIL:
 		gtk_label_set_text(label, 
 		_("The first Email Address belonging to a person is used to " \
 		"create a DN that is formatted similar to:\n" \
-		"  mail=john.doe@domain.com,ou=people,dc=claws-mail,dc=org"));	
+		"  mail=john.doe@domain.com,ou=people,dc=sylpheedish,dc=org"));	
 		break;
 	}
 	
@@ -495,10 +495,10 @@ static void export_ldif_page_dn( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), entrySuffix, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entrySuffix, _(
+	SYLPHEEDISH_SET_TIP(entrySuffix, _(
 		"The suffix is used to create a \"Distinguished Name\" " \
 		"(or DN) for an LDAP entry. Examples include:\n" \
-		"  dc=claws-mail,dc=org\n" \
+		"  dc=sylpheedish,dc=org\n" \
 		"  ou=people,dc=domainname,dc=com\n" \
 		"  o=Organization Name,c=Country\n"));
 
@@ -519,7 +519,7 @@ static void export_ldif_page_dn( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), optmenuRDN, 1, 2, top, (top + 1),
 		GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(optmenuRDN, _(
+	SYLPHEEDISH_SET_TIP(optmenuRDN, _(
 		"The LDIF file contains several data records that " \
 		"are usually loaded into an LDAP server. Each data " \
 		"record in the LDIF file is uniquely identified by " \
@@ -544,7 +544,7 @@ static void export_ldif_page_dn( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), checkUseDN, 1, 2, top, (top + 1),
 		GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(checkUseDN, _(
+	SYLPHEEDISH_SET_TIP(checkUseDN, _(
 		"The addressbook may contain entries that were " \
 		"previously imported from an LDIF file. The " \
 		"\"Distinguished Name\" (DN) user attribute, if " \
@@ -559,7 +559,7 @@ static void export_ldif_page_dn( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), checkEMail, 1, 2, top, (top + 1),
 		GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(checkEMail, _(
+	SYLPHEEDISH_SET_TIP(checkEMail, _(
 		"An addressbook may contain entries without " \
 		"Email Addresses. Check this option to ignore " \
 		"these records."));

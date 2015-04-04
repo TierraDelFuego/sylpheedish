@@ -194,15 +194,15 @@ GtkUIManager *gtkut_ui_manager(void);
 GdkPixbuf *claws_load_pixbuf_fitting(GdkPixbuf *pixbuf, int box_width,
 				     int box_height);
 
-typedef void (*ClawsIOFunc)(gpointer data, gint source, GIOCondition condition);
+typedef void (*SylpheedishIOFunc)(gpointer data, gint source, GIOCondition condition);
 gint
 claws_input_add    (gint	      source,
 		    GIOCondition      condition,
-		    ClawsIOFunc       function,
+		    SylpheedishIOFunc       function,
 		    gpointer	      data,
 		    gboolean          is_sock);
 
-#define CLAWS_SET_TIP(widget,tip) { 					\
+#define SYLPHEEDISH_SET_TIP(widget,tip) { 					\
 	if (tip != NULL)						\
 		gtk_widget_set_tooltip_text(GTK_WIDGET(widget), tip); 	\
 	else								\

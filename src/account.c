@@ -1546,7 +1546,7 @@ static void account_create_list_view_columns(GtkWidget *list_view)
 		 NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(list_view), column);		
 	gtk_tree_view_column_set_alignment (column, 0.5);
-	CLAWS_SET_TIP(gtk_tree_view_column_get_widget(column),
+	SYLPHEEDISH_SET_TIP(gtk_tree_view_column_get_widget(column),
 			_("'Get Mail' retrieves mail from the checked accounts"));
 	g_signal_connect(G_OBJECT(renderer), "toggled", 		     
 			 G_CALLBACK(account_get_all_toggled),

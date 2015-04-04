@@ -712,7 +712,7 @@ gint pop3_write_uidl_list(Pop3Session *session)
 	}
 	fp = NULL;
 #ifdef G_OS_WIN32
-	claws_unlink(path);
+	sylpheedish_unlink(path);
 #endif
 	if (g_rename(tmp_path, path) < 0) {
 		FILE_OP_ERROR(path, "rename");
@@ -751,7 +751,7 @@ static gint pop3_write_msg_to_file(const gchar *file, const gchar *data,
 		if (fprintf(fp, "%s\n", prefix) < 0) {
 			FILE_OP_ERROR(file, "fprintf");
 			fclose(fp);
-			claws_unlink(file);
+			sylpheedish_unlink(file);
 			return -1;
 		}
 	}
@@ -767,7 +767,7 @@ static gint pop3_write_msg_to_file(const gchar *file, const gchar *data,
 			FILE_OP_ERROR(file, "fwrite");
 			g_warning("can't write to file: %s\n", file);
 			fclose(fp);
-			claws_unlink(file);
+			sylpheedish_unlink(file);
 			return -1;
 		}
 
@@ -793,7 +793,7 @@ static gint pop3_write_msg_to_file(const gchar *file, const gchar *data,
 		FILE_OP_ERROR(file, "fwrite");
 		g_warning("can't write to file: %s\n", file);
 		fclose(fp);
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 	if (data[len - 1] != '\r' && data[len - 1] != '\n') {
@@ -801,14 +801,14 @@ static gint pop3_write_msg_to_file(const gchar *file, const gchar *data,
 			FILE_OP_ERROR(file, "fputc");
 			g_warning("can't write to file: %s\n", file);
 			fclose(fp);
-			claws_unlink(file);
+			sylpheedish_unlink(file);
 			return -1;
 		}
 	}
 
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(file, "fclose");
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 

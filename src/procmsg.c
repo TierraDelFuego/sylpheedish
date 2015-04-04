@@ -70,11 +70,11 @@ enum
 	Q_PRIVACY_SYSTEM   = 9,
 	Q_ENCRYPT 	   = 10,
 	Q_ENCRYPT_DATA	   = 11,
-	Q_CLAWS_HDRS       = 12,
+	Q_SYLPHEEDISH_HDRS       = 12,
 	Q_PRIVACY_SYSTEM_OLD = 13,
 	Q_ENCRYPT_OLD 	     = 14,
 	Q_ENCRYPT_DATA_OLD   = 15,
-	Q_CLAWS_HDRS_OLD     = 16,
+	Q_SYLPHEEDISH_HDRS_OLD     = 16,
 };
 
 void procmsg_msg_list_free(GSList *mlist)
@@ -111,7 +111,7 @@ struct MarkSum {
 	gint first;
 };
 
-/* CLAWS subject threading:
+/* SYLPHEEDISH subject threading:
   
   in the first round it inserts subject lines in a 
   hashtable (subject <-> node)
@@ -237,7 +237,7 @@ GNode *procmsg_get_thread_tree(GSList *mlist)
 		if ((msgid = msginfo->msgid) && g_hash_table_lookup(msgid_table, msgid) == NULL)
 			g_hash_table_insert(msgid_table, (gchar *)msgid, node);
 
-		/* CLAWS: add subject to hashtable (without prefix) */
+		/* SYLPHEEDISH: add subject to hashtable (without prefix) */
 		if (prefs_common.thread_by_subject) {
 			subject_hashtable_insert(subject_hashtable, node);
 		}
@@ -1162,7 +1162,7 @@ static gint procmsg_save_to_outbox(FolderItem *outbox, const gchar *file,
 		folder_item_scan(outbox);
 		if ((num = folder_item_add_msg(outbox, tmp, &flag, TRUE)) < 0) {
 			g_warning("can't save message\n");
-			claws_unlink(tmp);
+			sylpheedish_unlink(tmp);
 			return -1;
 		}
 	} else {
@@ -1614,8 +1614,8 @@ static gint procmsg_send_message_queue_full(const gchar *file, gboolean keep_ses
 			if (encrypt_data == NULL) 
 				encrypt_data = g_strdup(p);
 			break;
-		case Q_CLAWS_HDRS:
-		case Q_CLAWS_HDRS_OLD:
+		case Q_SYLPHEEDISH_HDRS:
+		case Q_SYLPHEEDISH_HDRS_OLD:
 			/* end of special headers reached */
 			goto send_mail; /* can't "break;break;" */
 		}
@@ -1789,7 +1789,7 @@ send_mail:
                             		 newsac->nntp_server);
 				}
 			}
-			claws_unlink(tmp);
+			sylpheedish_unlink(tmp);
 		}
 		g_free(tmp);
 	}
@@ -1843,7 +1843,7 @@ send_mail:
 	}
 
 	if (tmp_enc_file != NULL) {
-		claws_unlink(tmp_enc_file);
+		sylpheedish_unlink(tmp_enc_file);
 		free(tmp_enc_file);
 		tmp_enc_file = NULL;
 	}

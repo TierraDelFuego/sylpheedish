@@ -201,7 +201,7 @@ static void prefs_send_create_widget(PrefsPage *_page, GtkWindow *window,
 			(GtkTreeViewRowSeparatorFunc)_combobox_separator_func, NULL, NULL);
 
 	gtk_widget_show (combobox_charset);
-	CLAWS_SET_TIP(combobox_charset,
+	SYLPHEEDISH_SET_TIP(combobox_charset,
 			     _("If 'Automatic' is selected, the optimal encoding"
 		   	       " for the current locale will be used"));
 	gtk_table_attach(GTK_TABLE(table), combobox_charset, 1, 2, 1, 2,
@@ -278,7 +278,7 @@ static void prefs_send_create_widget(PrefsPage *_page, GtkWindow *window,
 
 	combobox_encoding = gtkut_sc_combobox_create(NULL, FALSE);
 	gtk_widget_show (combobox_encoding);
-	CLAWS_SET_TIP(combobox_encoding,
+	SYLPHEEDISH_SET_TIP(combobox_encoding,
 			     _("Specify Content-Transfer-Encoding used when"
 		   	       " message body contains non-ASCII characters"));
 	gtk_table_attach(GTK_TABLE(table), combobox_encoding, 1, 2, 2, 3,

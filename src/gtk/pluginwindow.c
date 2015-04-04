@@ -410,10 +410,10 @@ void pluginwindow_create()
 			 G_CALLBACK(pluginwindow_delete_cb), pluginwindow);
 	MANAGE_WINDOW_SIGNALS_CONNECT(window);
 
-	CLAWS_SET_TIP(load_btn,
+	SYLPHEEDISH_SET_TIP(load_btn,
 			_("Click here to load one or more plugins"));
 
-	CLAWS_SET_TIP(unload_btn,
+	SYLPHEEDISH_SET_TIP(unload_btn,
 			_("Unload the selected plugin"));
 
 	pluginwindow->window = window;

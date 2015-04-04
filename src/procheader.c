@@ -1032,7 +1032,7 @@ gint procheader_get_header_from_msginfo(MsgInfo *msginfo, gchar *buf, gint len, 
 	val = procheader_get_one_field(buf,len, fp, hentry);
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(file, "fclose");
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		g_free(file);
 		return -1;
 	}

@@ -203,7 +203,7 @@ if (!(func)) \
 { \
 	g_warning("Failed to write template to file\n"); \
 	if (fp) fclose(fp); \
-	if (new) claws_unlink(new); \
+	if (new) sylpheedish_unlink(new); \
 	g_free(new); \
 	g_free(filename); \
 	return; \
@@ -214,7 +214,7 @@ if (!(func)) \
 if (!(func)) \
 { \
 	g_warning("Failed to write template to file\n"); \
-	if (new) claws_unlink(new); \
+	if (new) sylpheedish_unlink(new); \
 	g_free(new); \
 	g_free(filename); \
 	return; \
@@ -300,7 +300,7 @@ static void template_write_config(GSList *tmpl_list)
 				       itos(tmpl_num), NULL);
 		if (is_file_exist(filename)) {
 			debug_print("removing old template %d\n", tmpl_num);
-			claws_unlink(filename);
+			sylpheedish_unlink(filename);
 			g_free(filename);
 		} else {
 			g_free(filename);

@@ -433,7 +433,7 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), entry_name, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entry_name, _( 
+	SYLPHEEDISH_SET_TIP(entry_name, _( 
 		"A name that you wish to call the server." ));
 
 	/* Next row */
@@ -446,7 +446,7 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), entry_server, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entry_server, _( 
+	SYLPHEEDISH_SET_TIP(entry_server, _( 
 		"This is the hostname of the server. For example, " \
 		"\"ldap.mydomain.com\" may be appropriate for the " \
 		"\"mydomain.com\" organization. An IP address may also be " \
@@ -471,11 +471,11 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	enable_ssl_checkbtn = gtk_check_button_new_with_label(_("SSL"));
 	SET_TOGGLE_SENSITIVITY_REVERSE(enable_tls_checkbtn, enable_ssl_checkbtn);
 	SET_TOGGLE_SENSITIVITY_REVERSE(enable_ssl_checkbtn, enable_tls_checkbtn);
-	CLAWS_SET_TIP(enable_tls_checkbtn, _( 
+	SYLPHEEDISH_SET_TIP(enable_tls_checkbtn, _( 
 		"Enable secure connection to the LDAP server via TLS. "
 		"If connection fails, be sure to check the correct "
 		"configuration in ldap.conf (TLS_CACERTDIR and TLS_REQCERT fields)." ));
-	CLAWS_SET_TIP(enable_ssl_checkbtn, _( 
+	SYLPHEEDISH_SET_TIP(enable_ssl_checkbtn, _( 
 		"Enable secure connection to the LDAP server via SSL. "
 		"If connection fails, be sure to check the correct "
 		"configuration in ldap.conf (TLS_CACERTDIR and TLS_REQCERT fields)." ));
@@ -489,14 +489,14 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), hbox_spin, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(spinbtn_port, _( 
+	SYLPHEEDISH_SET_TIP(spinbtn_port, _( 
 		"The port number that the server listens on. Port 389 is " \
 		"the default." ));
 
 	check_btn = gtk_button_new_with_label( _(" Check Server "));
 	gtk_table_attach(GTK_TABLE(table), check_btn, 2, 3, top, (top + 1), GTK_FILL, 0, 3, 0);
 
-	CLAWS_SET_TIP(check_btn, _( 
+	SYLPHEEDISH_SET_TIP(check_btn, _( 
 		"Press this button to test the connection to the server." ));
 
 	/* Next row */
@@ -509,10 +509,10 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), entry_baseDN, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entry_baseDN, _( 
+	SYLPHEEDISH_SET_TIP(entry_baseDN, _( 
 		"This specifies the name of the directory to be searched " \
 		"on the server. Examples include:\n" \
-		"  dc=claws-mail,dc=org\n" \
+		"  dc=sylpheedish,dc=org\n" \
 		"  ou=people,dc=domainname,dc=com\n" \
 		"  o=Organization Name,c=Country\n"
 		));
@@ -520,7 +520,7 @@ static void addressbook_edit_ldap_page_basic( gint pageNum, gchar *pageLbl ) {
 	lookdn_btn = gtkut_get_browse_file_btn(_("_Browse"));
 	gtk_table_attach(GTK_TABLE(table), lookdn_btn, 2, 3, top, (top + 1), GTK_FILL, 0, 3, 0);
 
-	CLAWS_SET_TIP(lookdn_btn, _( 
+	SYLPHEEDISH_SET_TIP(lookdn_btn, _( 
 		"Press this button to lookup the name of available " \
 		"directory names on the server." ));
 
@@ -585,14 +585,14 @@ static void addressbook_edit_ldap_page_search( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), entry_criteria, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entry_criteria, _( 
+	SYLPHEEDISH_SET_TIP(entry_criteria, _( 
 		"A list of LDAP attribute names that should be searched " \
 		"when attempting to find a name or address." ));
 
 	reset_btn = gtk_button_new_with_label( _(" Defaults "));
 	gtk_table_attach(GTK_TABLE(table), reset_btn, 2, 3, top, (top + 1), GTK_FILL, 0, 3, 0);
 
-	CLAWS_SET_TIP(reset_btn, _( 
+	SYLPHEEDISH_SET_TIP(reset_btn, _( 
 		"This resets the attribute names to a default value " \
 		"that should find most names and addresses during a " \
 		"name or address search process." ));
@@ -613,7 +613,7 @@ static void addressbook_edit_ldap_page_search( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), hbox_spin, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(spinbtn_queryage, _( 
+	SYLPHEEDISH_SET_TIP(spinbtn_queryage, _( 
 		"This defines the maximum period of time (in seconds) that " \
 		"an address search result is valid for address completion " \
 		"purposes. Search results are stored in a cache until this " \
@@ -635,7 +635,7 @@ static void addressbook_edit_ldap_page_search( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), check_dynsearch, 1, 3, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(check_dynsearch, _( 
+	SYLPHEEDISH_SET_TIP(check_dynsearch, _( 
 		"Check this option to include this server for dynamic " \
 		"searches when using address completion." ));
 
@@ -646,7 +646,7 @@ static void addressbook_edit_ldap_page_search( gint pageNum, gchar *pageLbl ) {
 	gtk_table_attach(GTK_TABLE(table), check_matchoption, 1, 3, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(check_matchoption, _( 
+	SYLPHEEDISH_SET_TIP(check_matchoption, _( 
 		"Searches for names and addresses can be performed either " \
 		"using \"begins-with\" or \"contains\" search term. Check " \
 		"this option to perform a \"contains\" search; this type of " \
@@ -708,10 +708,10 @@ static void addressbook_edit_ldap_page_extended( gint pageNum, gchar *pageLbl ) 
 	gtk_table_attach(GTK_TABLE(table), entry_bindDN, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(entry_bindDN, _( 
+	SYLPHEEDISH_SET_TIP(entry_bindDN, _( 
 		"The LDAP user account name to be used to connect to the server. " \
 		"This is usually only used for protected servers. This name " \
-		"is typically formatted as: \"cn=user,dc=claws-mail,dc=org\". " \
+		"is typically formatted as: \"cn=user,dc=sylpheedish,dc=org\". " \
 		"This is usually left empty when performing a search." ));
 
 	/* Next row */
@@ -725,7 +725,7 @@ static void addressbook_edit_ldap_page_extended( gint pageNum, gchar *pageLbl ) 
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 	gtk_entry_set_visibility(GTK_ENTRY(entry_bindPW), FALSE);
 
-	CLAWS_SET_TIP(entry_bindPW, _( 
+	SYLPHEEDISH_SET_TIP(entry_bindPW, _( 
 		"The password to be used when connecting as the \"Bind DN\" " \
 		"user." ));
 
@@ -744,7 +744,7 @@ static void addressbook_edit_ldap_page_extended( gint pageNum, gchar *pageLbl ) 
 	gtk_table_attach(GTK_TABLE(table), hbox_spin, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(spinbtn_timeout, _( 
+	SYLPHEEDISH_SET_TIP(spinbtn_timeout, _( 
 		"The timeout period in seconds." ));
 
 	/* Next row */
@@ -762,7 +762,7 @@ static void addressbook_edit_ldap_page_extended( gint pageNum, gchar *pageLbl ) 
 	gtk_table_attach(GTK_TABLE(table), hbox_spin, 1, 2, top, (top + 1),
 		GTK_EXPAND|GTK_SHRINK|GTK_FILL, 0, 0, 0);
 
-	CLAWS_SET_TIP(spinbtn_maxentry, _( 
+	SYLPHEEDISH_SET_TIP(spinbtn_maxentry, _( 
 		"The maximum number of entries that should be returned " \
 		"in the search result." ));
 

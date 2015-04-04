@@ -1109,7 +1109,7 @@ Compose *compose_generic_new(PrefsAccount *account, const gchar *mailto, FolderI
 			mfield = TO_FIELD_PRESENT;
 		}
 		/*
-		 * CLAWS: just don't allow return receipt request, even if the user
+		 * SYLPHEEDISH: just don't allow return receipt request, even if the user
 		 * may want to send an email. simple but foolproof.
 		 */
 		cm_menu_set_sensitive_full(compose->ui_manager, "Menu/Options/RequestRetRcpt", FALSE); 
@@ -2937,7 +2937,7 @@ static gint compose_parse_header(Compose *compose, MsgInfo *msginfo)
 		hentry[H_LIST_POST].body = NULL;
 	}
 
-	/* CLAWS - X-Priority */
+	/* SYLPHEEDISH - X-Priority */
 	if (compose->mode == COMPOSE_REEDIT)
 		if (hentry[H_X_PRIORITY].body != NULL) {
 			gint priority;
@@ -5188,7 +5188,7 @@ gint compose_send(Compose *compose)
 		g_free(msgpath);
 	} else {
 		val = procmsg_send_message_queue_with_lock(msgpath, &errstr, folder, msgnum, &queued_removed);
-		claws_unlink(msgpath);
+		sylpheedish_unlink(msgpath);
 		g_free(msgpath);
 	}
 	if (!discard_window) {
@@ -5767,7 +5767,7 @@ static gint compose_write_body_to_file(Compose *compose, const gchar *file)
 	g_free(tmp);
 	if (!chars) {
 		fclose(fp);
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 	/* write body */
@@ -5776,7 +5776,7 @@ static gint compose_write_body_to_file(Compose *compose, const gchar *file)
 		FILE_OP_ERROR(file, "fwrite");
 		g_free(chars);
 		fclose(fp);
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 
@@ -5784,7 +5784,7 @@ static gint compose_write_body_to_file(Compose *compose, const gchar *file)
 
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(file, "fclose");
-		claws_unlink(file);
+		sylpheedish_unlink(file);
 		return -1;
 	}
 	return 0;
@@ -5978,7 +5978,7 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 			gchar *encdata;
 			if (!compose_warn_encryption(compose)) {
 				fclose(fp);
-				claws_unlink(tmp);
+				sylpheedish_unlink(tmp);
 				g_free(tmp);
 				return -6;
 			}
@@ -6003,7 +6003,7 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 				if (err == TRUE)
 					g_warning("failed to write queue message");
 				fclose(fp);
-				claws_unlink(tmp);
+				sylpheedish_unlink(tmp);
 				g_free(tmp);
 				return -5;
 			}
@@ -6057,7 +6057,7 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 	if (compose->redirect_filename != NULL) {
 		if (compose_redirect_write_to_file(compose, fp) < 0) {
 			fclose(fp);
-			claws_unlink(tmp);
+			sylpheedish_unlink(tmp);
 			g_free(tmp);
 			return -2;
 		}
@@ -6065,7 +6065,7 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 		gint result = 0;
 		if ((result = compose_write_to_file(compose, fp, COMPOSE_WRITE_FOR_SEND, TRUE)) < 0) {
 			fclose(fp);
-			claws_unlink(tmp);
+			sylpheedish_unlink(tmp);
 			g_free(tmp);
 			return result - 1; /* -2 for a generic error, -3 for signing error, -4 for encoding */
 		}
@@ -6073,13 +6073,13 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 	if (err == TRUE) {
 		g_warning("failed to write queue message\n");
 		fclose(fp);
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 		return -2;
 	}
 	if (fclose(fp) == EOF) {
 		FILE_OP_ERROR(tmp, "fclose");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 		return -2;
 	}
@@ -6091,20 +6091,20 @@ static gint compose_queue_sub(Compose *compose, gint *msgnum, FolderItem **item,
 	}
 	if (!queue) {
 		g_warning("can't find queue folder\n");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 		return -1;
 	}
 	folder_item_scan(queue);
 	if ((num = folder_item_add_msg(queue, tmp, NULL, FALSE)) < 0) {
 		g_warning("can't queue the message\n");
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 		return -1;
 	}
 	
 	if (msgpath == NULL) {
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 	} else
 		*msgpath = tmp;
@@ -6920,11 +6920,11 @@ static void compose_create_header_entry(Compose *compose)
 	gtk_button_set_image(GTK_BUTTON(button),
                         gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU));
 	gtk_widget_show(button);
-	CLAWS_SET_TIP(button,
+	SYLPHEEDISH_SET_TIP(button,
 		_("Delete entry contents"));
 	entry = gtk_entry_new(); 
 	gtk_widget_show(entry);
-	CLAWS_SET_TIP(entry,
+	SYLPHEEDISH_SET_TIP(entry,
 		_("Use <tab> to autocomplete from addressbook"));
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_widget_show(hbox);
@@ -7394,7 +7394,7 @@ static void compose_dict_changed(void *data)
 		return;
 
 	gtkaspell_highlight_all(compose->gtkaspell);
-	claws_spell_entry_recheck_all(CLAWS_SPELL_ENTRY(compose->subject_entry));
+	sylpheedish_spell_entry_recheck_all(SYLPHEEDISH_SPELL_ENTRY(compose->subject_entry));
 }
 #endif
 
@@ -7763,7 +7763,7 @@ static Compose *compose_create(PrefsAccount *account,
 	gtk_widget_show(label);
 
 #ifdef USE_ENCHANT
-	subject_entry = claws_spell_entry_new();
+	subject_entry = sylpheedish_spell_entry_new();
 #else
 	subject_entry = gtk_entry_new();
 #endif
@@ -7991,7 +7991,7 @@ static Compose *compose_create(PrefsAccount *account,
 	}
 	compose->gtkaspell = gtkaspell;
 	compose_spell_menu_changed(compose);
-	claws_spell_entry_set_gtkaspell(CLAWS_SPELL_ENTRY(subject_entry), gtkaspell);
+	sylpheedish_spell_entry_set_gtkaspell(SYLPHEEDISH_SPELL_ENTRY(subject_entry), gtkaspell);
 #endif
 
 	compose_select_account(compose, account, TRUE);
@@ -8135,9 +8135,9 @@ static GtkWidget *compose_account_option_menu_create(Compose *compose)
 	gtk_container_set_focus_chain(GTK_CONTAINER(hbox), l);
 	g_list_free(l);
 	
-	CLAWS_SET_TIP(optmenubox,
+	SYLPHEEDISH_SET_TIP(optmenubox,
 		_("Account to use for this email"));
-	CLAWS_SET_TIP(from_name,
+	SYLPHEEDISH_SET_TIP(from_name,
 		_("Sender address to be used"));
 
 	compose->account_combo = optmenu;
@@ -9401,7 +9401,7 @@ static gboolean compose_input_cb(GIOChannel *source, GIOCondition condition,
 		compose_changed_cb(NULL, compose);
 		compose_draft((gpointer)compose, COMPOSE_AUTO_SAVE);
 
-		if (claws_unlink(compose->exteditor_file) < 0)
+		if (sylpheedish_unlink(compose->exteditor_file) < 0)
 			FILE_OP_ERROR(compose->exteditor_file, "unlink");
 
 		buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(compose->text));
@@ -9413,7 +9413,7 @@ static gboolean compose_input_cb(GIOChannel *source, GIOCondition condition,
 		g_free(chars);
 	} else if (buf[0] == '1') {	/* failed */
 		g_warning("Couldn't exec external editor\n");
-		if (claws_unlink(compose->exteditor_file) < 0)
+		if (sylpheedish_unlink(compose->exteditor_file) < 0)
 			FILE_OP_ERROR(compose->exteditor_file, "unlink");
 	} else if (buf[0] == '2') {
 		g_warning("Couldn't write to file\n");
@@ -9748,7 +9748,7 @@ static void compose_send_cb(GtkAction *action, gpointer data)
 		  "to send this email.")))
 		return;
 	
-	if (compose->draft_timeout_tag >= 0) { /* CLAWS: disable draft timeout */
+	if (compose->draft_timeout_tag >= 0) { /* SYLPHEEDISH: disable draft timeout */
 		g_source_remove(compose->draft_timeout_tag);
 		compose->draft_timeout_tag = COMPOSE_DRAFT_TIMEOUT_UNSET;
 	}
@@ -9946,7 +9946,7 @@ gboolean compose_draft (gpointer data, guint action)
 	}
 	if (msgnum < 0) {
 warn_err:
-		claws_unlink(tmp);
+		sylpheedish_unlink(tmp);
 		g_free(tmp);
 		if (action != COMPOSE_AUTO_SAVE) {
 			if (action != COMPOSE_DRAFT_FOR_EXIT)
@@ -10047,7 +10047,7 @@ void compose_clear_exit_drafts(void)
 	gchar *filepath = g_strconcat(get_rc_dir(), G_DIR_SEPARATOR_S,
 				      DRAFTED_AT_EXIT, NULL);
 	if (is_file_exist(filepath))
-		claws_unlink(filepath);
+		sylpheedish_unlink(filepath);
 	
 	g_free(filepath);
 }
@@ -11169,7 +11169,7 @@ static void compose_insert_drag_received_cb (GtkWidget		*widget,
 			str_write_to_file(tmpdata, tmpfile);
 			g_free(tmpdata);  
 			compose_insert_file(compose, tmpfile);
-			claws_unlink(tmpfile);
+			sylpheedish_unlink(tmpfile);
 			g_free(tmpfile);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			compose_beautify_paragraph(compose, NULL, TRUE);
@@ -11478,8 +11478,8 @@ static void compose_check_all(GtkAction *action, gpointer data)
 		return;
 		
 	if (gtk_widget_has_focus(compose->subject_entry))
-		claws_spell_entry_check_all(
-			CLAWS_SPELL_ENTRY(compose->subject_entry));		
+		sylpheedish_spell_entry_check_all(
+			SYLPHEEDISH_SPELL_ENTRY(compose->subject_entry));		
 	else
 		gtkaspell_check_all(compose->gtkaspell);
 }
@@ -11488,8 +11488,8 @@ static void compose_highlight_all(GtkAction *action, gpointer data)
 {
 	Compose *compose = (Compose *)data;
 	if (compose->gtkaspell) {
-		claws_spell_entry_recheck_all(
-			CLAWS_SPELL_ENTRY(compose->subject_entry));
+		sylpheedish_spell_entry_recheck_all(
+			SYLPHEEDISH_SPELL_ENTRY(compose->subject_entry));
 		gtkaspell_highlight_all(compose->gtkaspell);
 	}
 }
@@ -11503,8 +11503,8 @@ static void compose_check_backwards(GtkAction *action, gpointer data)
 	}
 
 	if (gtk_widget_has_focus(compose->subject_entry))
-		claws_spell_entry_check_backwards(
-			CLAWS_SPELL_ENTRY(compose->subject_entry));
+		sylpheedish_spell_entry_check_backwards(
+			SYLPHEEDISH_SPELL_ENTRY(compose->subject_entry));
 	else
 		gtkaspell_check_backwards(compose->gtkaspell);
 }
@@ -11518,8 +11518,8 @@ static void compose_check_forwards_go(GtkAction *action, gpointer data)
 	}
 
 	if (gtk_widget_has_focus(compose->subject_entry))
-		claws_spell_entry_check_forwards_go(
-			CLAWS_SPELL_ENTRY(compose->subject_entry));
+		sylpheedish_spell_entry_check_forwards_go(
+			SYLPHEEDISH_SPELL_ENTRY(compose->subject_entry));
 	else
 		gtkaspell_check_forwards_go(compose->gtkaspell);
 }

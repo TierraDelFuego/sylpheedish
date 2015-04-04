@@ -2570,7 +2570,7 @@ static void fetch_content_run(struct etpan_thread_op * op)
 	close:
 		close(fd);
 	unlink:
-		claws_unlink(param->filename);
+		sylpheedish_unlink(param->filename);
 	
 	free:
 		/* mmap_string_unref is a simple free in libetpan

@@ -486,7 +486,7 @@ static const gchar *get_operating_system(void)
  */
 static gboolean is_crash_dialog_allowed(void)
 {
-	return !getenv("CLAWS_NO_CRASH");
+	return !getenv("SYLPHEEDISH_NO_CRASH");
 }
 
 /*!
@@ -541,7 +541,7 @@ static void crash_handler(int sig)
 		args[3] = buf;
 		args[4] = NULL;
 
-		if (chdir(claws_get_startup_dir()) != 0)
+		if (chdir(sylpheedish_get_startup_dir()) != 0)
 			perror("chdir");
 		if (setgid(getgid()) != 0)
 			perror("setgid");
@@ -563,8 +563,8 @@ static void crash_handler(int sig)
  */
 static void crash_cleanup_exit(void)
 {
-	const char *filename = claws_get_socket_name();
-	claws_unlink(filename);
+	const char *filename = sylpheedish_get_socket_name();
+	sylpheedish_unlink(filename);
 }
 
 #endif

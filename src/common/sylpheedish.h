@@ -17,16 +17,16 @@
  * 
  */
 
-#ifndef CLAWS_H
-#define CLAWS_H
+#ifndef SYLPHEEDISH_H
+#define SYLPHEEDISH_H
 
 #include <glib.h>
 
-gboolean claws_init			(int *argc, char ***argv);
-void claws_done				(void);
-const gchar *claws_get_startup_dir	(void);
-guint claws_get_version			(void);
-void claws_register_idle_function	(void (*idle_func)(void));
-void claws_do_idle			(void);
+gboolean sylpheedish_init			(int *argc, char ***argv);
+void sylpheedish_done				(void);
+const gchar *sylpheedish_get_startup_dir	(void);
+guint sylpheedish_get_version			(void);
+void sylpheedish_register_idle_function	(void (*idle_func)(void));
+void sylpheedish_do_idle			(void);
 
-#endif /* CLAWS_H */
+#endif /* SYLPHEEDISH_H */

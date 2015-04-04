@@ -206,7 +206,7 @@ static void prefs_ext_prog_create_widget(PrefsPage *_page, GtkWindow *window,
 
 	astextviewer_entry = gtk_entry_new ();
 	gtk_widget_show(astextviewer_entry);
-	CLAWS_SET_TIP(astextviewer_entry,
+	SYLPHEEDISH_SET_TIP(astextviewer_entry,
 			     _("This option enables MIME parts to be displayed in the "
  			       "message view via a script when using the 'Display as text' "
 			       "contextual menu item"));

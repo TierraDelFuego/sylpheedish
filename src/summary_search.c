@@ -420,7 +420,7 @@ static void summary_search_create(void)
 	g_signal_connect(G_OBJECT (adv_condition_btn), "clicked",
 			 G_CALLBACK(adv_condition_btn_clicked), search_window.window);
 
-	CLAWS_SET_TIP(adv_condition_btn,
+	SYLPHEEDISH_SET_TIP(adv_condition_btn,
 			     _("Edit search criteria"));
 
 	from_label = gtk_label_new (_("From:"));

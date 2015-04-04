@@ -69,9 +69,9 @@ static gboolean init(GError** error) {
     }
     
     proxy = dbus_g_proxy_new_for_name (connection,
-            "org.clawsmail.Contacts",
-            "/org/clawsmail/contacts",
-            "org.clawsmail.Contacts");
+            "org.sylpheedish.Contacts",
+            "/org/sylpheedish/contacts",
+            "org.sylpheedish.Contacts");
     if (proxy == NULL) {
         g_warning("Could not get a proxy object\n");
         g_set_error(error, client_object_error_quark(), 1, "Could not get a proxy object");
@@ -223,7 +223,7 @@ static DBusHandlerResult contact_add_signal(DBusConnection* bus,
 
    	dbus_error_init (&error);
 
-	if (dbus_message_is_signal(message, "org.clawsmail.Contacts", "ContactMailTo")) {
+	if (dbus_message_is_signal(message, "org.sylpheedish.Contacts", "ContactMailTo")) {
     	if (dbus_message_get_args(
 				message, &error, DBUS_TYPE_STRING, &s, DBUS_TYPE_INVALID)) {
       		debug_print("ContactMailTo address received: %s\n", s);
@@ -234,7 +234,7 @@ static DBusHandlerResult contact_add_signal(DBusConnection* bus,
       		dbus_error_free(&error);
     	}
 	}
-	else if (dbus_message_is_signal(message, "org.clawsmail.Contacts", "ContactMailCc")) {
+	else if (dbus_message_is_signal(message, "org.sylpheedish.Contacts", "ContactMailCc")) {
     	if (dbus_message_get_args(
 				message, &error, DBUS_TYPE_STRING, &s, DBUS_TYPE_INVALID)) {
       		debug_print("ContactMailTo address received: %s\n", s);
@@ -245,7 +245,7 @@ static DBusHandlerResult contact_add_signal(DBusConnection* bus,
       		dbus_error_free(&error);
     	}
 	}
-	else if (dbus_message_is_signal(message, "org.clawsmail.Contacts", "ContactMailBcc")) {
+	else if (dbus_message_is_signal(message, "org.sylpheedish.Contacts", "ContactMailBcc")) {
     	if (dbus_message_get_args(
 				message, &error, DBUS_TYPE_STRING, &s, DBUS_TYPE_INVALID)) {
       		debug_print("ContactMailTo address received: %s\n", s);
@@ -275,7 +275,7 @@ gboolean addressbook_start_service(GError** error) {
 	if (! init(error))
 		return result;
 
-	if (!org_clawsmail_Contacts_ping(proxy, &reply, error)) {
+	if (!org_sylpheedish_Contacts_ping(proxy, &reply, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
 		g_warning ("Woops remote method failed: %s", (*error)->message);
@@ -293,7 +293,7 @@ int addressbook_dbus_add_contact(ContactData* contact, GError** error) {
 		return -1;
 
 	format_contact(&dbus_contact, contact);
-	if (!org_clawsmail_Contacts_add_contact(
+	if (!org_sylpheedish_Contacts_add_contact(
 		proxy, contact->book, dbus_contact.data, dbus_contact.emails, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
@@ -318,7 +318,7 @@ gboolean addrindex_dbus_load_completion(gint (*callBackFunc)
 	if (! init(error))
 		return FALSE;
 
-	if (!org_clawsmail_Contacts_search_addressbook(
+	if (!org_sylpheedish_Contacts_search_addressbook(
 			proxy, "*", NULL, &list, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
@@ -356,7 +356,7 @@ void addressbook_dbus_open(gboolean compose, GError** error) {
 	if (! init(error))
 		return;
 
-	if (!org_clawsmail_Contacts_show_addressbook(proxy, compose, error)) {
+	if (!org_sylpheedish_Contacts_show_addressbook(proxy, compose, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
 		g_warning ("Woops remote method failed: %s", (*error)->message);
@@ -371,7 +371,7 @@ GSList* addressbook_dbus_get_books(GError** error) {
 		return books;
 	}
 	
-	if (!org_clawsmail_Contacts_book_list(proxy, &book_names, error)) {
+	if (!org_sylpheedish_Contacts_book_list(proxy, &book_names, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
 		g_warning ("Woops remote method failed: %s", (*error)->message);
@@ -423,7 +423,7 @@ void addressbook_connect_signals(Compose* compose) {
 	
   	debug_print("Compose: %p\n", compose);
 	compose_instance = compose;
-	dbus_bus_add_match(bus, "type='signal',interface='org.clawsmail.Contacts'", error);
+	dbus_bus_add_match(bus, "type='signal',interface='org.sylpheedish.Contacts'", error);
 	if (error) {
     	debug_print("Failed to add match to the D-BUS daemon: %s", error->message);
     	dbus_error_free(error);
@@ -441,7 +441,7 @@ gchar* addressbook_get_vcard(const gchar* account, GError** error) {
 		return vcard;
 	}
 	
-	if (!org_clawsmail_Contacts_get_vcard(proxy, account, &vcard, error)) {
+	if (!org_sylpheedish_Contacts_get_vcard(proxy, account, &vcard, error)) {
 		if (! *error)
 			g_set_error(error, client_object_error_quark(), 1, "Woops remote method failed");
 		g_warning ("Woops remote method failed: %s", (*error)->message);

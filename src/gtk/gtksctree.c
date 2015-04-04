@@ -2043,7 +2043,7 @@ void gtk_sctree_set_column_tooltip	    (GtkSCTree		*sctree,
 					     int		 column,
 					     const gchar 	*tip)
 {
-	CLAWS_SET_TIP(GTK_CMCLIST(sctree)->column[column].button,
+	SYLPHEEDISH_SET_TIP(GTK_CMCLIST(sctree)->column[column].button,
 			tip);
 }
 
