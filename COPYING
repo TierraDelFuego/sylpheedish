@@ -1,5 +1,5 @@
-The code in this distribution is Copyright 1999-2007 by Hiroyuki Yamamoto
-and the Claws Mail team.
+The code in this distribution is Copyright 1999-2007 by Hiroyuki Yamamoto,
+2014-2015 by TierrDelFuego and the Claws Mail team.
 
 -------------------------------------------------------------------------------
                     GNU GENERAL PUBLIC LICENSE
@@ -676,3 +676,4 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
